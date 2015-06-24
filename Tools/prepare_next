@@ -1,0 +1,115 @@
+#!/usr/bin/env python
+# Python script to prepare the Current/ directory for the next revision.
+# Tasks:
+#  - Reads the draft-...xml file to find out the version number xx
+#  - Create a directory under ../Snapshots/ named draft-...-xx/
+#  - Copy the content of Current/ in that directory
+#  - Change the version number to xx+1 in draft-...xml
+#
+# Usage: prepare_next -f draft-wg-doe-myprotocol
+
+import optparse
+import re
+import os
+import shutil
+
+# Find the current version number
+def find_version(filename):
+    f = open(filename + ".xml")
+    print "Reading %s" % (filename + ".xml")
+    found = False
+    with open(filename + ".xml", "r") as f:
+        for line in f:
+            if filename in line:
+                res = re.search(filename + '-[0-9]+', line)
+                version = int(res.group().split('-')[-1])
+                found = True
+    return version
+
+# Change version number in draft-...xml
+def change_version(filename, vname, new_vname):
+    from tempfile import mkstemp
+    from os import remove, close
+    from shutil import move
+
+    print "Changing version to " + new_vname
+
+    # Create temp file
+    fh, abs_path = mkstemp()
+    new_file = open(abs_path, "w")
+    old_file = open(filename + ".xml")
+    for line in old_file:
+        new_file.write(line.replace(filename + "-" + vname, \
+                filename + "-" + new_vname))
+
+    # Close files
+    new_file.close()
+    close(fh)
+    old_file.close()
+
+    # Replace old version by temp file
+    remove(filename + ".xml")
+    move(abs_path, filename + ".xml")
+
+    return new_vname
+
+def confirm(vname, new_vname):
+    prompt = "Confirm switching from version " + vname + " to version " + \
+            new_vname + "? Y/N "
+    ans = raw_input(prompt)
+    while ans not in ['Y', 'y', 'N', 'n']:
+        print 'Please input Y or N'
+        ans = raw_input(prompt)
+
+    if ans in ['Y', 'y']:
+        print 'Confirmed'
+        return True
+    else:
+        print 'Aborting'
+        return False
+
+# Prepare for the next revision:
+# - copy content of Current/ to Snapshots/draft-...-old/
+# - change version number in draft-...xml
+def prepare_next(filename, force=False):
+    print "Preparing next version for %s" % filename
+    version = find_version(filename)
+    vname = "0%d" % version if version < 10 else str(version)
+    print "Found version " + vname
+    path = "../Snapshots/" + filename + "-" + vname
+
+    new_version = version + 1
+    new_vname = str(new_version) if new_version > 9 else "0%d" % new_version
+
+    confirmed = force or confirm(vname, new_vname)
+    if not confirmed:
+        return
+
+    # Copy the content of Current to Snapshot/draft-...-oldversion/
+    if not os.path.exists(path):
+        print "Copying current directory to %s" % path
+        shutil.copytree(".", path + "/")
+    else:
+        print "Directory already exists, not copying"
+
+    # Change version in the draft xml file
+    new_vname = change_version(filename, vname, new_vname)
+
+    print "Ready for next revision: " + new_vname
+
+def main():
+    parser = optparse.OptionParser("usage: %prog " + \
+            "-f filename")
+    parser.add_option("-f", dest="filename", type="string", \
+            help="specify draft file name")
+    (options, args) = parser.parse_args()
+    filename = options.filename
+    if filename == None:
+        print parser.print_help()
+        exit(0)
+    prepare_next(filename)
+
+if __name__ == "__main__":
+    main()
+
+
