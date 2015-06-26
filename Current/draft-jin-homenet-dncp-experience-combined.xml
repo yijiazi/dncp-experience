@@ -73,7 +73,7 @@ docName="draft-jin-homenet-dncp-experience-00">
 
 <abstract>
 <t>
-This document reports experience with Distributed Node Consensus Protocol (DNCP). It includes introduction of existed known implementations and simulation results of DNCP.
+This document reports experience with Distributed Node Consensus Protocol (DNCP). It includes an introduction of existed known implementations and simulation results of DNCP.
 </t>
 </abstract>
 
