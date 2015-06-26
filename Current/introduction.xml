@@ -1,5 +1,18 @@
-    <section title="Introduction" anchor="introduction">
-      <t>
-        This document .....
-      </t>
-    </section>
+<section title="Introduction" anchor="introduction">
+	<t>
+		TODO list:
+       <list style="symbols">
+       		<t>
+       			brief introduction of dncp
+       		</t>
+       		
+       		<t>
+       			purpose of this document
+       		</t>
+       		
+       		<t>
+       			outline and content of this document
+       		</t>
+       </list>
+	</t>
+</section>

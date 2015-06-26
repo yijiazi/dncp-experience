@@ -18,8 +18,8 @@
   <front>
     <title abbrev="DNCP Experience">Experience with the Distributed Node Consensus Protocol (DNCP)</title>
 
-    <author fullname="Full Name" initials="F" surname="Name">
-      <organization>Organization</organization>
+    <author fullname="Kaiwen Jin" initials="K.J." surname="Jin">
+      <organization>Ecole Polytechnique / Cisco</organization>
       <address>
         <postal>
           <street></street>
@@ -31,17 +31,49 @@
         <email></email>
         <uri></uri>
       </address>
+
+    </author>
+    
+    <author fullname="Pierre Pfister" initials="P.P." surname="Pfister">
+      <organization>Cisco</organization>
+      <address>
+        <postal>
+          <street></street>
+          <city></city>
+          <region></region>
+          <country>France</country>
+        </postal>
+        <phone></phone>
+        <email></email>
+        <uri></uri>
+      </address>
+
     </author>
 
+    <author fullname="Jiazi Yi" initials="J.Y." surname="Yi">
+      <organization>LIX, Ecole Polytechnique</organization>
+      <address>
+        <postal>
+          <street></street>
+          <city></city>
+          <region></region>
+          <country>France</country>
+        </postal>
+        <phone></phone>
+        <email></email>
+        <uri></uri>
+      </address>
+
+    </author>
 
     <date/>
 
     <workgroup>Home Networking</workgroup>
-    <keyword>HOMENET</keyword>
+    <keyword></keyword>
 
     <abstract>
       <t>
-      	This document .....
+      	This document reports experience with Distributed Node Consensus Protocol (DNCP). It includes introduction of existed known implementations and simulation results of DNCP. 
       </t>
     </abstract>
 
@@ -50,6 +82,10 @@
   <middle>
 
     <?rfc include='introduction'?>
+    <?rfc include='implementations'?>
+    <?rfc include='simulation_setup'?>
+    <?rfc include='performance'?>
+    <?rfc include='conclusion'?>
 
   </middle>
 

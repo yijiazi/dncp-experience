@@ -1,10 +1,13 @@
 
 
 
-Home Networking                                                  F. Name
-Internet-Draft                                              Organization
-Intended status: Informational                             June 25, 2015
-Expires: December 27, 2015
+Home Networking                                                   K. Jin
+Internet-Draft                               Ecole Polytechnique / Cisco
+Intended status: Informational                                P. Pfister
+Expires: December 29, 2015                                         Cisco
+                                                                   J. Yi
+                                                LIX, Ecole Polytechnique
+                                                           June 27, 2015
 
 
      Experience with the Distributed Node Consensus Protocol (DNCP)
@@ -12,7 +15,9 @@ Expires: December 27, 2015
 
 Abstract
 
-   This document .....
+   This document reports experience with Distributed Node Consensus
+   Protocol (DNCP).  It includes introduction of existed known
+   implementations and simulation results of DNCP.
 
 Status of this Memo
 
@@ -29,7 +34,7 @@ Status of this Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on December 27, 2015.
+   This Internet-Draft will expire on December 29, 2015.
 
 Copyright Notice
 
@@ -44,23 +49,30 @@ Copyright Notice
    to this document.  Code Components extracted from this document must
    include Simplified BSD License text as described in Section 4.e of
    the Trust Legal Provisions and are provided without warranty as
-   described in the Simplified BSD License.
 
 
 
-
-
-
-
-Name                    Expires December 27, 2015               [Page 1]
+Jin, et al.             Expires December 29, 2015               [Page 1]
 
 Internet-Draft               DNCP Experience                   June 2015
+
+
+   described in the Simplified BSD License.
 
 
 Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . . . 3
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . . . 3
+   2.  Implementations . . . . . . . . . . . . . . . . . . . . . . . . 3
+   3.  Simulation Setup  . . . . . . . . . . . . . . . . . . . . . . . 3
+     3.1.  Simulation Environment  . . . . . . . . . . . . . . . . . . 3
+     3.2.  Performance metric  . . . . . . . . . . . . . . . . . . . . 3
+     3.3.  Chosen toplogies  . . . . . . . . . . . . . . . . . . . . . 3
+   4.  Performance Evaluation  . . . . . . . . . . . . . . . . . . . . 3
+     4.1.  Scenario 1: xxx . . . . . . . . . . . . . . . . . . . . . . 3
+     4.2.  Scenario 2: xxx . . . . . . . . . . . . . . . . . . . . . . 3
+   5.  Conclusion  . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . . . 4
 
 
 
@@ -96,32 +108,94 @@ Table of Contents
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-Name                    Expires December 27, 2015               [Page 2]
+Jin, et al.             Expires December 29, 2015               [Page 2]
 
 Internet-Draft               DNCP Experience                   June 2015
 
 
 1.  Introduction
 
-   This document .....
+   TODO list:
+
+   o  brief introduction of dncp
+
+   o  purpose of this document
+
+   o  outline and content of this document
 
 
-Author's Address
+2.  Implementations
 
-   Full Name
-   Organization
+   TODO list, for each known implementations (I think we have only one
+   at this point?)
+
+   o  conducted by who?
+
+   o  open/close source? if open source, the link?
+
+   o  if available, number of lines/foot print
+
+   o  if available, operational experience.
+
+
+3.  Simulation Setup
+
+3.1.  Simulation Environment
+
+   dncp + ns3
+
+   layer 2 settings
+
+3.2.  Performance metric
+
+   convergence time ...
+
+   convergence ratio...
+
+3.3.  Chosen toplogies
+
+
+4.  Performance Evaluation
+
+4.1.  Scenario 1: xxx
+
+4.2.  Scenario 2: xxx
+
+
+
+
+Jin, et al.             Expires December 29, 2015               [Page 3]
+
+Internet-Draft               DNCP Experience                   June 2015
+
+
+5.  Conclusion
+
+   conclusions
+
+
+Authors' Addresses
+
+   Kaiwen Jin
+   Ecole Polytechnique / Cisco
+   France
+
+   Phone:
+   Email:
+   URI:
+
+
+   Pierre Pfister
+   Cisco
+   France
+
+   Phone:
+   Email:
+   URI:
+
+
+   Jiazi Yi
+   LIX, Ecole Polytechnique
    France
 
    Phone:
@@ -146,23 +220,5 @@ Author's Address
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Name                    Expires December 27, 2015               [Page 3]
+Jin, et al.             Expires December 29, 2015               [Page 4]
 

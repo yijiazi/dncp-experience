@@ -1,0 +1,23 @@
+<section title="Implementations" anchor="implementation">
+	<t>
+		TODO list, for each known implementations (I think we have only one at this point?) 
+		
+       <list style="symbols">
+       		<t>
+       			conducted by who?
+       		</t>
+       		
+       		<t>
+       			open/close source? if open source, the link?
+       		</t>
+       		
+       		<t>
+       			if available, number of lines/foot print
+       		</t>
+
+			<t>
+				if available, operational experience. 
+			</t>
+       </list>
+	</t>
+</section>

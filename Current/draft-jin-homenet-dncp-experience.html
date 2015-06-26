@@ -2,7 +2,7 @@
 <html lang="en"><head><title>Experience with the Distributed Node Consensus Protocol (DNCP)</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="description" content="Experience with the Distributed Node Consensus Protocol (DNCP)">
-<meta name="keywords" content="HOMENET">
+<meta name="keywords" content="">
 <meta name="generator" content="xml2rfc v1.36 (http://xml.resource.org/)">
 <style type='text/css'><!--
         body {
@@ -142,17 +142,20 @@
 <body>
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <table summary="layout" width="66%" border="0" cellpadding="0" cellspacing="0"><tr><td><table summary="layout" width="100%" border="0" cellpadding="2" cellspacing="1">
-<tr><td class="header">Home Networking</td><td class="header">F. Name</td></tr>
-<tr><td class="header">Internet-Draft</td><td class="header">Organization</td></tr>
-<tr><td class="header">Intended status: Informational</td><td class="header">June 25, 2015</td></tr>
-<tr><td class="header">Expires: December 27, 2015</td><td class="header">&nbsp;</td></tr>
+<tr><td class="header">Home Networking</td><td class="header">K. Jin</td></tr>
+<tr><td class="header">Internet-Draft</td><td class="header">Ecole Polytechnique / Cisco</td></tr>
+<tr><td class="header">Intended status: Informational</td><td class="header">P. Pfister</td></tr>
+<tr><td class="header">Expires: December 29, 2015</td><td class="header">Cisco</td></tr>
+<tr><td class="header">&nbsp;</td><td class="header">J. Yi</td></tr>
+<tr><td class="header">&nbsp;</td><td class="header">LIX, Ecole Polytechnique</td></tr>
+<tr><td class="header">&nbsp;</td><td class="header">June 27, 2015</td></tr>
 </table></td></tr></table>
 <h1><br />Experience with the Distributed Node Consensus Protocol (DNCP)<br />draft-jin-homenet-dncp-experience-00</h1>
 
 <h3>Abstract</h3>
 
 <p>
-      	This document .....
+      	This document reports experience with Distributed Node Consensus Protocol (DNCP). It includes introduction of existed known implementations and simulation results of DNCP. 
       
 </p>
 <h3>Status of this Memo</h3>
@@ -170,7 +173,7 @@ and may be updated, replaced, or obsoleted by other documents at any time.
 It is inappropriate to use Internet-Drafts as reference material or to cite
 them other than as &ldquo;work in progress.&rdquo;</p>
 <p>
-This Internet-Draft will expire on December 27, 2015.</p>
+This Internet-Draft will expire on December 29, 2015.</p>
 
 <h3>Copyright Notice</h3>
 <p>
@@ -191,8 +194,26 @@ described in the Simplified BSD License.</p>
 <p class="toc">
 <a href="#introduction">1.</a>&nbsp;
 Introduction<br />
+<a href="#implementation">2.</a>&nbsp;
+Implementations<br />
+<a href="#setup">3.</a>&nbsp;
+Simulation Setup<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor1">3.1.</a>&nbsp;
+Simulation Environment<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor2">3.2.</a>&nbsp;
+Performance metric<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor3">3.3.</a>&nbsp;
+Chosen toplogies<br />
+<a href="#evaluation">4.</a>&nbsp;
+Performance Evaluation<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor4">4.1.</a>&nbsp;
+Scenario 1: xxx<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor5">4.2.</a>&nbsp;
+Scenario 2: xxx<br />
+<a href="#conclusion">5.</a>&nbsp;
+Conclusion<br />
 <a href="#rfc.authors">&#167;</a>&nbsp;
-Author's Address<br />
+Authors' Addresses<br />
 </p>
 <br clear="all" />
 
@@ -202,17 +223,147 @@ Author's Address<br />
 Introduction</h3>
 
 <p>
-        This document .....
-      
+		TODO list:
+       </p>
+<ul class="text">
+<li>
+       			brief introduction of dncp
+       		
+</li>
+<li>
+       			purpose of this document
+       		
+</li>
+<li>
+       			outline and content of this document
+       		
+</li>
+</ul><p>
+	
+</p>
+<a name="implementation"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.2"></a><h3>2.&nbsp;
+Implementations</h3>
+
+<p>
+		TODO list, for each known implementations (I think we have only one at this point?) 
+		
+       </p>
+<ul class="text">
+<li>
+       			conducted by who?
+       		
+</li>
+<li>
+       			open/close source? if open source, the link?
+       		
+</li>
+<li>
+       			if available, number of lines/foot print
+       		
+</li>
+<li>
+				if available, operational experience. 
+			
+</li>
+</ul><p>
+	
+</p>
+<a name="setup"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3"></a><h3>3.&nbsp;
+Simulation Setup</h3>
+
+<a name="anchor1"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.1"></a><h3>3.1.&nbsp;
+Simulation Environment</h3>
+
+<p>
+			dncp + ns3
+		
+</p>
+<p>
+			layer 2 settings
+		
+</p>
+<a name="anchor2"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.2"></a><h3>3.2.&nbsp;
+Performance metric</h3>
+
+<p>
+			convergence time ...
+		
+</p>
+<p>
+			convergence ratio...
+		
+</p>
+<a name="anchor3"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.3.3"></a><h3>3.3.&nbsp;
+Chosen toplogies</h3>
+
+<a name="evaluation"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4"></a><h3>4.&nbsp;
+Performance Evaluation</h3>
+
+<a name="anchor4"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.1"></a><h3>4.1.&nbsp;
+Scenario 1: xxx</h3>
+
+<a name="anchor5"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.2"></a><h3>4.2.&nbsp;
+Scenario 2: xxx</h3>
+
+<a name="conclusion"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.5"></a><h3>5.&nbsp;
+Conclusion</h3>
+
+<p>
+		conclusions
+	
 </p>
 <a name="rfc.authors"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
-<h3>Author's Address</h3>
+<h3>Authors' Addresses</h3>
 <table width="99%" border="0" cellpadding="0" cellspacing="0">
 <tr><td class="author-text">&nbsp;</td>
-<td class="author-text">Full Name</td></tr>
+<td class="author-text">Kaiwen Jin</td></tr>
 <tr><td class="author-text">&nbsp;</td>
-<td class="author-text">Organization</td></tr>
+<td class="author-text">Ecole Polytechnique / Cisco</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">France</td></tr>
+<tr><td class="author" align="right">Phone:&nbsp;</td>
+<td class="author-text"></td></tr>
+<tr><td class="author" align="right">Email:&nbsp;</td>
+<td class="author-text"><a href="mailto:"></a></td></tr>
+<tr><td class="author" align="right">URI:&nbsp;</td>
+<td class="author-text"><a href=""></a></td></tr>
+<tr cellpadding="3"><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Pierre Pfister</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Cisco</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">France</td></tr>
+<tr><td class="author" align="right">Phone:&nbsp;</td>
+<td class="author-text"></td></tr>
+<tr><td class="author" align="right">Email:&nbsp;</td>
+<td class="author-text"><a href="mailto:"></a></td></tr>
+<tr><td class="author" align="right">URI:&nbsp;</td>
+<td class="author-text"><a href=""></a></td></tr>
+<tr cellpadding="3"><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">Jiazi Yi</td></tr>
+<tr><td class="author-text">&nbsp;</td>
+<td class="author-text">LIX, Ecole Polytechnique</td></tr>
 <tr><td class="author-text">&nbsp;</td>
 <td class="author-text">France</td></tr>
 <tr><td class="author" align="right">Phone:&nbsp;</td>

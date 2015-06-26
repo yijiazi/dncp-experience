@@ -18,8 +18,8 @@ docName="draft-jin-homenet-dncp-experience-00">
 <front>
 <title abbrev="DNCP Experience">Experience with the Distributed Node Consensus Protocol (DNCP)</title>
 
-<author fullname="Full Name" initials="F" surname="Name">
-<organization>Organization</organization>
+<author fullname="Kaiwen Jin" initials="K.J." surname="Jin">
+<organization>Ecole Polytechnique / Cisco</organization>
 <address>
 <postal>
 <street></street>
@@ -31,17 +31,49 @@ docName="draft-jin-homenet-dncp-experience-00">
 <email></email>
 <uri></uri>
 </address>
+
 </author>
 
+<author fullname="Pierre Pfister" initials="P.P." surname="Pfister">
+<organization>Cisco</organization>
+<address>
+<postal>
+<street></street>
+<city></city>
+<region></region>
+<country>France</country>
+</postal>
+<phone></phone>
+<email></email>
+<uri></uri>
+</address>
+
+</author>
+
+<author fullname="Jiazi Yi" initials="J.Y." surname="Yi">
+<organization>LIX, Ecole Polytechnique</organization>
+<address>
+<postal>
+<street></street>
+<city></city>
+<region></region>
+<country>France</country>
+</postal>
+<phone></phone>
+<email></email>
+<uri></uri>
+</address>
+
+</author>
 
 <date/>
 
 <workgroup>Home Networking</workgroup>
-<keyword>HOMENET</keyword>
+<keyword></keyword>
 
 <abstract>
 <t>
-This document .....
+This document reports experience with Distributed Node Consensus Protocol (DNCP). It includes introduction of existed known implementations and simulation results of DNCP.
 </t>
 </abstract>
 
@@ -49,11 +81,84 @@ This document .....
 
 <middle>
 
-    <section title="Introduction" anchor="introduction">
-      <t>
-        This document .....
-      </t>
-    </section>
+<section title="Introduction" anchor="introduction">
+	<t>
+		TODO list:
+       <list style="symbols">
+       		<t>
+       			brief introduction of dncp
+       		</t>
+       		
+       		<t>
+       			purpose of this document
+       		</t>
+       		
+       		<t>
+       			outline and content of this document
+       		</t>
+       </list>
+	</t>
+</section><section title="Implementations" anchor="implementation">
+	<t>
+		TODO list, for each known implementations (I think we have only one at this point?) 
+		
+       <list style="symbols">
+       		<t>
+       			conducted by who?
+       		</t>
+       		
+       		<t>
+       			open/close source? if open source, the link?
+       		</t>
+       		
+       		<t>
+       			if available, number of lines/foot print
+       		</t>
+
+			<t>
+				if available, operational experience. 
+			</t>
+       </list>
+	</t>
+</section><section title="Simulation Setup" anchor="setup">
+	
+	<section title="Simulation Environment">
+		<t>
+			dncp + ns3
+		</t>
+		
+		<t>
+			layer 2 settings
+		</t>
+	</section>
+	
+	<section title="Performance metric">
+		<t>
+			convergence time ...
+		</t>
+		
+		<t>
+			convergence ratio...
+		</t>
+		
+	</section> 
+
+	<section title="Chosen toplogies">
+		
+	</section> 
+</section><section title="Performance Evaluation" anchor="evaluation">
+	
+	<section title="Scenario 1: xxx">
+		
+	</section>
+	
+	<section title="Scenario 2: xxx">
+	</section>
+</section><section title="Conclusion" anchor="conclusion">
+	<t>
+		conclusions
+	</t>
+</section>
 </middle>
 
 <back>
