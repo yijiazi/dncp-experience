@@ -145,10 +145,10 @@
 <tr><td class="header">Home Networking</td><td class="header">K. Jin</td></tr>
 <tr><td class="header">Internet-Draft</td><td class="header">Ecole Polytechnique / Cisco</td></tr>
 <tr><td class="header">Intended status: Informational</td><td class="header">P. Pfister</td></tr>
-<tr><td class="header">Expires: December 29, 2015</td><td class="header">Cisco</td></tr>
+<tr><td class="header">Expires: January 1, 2016</td><td class="header">Cisco</td></tr>
 <tr><td class="header">&nbsp;</td><td class="header">J. Yi</td></tr>
 <tr><td class="header">&nbsp;</td><td class="header">LIX, Ecole Polytechnique</td></tr>
-<tr><td class="header">&nbsp;</td><td class="header">June 27, 2015</td></tr>
+<tr><td class="header">&nbsp;</td><td class="header">June 30, 2015</td></tr>
 </table></td></tr></table>
 <h1><br />Experience with the Distributed Node Consensus Protocol (DNCP)<br />draft-jin-homenet-dncp-experience-00</h1>
 
@@ -173,7 +173,7 @@ and may be updated, replaced, or obsoleted by other documents at any time.
 It is inappropriate to use Internet-Drafts as reference material or to cite
 them other than as &ldquo;work in progress.&rdquo;</p>
 <p>
-This Internet-Draft will expire on December 29, 2015.</p>
+This Internet-Draft will expire on January 1, 2016.</p>
 
 <h3>Copyright Notice</h3>
 <p>
@@ -223,19 +223,18 @@ Authors' Addresses<br />
 Introduction</h3>
 
 <p>
-		TODO list:
        </p>
 <ul class="text">
 <li>
-       			brief introduction of dncp
+	DNCP is a protocol used for state synchronization. It is described in [draft-ietf-homenet-dncp-03], and right now its use case is mostly in homenet. DNCP provides a way for each node in the network to publish a set of TLV tuples, which is the data that it wants to share with other nodes, and valide the data received from other nodes by making sure the source node of the data is reachable. It takes advantage of trickle algorithm to control the sending of the status updates, thus decrease the amount of traffic especially when there are no updates in the network.
        		
 </li>
 <li>
-       			purpose of this document
+	Since DNCP is a protocol not yet standardized, it has not been widely deployed, but in order for the homenet to run on it, it is important to evaluate its performances under various senarios which is not so easy to do in real life but relatively easy using network simulators such as ns3. With the help of ns3, we can create various topologies and get logs for analyzing. This draft documents our experience of implementing dncp and integrating it in ns3, as well as the results of performance evaluation. We believe that the results obtained from the simulation are helpful for the implementation of dncp and can be a useful reference for the potential users of dncp.
        		
 </li>
 <li>
-       			outline and content of this document
+       	The document is organized as follows: First we introduce the current implementation of dncp in Section 2. Then the draft describes simulation setup, including simulation environment, the metrics being evaluated and the topologies used for simulation. The third part documents the results of performance evaluations under different senarios. And finally from all the above, we draw our conclusions.
        		
 </li>
 </ul><p>

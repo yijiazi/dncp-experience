@@ -4,10 +4,10 @@
 Home Networking                                                   K. Jin
 Internet-Draft                               Ecole Polytechnique / Cisco
 Intended status: Informational                                P. Pfister
-Expires: December 29, 2015                                         Cisco
+Expires: January 1, 2016                                           Cisco
                                                                    J. Yi
                                                 LIX, Ecole Polytechnique
-                                                           June 27, 2015
+                                                           June 30, 2015
 
 
      Experience with the Distributed Node Consensus Protocol (DNCP)
@@ -34,7 +34,7 @@ Status of this Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on December 29, 2015.
+   This Internet-Draft will expire on January 1, 2016.
 
 Copyright Notice
 
@@ -52,7 +52,7 @@ Copyright Notice
 
 
 
-Jin, et al.             Expires December 29, 2015               [Page 1]
+Jin, et al.              Expires January 1, 2016                [Page 1]
 
 Internet-Draft               DNCP Experience                   June 2015
 
@@ -64,13 +64,13 @@ Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . . . 3
    2.  Implementations . . . . . . . . . . . . . . . . . . . . . . . . 3
-   3.  Simulation Setup  . . . . . . . . . . . . . . . . . . . . . . . 3
-     3.1.  Simulation Environment  . . . . . . . . . . . . . . . . . . 3
-     3.2.  Performance metric  . . . . . . . . . . . . . . . . . . . . 3
-     3.3.  Chosen toplogies  . . . . . . . . . . . . . . . . . . . . . 3
-   4.  Performance Evaluation  . . . . . . . . . . . . . . . . . . . . 3
-     4.1.  Scenario 1: xxx . . . . . . . . . . . . . . . . . . . . . . 3
-     4.2.  Scenario 2: xxx . . . . . . . . . . . . . . . . . . . . . . 3
+   3.  Simulation Setup  . . . . . . . . . . . . . . . . . . . . . . . 4
+     3.1.  Simulation Environment  . . . . . . . . . . . . . . . . . . 4
+     3.2.  Performance metric  . . . . . . . . . . . . . . . . . . . . 4
+     3.3.  Chosen toplogies  . . . . . . . . . . . . . . . . . . . . . 4
+   4.  Performance Evaluation  . . . . . . . . . . . . . . . . . . . . 4
+     4.1.  Scenario 1: xxx . . . . . . . . . . . . . . . . . . . . . . 4
+     4.2.  Scenario 2: xxx . . . . . . . . . . . . . . . . . . . . . . 4
    5.  Conclusion  . . . . . . . . . . . . . . . . . . . . . . . . . . 4
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . . . 4
 
@@ -108,20 +108,42 @@ Table of Contents
 
 
 
-Jin, et al.             Expires December 29, 2015               [Page 2]
+Jin, et al.              Expires January 1, 2016                [Page 2]
 
 Internet-Draft               DNCP Experience                   June 2015
 
 
 1.  Introduction
 
-   TODO list:
+   o  DNCP is a protocol used for state synchronization.  It is
+      described in [draft-ietf-homenet-dncp-03], and right now its use
+      case is mostly in homenet.  DNCP provides a way for each node in
+      the network to publish a set of TLV tuples, which is the data that
+      it wants to share with other nodes, and valide the data received
+      from other nodes by making sure the source node of the data is
+      reachable.  It takes advantage of trickle algorithm to control the
+      sending of the status updates, thus decrease the amount of traffic
+      especially when there are no updates in the network.
 
-   o  brief introduction of dncp
+   o  Since DNCP is a protocol not yet standardized, it has not been
+      widely deployed, but in order for the homenet to run on it, it is
+      important to evaluate its performances under various senarios
+      which is not so easy to do in real life but relatively easy using
+      network simulators such as ns3.  With the help of ns3, we can
+      create various topologies and get logs for analyzing.  This draft
+      documents our experience of implementing dncp and integrating it
+      in ns3, as well as the results of performance evaluation.  We
+      believe that the results obtained from the simulation are helpful
+      for the implementation of dncp and can be a useful reference for
+      the potential users of dncp.
 
-   o  purpose of this document
-
-   o  outline and content of this document
+   o  The document is organized as follows: First we introduce the
+      current implementation of dncp in Section 2.  Then the draft
+      describes simulation setup, including simulation environment, the
+      metrics being evaluated and the topologies used for simulation.
+      The third part documents the results of performance evaluations
+      under different senarios.  And finally from all the above, we draw
+      our conclusions.
 
 
 2.  Implementations
@@ -136,6 +158,15 @@ Internet-Draft               DNCP Experience                   June 2015
    o  if available, number of lines/foot print
 
    o  if available, operational experience.
+
+
+
+
+
+
+Jin, et al.              Expires January 1, 2016                [Page 3]
+
+Internet-Draft               DNCP Experience                   June 2015
 
 
 3.  Simulation Setup
@@ -162,13 +193,6 @@ Internet-Draft               DNCP Experience                   June 2015
 4.2.  Scenario 2: xxx
 
 
-
-
-Jin, et al.             Expires December 29, 2015               [Page 3]
-
-Internet-Draft               DNCP Experience                   June 2015
-
-
 5.  Conclusion
 
    conclusions
@@ -192,6 +216,13 @@ Authors' Addresses
    Phone:
    Email:
    URI:
+
+
+
+
+Jin, et al.              Expires January 1, 2016                [Page 4]
+
+Internet-Draft               DNCP Experience                   June 2015
 
 
    Jiazi Yi
@@ -220,5 +251,30 @@ Authors' Addresses
 
 
 
-Jin, et al.             Expires December 29, 2015               [Page 4]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Jin, et al.              Expires January 1, 2016                [Page 5]
 
