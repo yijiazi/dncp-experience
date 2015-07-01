@@ -74,13 +74,13 @@ Table of Contents
        3.3.4.  Tree topology . . . . . . . . . . . . . . . . . . . . . 5
        3.3.5.  Double Tree topology  . . . . . . . . . . . . . . . . . 5
    4.  Performance Evaluation  . . . . . . . . . . . . . . . . . . . . 5
-     4.1.  Scenario 1: xxx . . . . . . . . . . . . . . . . . . . . . . 5
-     4.2.  Scenario 2: xxx . . . . . . . . . . . . . . . . . . . . . . 5
-   5.  Conclusion  . . . . . . . . . . . . . . . . . . . . . . . . . . 6
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . . . 6
-
-
-
+     4.1.  Scenario 1: Link topology of different size . . . . . . . . 6
+     4.2.  Scenario 2: String topology of different size . . . . . . . 6
+     4.3.  Scenario 3: Mesh topology of different size . . . . . . . . 6
+     4.4.  Scenario 4: Tree topology of different size . . . . . . . . 7
+     4.5.  Scenario 5: Tree topology of different size . . . . . . . . 7
+   5.  Conclusion  . . . . . . . . . . . . . . . . . . . . . . . . . . 7
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . . . 7
 
 
 
@@ -268,9 +268,9 @@ Internet-Draft               DNCP Experience                   July 2015
 
 4.  Performance Evaluation
 
-4.1.  Scenario 1: xxx
 
-4.2.  Scenario 2: xxx
+
+
 
 
 
@@ -279,6 +279,91 @@ Internet-Draft               DNCP Experience                   July 2015
 Jin, et al.              Expires January 2, 2016                [Page 5]
 
 Internet-Draft               DNCP Experience                   July 2015
+
+
+4.1.  Scenario 1: Link topology of different size
+
+            The average value is calculated over 10 experiments
+
+   +-------+-------+--------+-------+-------+--------+--------+--------+
+   |   10  |   20  |   30   |   40  |   50  |   60   |   70   |   80   |
+   | nodes | nodes |  nodes | nodes | nodes |  nodes |  nodes |  nodes |
+   +-------+-------+--------+-------+-------+--------+--------+--------+
+   | 1.843 | 3.092 | *4.432 | 5.143 | 6.535 |  *8.61 |  11.57 |  14.05 |
+   |   s   |   s   |    s   |   s   |   s   |    s   |    s   |    s   |
+   +-------+-------+--------+-------+-------+--------+--------+--------+
+
+   *: the average value is calculated over the results of 9 experiments
+                  because the other one diverges too much
+
+          Table 1: the average convergence time of link topology
+
+4.2.  Scenario 2: String topology of different size
+
+            The average value is calculated over 10 experiments
+
+   +-------+-------+-------+-------+--------+--------+--------+--------+
+   |   10  |   20  |   30  |   40  |   50   |   60   |   70   |   80   |
+   | nodes | nodes | nodes | nodes |  nodes |  nodes |  nodes |  nodes |
+   +-------+-------+-------+-------+--------+--------+--------+--------+
+   |  1.84 | 3.653 | 5.244 | 7.099 |  8.786 | 11.111 | 12.869 | 15.032 |
+   |   s   |   s   |   s   |   s   |    s   |    s   |    s   |    s   |
+   +-------+-------+-------+-------+--------+--------+--------+--------+
+
+         Table 2: the average convergence time of string topology
+
+4.3.  Scenario 3: Mesh topology of different size
+
+            The average value is calculated over 10 experiments
+
+   +-------+-------+-------+-------+--------+--------+--------+--------+
+   |   10  |   20  |   30  |   40  |   50   |   60   |   70   |   80   |
+   | nodes | nodes | nodes | nodes |  nodes |  nodes |  nodes |  nodes |
+   +-------+-------+-------+-------+--------+--------+--------+--------+
+   |  1.71 | 3.205 | 4.833 | *6.19 | 10.638 | 13.018 | 15.334 | 17.931 |
+   |   s   |   s   |   s   |   s   |    s   |    s   |    s   |    s   |
+   +-------+-------+-------+-------+--------+--------+--------+--------+
+
+   *: the average value is calculated over the results of 9 experiments
+                  because the other one diverges too much
+
+          Table 3: the average convergence time of mesh topology
+
+
+
+
+Jin, et al.              Expires January 2, 2016                [Page 6]
+
+Internet-Draft               DNCP Experience                   July 2015
+
+
+4.4.  Scenario 4: Tree topology of different size
+
+            The average value is calculated over 10 experiments
+
+   +-------+-------+-------+-------+--------+--------+--------+--------+
+   |   10  |   20  |   30  |   40  |   50   |   60   |   70   |   80   |
+   | nodes | nodes | nodes | nodes |  nodes |  nodes |  nodes |  nodes |
+   +-------+-------+-------+-------+--------+--------+--------+--------+
+   | 1.165 | 1.574 | 1.861 | 1.997 | 2.33 s | 2.42 s |  2.561 |  2.597 |
+   |       |   s   |   s   |   s   |        |        |    s   |    s   |
+   +-------+-------+-------+-------+--------+--------+--------+--------+
+
+          Table 4: the average convergence time of tree topology
+
+4.5.  Scenario 5: Tree topology of different size
+
+            The average value is calculated over 10 experiments
+
+   +-------+-------+-------+-------+--------+--------+--------+--------+
+   |   10  |   20  |   30  |   40  |   50   |   60   |   70   |   80   |
+   | nodes | nodes | nodes | nodes |  nodes |  nodes |  nodes |  nodes |
+   +-------+-------+-------+-------+--------+--------+--------+--------+
+   | 1.044 | 1.436 | 1.5 s | 1.704 | 1.96 s | 1.98 s | 2.06 s |  2.086 |
+   |   s   |   s   |       |   s   |        |        |        |    s   |
+   +-------+-------+-------+-------+--------+--------+--------+--------+
+
+         Table 5: the average convergence time of double topology
 
 
 5.  Conclusion
@@ -295,6 +380,17 @@ Authors' Addresses
    Phone:
    Email:
    URI:
+
+
+
+
+
+
+
+
+Jin, et al.              Expires January 2, 2016                [Page 7]
+
+Internet-Draft               DNCP Experience                   July 2015
 
 
    Pierre Pfister
@@ -332,5 +428,21 @@ Authors' Addresses
 
 
 
-Jin, et al.              Expires January 2, 2016                [Page 6]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Jin, et al.              Expires January 2, 2016                [Page 8]
 

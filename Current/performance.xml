@@ -1,9 +1,123 @@
 <section title="Performance Evaluation" anchor="evaluation">
 	
-	<section title="Scenario 1: xxx">
-		
+	<section title="Scenario 1: Link topology of different size">
+		<texttable anchor='table' title="the average convergence time of link topology">
+        	<preamble>The average value is calculated over 10 experiments</preamble>
+        	<ttcol align='center'>10 nodes</ttcol>
+        	<ttcol align='center'>20 nodes</ttcol>
+        	<ttcol align='center'>30 nodes</ttcol>
+        	<ttcol align='center'>40 nodes</ttcol>
+        	<ttcol align='center'>50 nodes</ttcol>
+        	<ttcol align='center'>60 nodes</ttcol>
+        	<ttcol align='center'>70 nodes</ttcol>
+        	<ttcol align='center'>80 nodes</ttcol>
+
+        	<c>1.843 s</c>
+        	<c>3.092 s</c> 
+        	<c>*4.432 s </c>
+        	<c>5.143 s</c>
+        	<c>6.535 s</c>
+        	<c>*8.61 s</c>
+		<c>11.57 s</c>
+		<c>14.05 s</c>
+        	<postamble>*: the average value is calculated over the results of 9 experiments because the other one diverges too much </postamble>
+    		</texttable>
 	</section>
 	
-	<section title="Scenario 2: xxx">
+	<section title="Scenario 2: String topology of different size">
+		<texttable anchor='table2' title="the average convergence time of string topology">
+        	<preamble>The average value is calculated over 10 experiments</preamble>
+        	<ttcol align='center'>10 nodes</ttcol>
+        	<ttcol align='center'>20 nodes</ttcol>
+        	<ttcol align='center'>30 nodes</ttcol>
+        	<ttcol align='center'>40 nodes</ttcol>
+        	<ttcol align='center'>50 nodes</ttcol>
+        	<ttcol align='center'>60 nodes</ttcol>
+        	<ttcol align='center'>70 nodes</ttcol>
+        	<ttcol align='center'>80 nodes</ttcol>
+
+        	<c>1.84 s</c>
+        	<c>3.653 s</c> 
+        	<c>5.244 s</c>
+        	<c>7.099 s</c>
+        	<c>8.786 s</c>
+        	<c>11.111 s</c>
+        	<c>12.869 s</c>
+        	<c>15.032 s</c>
+        	<postamble></postamble>
+    		</texttable>
 	</section>
+
+	<section title="Scenario 3: Mesh topology of different size">
+		<texttable anchor='table3' title="the average convergence time of mesh topology">
+        	<preamble>The average value is calculated over 10 experiments</preamble>
+        	<ttcol align='center'>10 nodes</ttcol>
+        	<ttcol align='center'>20 nodes</ttcol>
+        	<ttcol align='center'>30 nodes</ttcol>
+        	<ttcol align='center'>40 nodes</ttcol>
+        	<ttcol align='center'>50 nodes</ttcol>
+        	<ttcol align='center'>60 nodes</ttcol>
+        	<ttcol align='center'>70 nodes</ttcol>
+        	<ttcol align='center'>80 nodes</ttcol>
+
+        	<c>1.71 s</c>
+        	<c>3.205 s</c> 
+        	<c>4.833 s</c>
+        	<c>*6.19 s</c>
+        	<c>10.638 s</c>
+        	<c>13.018 s</c>
+        	<c>15.334 s</c>
+        	<c>17.931 s</c>
+        	<postamble>*: the average value is calculated over the results of 9 experiments because the other one diverges too much </postamble>
+    		</texttable>
+	</section>
+
+	<section title="Scenario 4: Tree topology of different size">
+		<texttable anchor='table4' title="the average convergence time of tree topology">
+        	<preamble>The average value is calculated over 10 experiments</preamble>
+        	<ttcol align='center'>10 nodes</ttcol>
+        	<ttcol align='center'>20 nodes</ttcol>
+        	<ttcol align='center'>30 nodes</ttcol>
+        	<ttcol align='center'>40 nodes</ttcol>
+        	<ttcol align='center'>50 nodes</ttcol>
+        	<ttcol align='center'>60 nodes</ttcol>
+        	<ttcol align='center'>70 nodes</ttcol>
+        	<ttcol align='center'>80 nodes</ttcol>
+
+        	<c>1.165</c>
+        	<c>1.574 s</c> 
+        	<c>1.861 s</c>
+        	<c>1.997 s</c>
+        	<c>2.33 s</c>
+        	<c>2.42 s</c>
+        	<c>2.561 s</c>
+        	<c>2.597 s</c>
+        	<postamble></postamble>
+    		</texttable>
+	</section>
+
+	<section title="Scenario 5: Tree topology of different size">
+		<texttable anchor='table5' title="the average convergence time of double topology">
+        	<preamble>The average value is calculated over 10 experiments</preamble>
+        	<ttcol align='center'>10 nodes</ttcol>
+        	<ttcol align='center'>20 nodes</ttcol>
+        	<ttcol align='center'>30 nodes</ttcol>
+        	<ttcol align='center'>40 nodes</ttcol>
+        	<ttcol align='center'>50 nodes</ttcol>
+        	<ttcol align='center'>60 nodes</ttcol>
+        	<ttcol align='center'>70 nodes</ttcol>
+        	<ttcol align='center'>80 nodes</ttcol>
+
+        	<c>1.044 s</c>
+        	<c>1.436 s</c> 
+        	<c>1.5 s</c>
+        	<c>1.704 s</c>
+        	<c>1.96 s</c>
+        	<c>1.98 s</c>
+        	<c>2.06 s</c>
+        	<c>2.086 s</c>
+        	<postamble></postamble>
+    		</texttable>
+	</section>
+
 </section>

@@ -217,9 +217,15 @@ Double Tree topology<br />
 <a href="#evaluation">4.</a>&nbsp;
 Performance Evaluation<br />
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor9">4.1.</a>&nbsp;
-Scenario 1: xxx<br />
+Scenario 1: Link topology of different size<br />
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor10">4.2.</a>&nbsp;
-Scenario 2: xxx<br />
+Scenario 2: String topology of different size<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor11">4.3.</a>&nbsp;
+Scenario 3: Mesh topology of different size<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor12">4.4.</a>&nbsp;
+Scenario 4: Tree topology of different size<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<a href="#anchor13">4.5.</a>&nbsp;
+Scenario 5: Tree topology of different size<br />
 <a href="#conclusion">5.</a>&nbsp;
 Conclusion<br />
 <a href="#rfc.authors">&#167;</a>&nbsp;
@@ -409,12 +415,137 @@ Performance Evaluation</h3>
 <a name="anchor9"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.1"></a><h3>4.1.&nbsp;
-Scenario 1: xxx</h3>
+Scenario 1: Link topology of different size</h3>
+<br /><hr class="insert" />
+<a name="table"></a>
+
+<p style='text-align: center'>The average value is calculated over 10 experiments
+</p><table class="full" align="center" border="0" cellpadding="2" cellspacing="2">
+<col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center">
+<tr><th align="center">10 nodes</th><th align="center">20 nodes</th><th align="center">30 nodes</th><th align="center">40 nodes</th><th align="center">50 nodes</th><th align="center">60 nodes</th><th align="center">70 nodes</th><th align="center">80 nodes</th></tr>
+<tr>
+<td align="center">1.843 s</td>
+<td align="center">3.092 s</td>
+<td align="center">*4.432 s </td>
+<td align="center">5.143 s</td>
+<td align="center">6.535 s</td>
+<td align="center">*8.61 s</td>
+<td align="center">11.57 s</td>
+<td align="center">14.05 s</td>
+</tr>
+</table>
+<br clear="all" />
+
+<p style='text-align: center'>*: the average value is calculated over the results of 9 experiments because the other one diverges too much 
+</p><table border="0" cellpadding="0" cellspacing="2" align="center"><tr><td align="center"><font face="monaco, MS Sans Serif" size="1"><b>&nbsp;Table 1: the average convergence time of link topology&nbsp;</b></font><br /></td></tr></table><hr class="insert" />
 
 <a name="anchor10"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.2"></a><h3>4.2.&nbsp;
-Scenario 2: xxx</h3>
+Scenario 2: String topology of different size</h3>
+<br /><hr class="insert" />
+<a name="table2"></a>
+
+<p style='text-align: center'>The average value is calculated over 10 experiments
+</p><table class="full" align="center" border="0" cellpadding="2" cellspacing="2">
+<col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center">
+<tr><th align="center">10 nodes</th><th align="center">20 nodes</th><th align="center">30 nodes</th><th align="center">40 nodes</th><th align="center">50 nodes</th><th align="center">60 nodes</th><th align="center">70 nodes</th><th align="center">80 nodes</th></tr>
+<tr>
+<td align="center">1.84 s</td>
+<td align="center">3.653 s</td>
+<td align="center">5.244 s</td>
+<td align="center">7.099 s</td>
+<td align="center">8.786 s</td>
+<td align="center">11.111 s</td>
+<td align="center">12.869 s</td>
+<td align="center">15.032 s</td>
+</tr>
+</table>
+<br clear="all" />
+
+<p style='text-align: center'>
+</p><table border="0" cellpadding="0" cellspacing="2" align="center"><tr><td align="center"><font face="monaco, MS Sans Serif" size="1"><b>&nbsp;Table 2: the average convergence time of string topology&nbsp;</b></font><br /></td></tr></table><hr class="insert" />
+
+<a name="anchor11"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.3"></a><h3>4.3.&nbsp;
+Scenario 3: Mesh topology of different size</h3>
+<br /><hr class="insert" />
+<a name="table3"></a>
+
+<p style='text-align: center'>The average value is calculated over 10 experiments
+</p><table class="full" align="center" border="0" cellpadding="2" cellspacing="2">
+<col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center">
+<tr><th align="center">10 nodes</th><th align="center">20 nodes</th><th align="center">30 nodes</th><th align="center">40 nodes</th><th align="center">50 nodes</th><th align="center">60 nodes</th><th align="center">70 nodes</th><th align="center">80 nodes</th></tr>
+<tr>
+<td align="center">1.71 s</td>
+<td align="center">3.205 s</td>
+<td align="center">4.833 s</td>
+<td align="center">*6.19 s</td>
+<td align="center">10.638 s</td>
+<td align="center">13.018 s</td>
+<td align="center">15.334 s</td>
+<td align="center">17.931 s</td>
+</tr>
+</table>
+<br clear="all" />
+
+<p style='text-align: center'>*: the average value is calculated over the results of 9 experiments because the other one diverges too much 
+</p><table border="0" cellpadding="0" cellspacing="2" align="center"><tr><td align="center"><font face="monaco, MS Sans Serif" size="1"><b>&nbsp;Table 3: the average convergence time of mesh topology&nbsp;</b></font><br /></td></tr></table><hr class="insert" />
+
+<a name="anchor12"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.4"></a><h3>4.4.&nbsp;
+Scenario 4: Tree topology of different size</h3>
+<br /><hr class="insert" />
+<a name="table4"></a>
+
+<p style='text-align: center'>The average value is calculated over 10 experiments
+</p><table class="full" align="center" border="0" cellpadding="2" cellspacing="2">
+<col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center">
+<tr><th align="center">10 nodes</th><th align="center">20 nodes</th><th align="center">30 nodes</th><th align="center">40 nodes</th><th align="center">50 nodes</th><th align="center">60 nodes</th><th align="center">70 nodes</th><th align="center">80 nodes</th></tr>
+<tr>
+<td align="center">1.165</td>
+<td align="center">1.574 s</td>
+<td align="center">1.861 s</td>
+<td align="center">1.997 s</td>
+<td align="center">2.33 s</td>
+<td align="center">2.42 s</td>
+<td align="center">2.561 s</td>
+<td align="center">2.597 s</td>
+</tr>
+</table>
+<br clear="all" />
+
+<p style='text-align: center'>
+</p><table border="0" cellpadding="0" cellspacing="2" align="center"><tr><td align="center"><font face="monaco, MS Sans Serif" size="1"><b>&nbsp;Table 4: the average convergence time of tree topology&nbsp;</b></font><br /></td></tr></table><hr class="insert" />
+
+<a name="anchor13"></a><br /><hr />
+<table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
+<a name="rfc.section.4.5"></a><h3>4.5.&nbsp;
+Scenario 5: Tree topology of different size</h3>
+<br /><hr class="insert" />
+<a name="table5"></a>
+
+<p style='text-align: center'>The average value is calculated over 10 experiments
+</p><table class="full" align="center" border="0" cellpadding="2" cellspacing="2">
+<col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center">
+<tr><th align="center">10 nodes</th><th align="center">20 nodes</th><th align="center">30 nodes</th><th align="center">40 nodes</th><th align="center">50 nodes</th><th align="center">60 nodes</th><th align="center">70 nodes</th><th align="center">80 nodes</th></tr>
+<tr>
+<td align="center">1.044 s</td>
+<td align="center">1.436 s</td>
+<td align="center">1.5 s</td>
+<td align="center">1.704 s</td>
+<td align="center">1.96 s</td>
+<td align="center">1.98 s</td>
+<td align="center">2.06 s</td>
+<td align="center">2.086 s</td>
+</tr>
+</table>
+<br clear="all" />
+
+<p style='text-align: center'>
+</p><table border="0" cellpadding="0" cellspacing="2" align="center"><tr><td align="center"><font face="monaco, MS Sans Serif" size="1"><b>&nbsp;Table 5: the average convergence time of double topology&nbsp;</b></font><br /></td></tr></table><hr class="insert" />
 
 <a name="conclusion"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
