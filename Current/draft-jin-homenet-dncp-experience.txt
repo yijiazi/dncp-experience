@@ -4,10 +4,10 @@
 Home Networking                                                   K. Jin
 Internet-Draft                               Ecole Polytechnique / Cisco
 Intended status: Informational                                P. Pfister
-Expires: January 1, 2016                                           Cisco
+Expires: January 2, 2016                                           Cisco
                                                                    J. Yi
                                                 LIX, Ecole Polytechnique
-                                                           June 30, 2015
+                                                            July 1, 2015
 
 
      Experience with the Distributed Node Consensus Protocol (DNCP)
@@ -34,7 +34,7 @@ Status of this Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on January 1, 2016.
+   This Internet-Draft will expire on January 2, 2016.
 
 Copyright Notice
 
@@ -52,9 +52,9 @@ Copyright Notice
 
 
 
-Jin, et al.              Expires January 1, 2016                [Page 1]
+Jin, et al.              Expires January 2, 2016                [Page 1]
 
-Internet-Draft               DNCP Experience                   June 2015
+Internet-Draft               DNCP Experience                   July 2015
 
 
    described in the Simplified BSD License.
@@ -66,13 +66,18 @@ Table of Contents
    2.  Implementations . . . . . . . . . . . . . . . . . . . . . . . . 3
    3.  Simulation Setup  . . . . . . . . . . . . . . . . . . . . . . . 4
      3.1.  Simulation Environment  . . . . . . . . . . . . . . . . . . 4
-     3.2.  Performance metric  . . . . . . . . . . . . . . . . . . . . 4
-     3.3.  Chosen toplogies  . . . . . . . . . . . . . . . . . . . . . 4
-   4.  Performance Evaluation  . . . . . . . . . . . . . . . . . . . . 4
-     4.1.  Scenario 1: xxx . . . . . . . . . . . . . . . . . . . . . . 4
-     4.2.  Scenario 2: xxx . . . . . . . . . . . . . . . . . . . . . . 4
-   5.  Conclusion  . . . . . . . . . . . . . . . . . . . . . . . . . . 4
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . . . 4
+     3.2.  Performance metric  . . . . . . . . . . . . . . . . . . . . 5
+     3.3.  Chosen toplogies  . . . . . . . . . . . . . . . . . . . . . 5
+       3.3.1.  Link topology . . . . . . . . . . . . . . . . . . . . . 5
+       3.3.2.  String topology . . . . . . . . . . . . . . . . . . . . 5
+       3.3.3.  Mesh topology . . . . . . . . . . . . . . . . . . . . . 5
+       3.3.4.  Tree topology . . . . . . . . . . . . . . . . . . . . . 5
+       3.3.5.  Double Tree topology  . . . . . . . . . . . . . . . . . 5
+   4.  Performance Evaluation  . . . . . . . . . . . . . . . . . . . . 5
+     4.1.  Scenario 1: xxx . . . . . . . . . . . . . . . . . . . . . . 5
+     4.2.  Scenario 2: xxx . . . . . . . . . . . . . . . . . . . . . . 5
+   5.  Conclusion  . . . . . . . . . . . . . . . . . . . . . . . . . . 6
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . . . 6
 
 
 
@@ -103,14 +108,9 @@ Table of Contents
 
 
 
-
-
-
-
-
-Jin, et al.              Expires January 1, 2016                [Page 2]
+Jin, et al.              Expires January 2, 2016                [Page 2]
 
-Internet-Draft               DNCP Experience                   June 2015
+Internet-Draft               DNCP Experience                   July 2015
 
 
 1.  Introduction
@@ -127,7 +127,7 @@ Internet-Draft               DNCP Experience                   June 2015
 
    o  Since DNCP is a protocol not yet standardized, it has not been
       widely deployed, but in order for the homenet to run on it, it is
-      important to evaluate its performances under various senarios
+      important to evaluate its performances under various scenarios
       which is not so easy to do in real life but relatively easy using
       network simulators such as ns3.  With the help of ns3, we can
       create various topologies and get logs for analyzing.  This draft
@@ -142,8 +142,8 @@ Internet-Draft               DNCP Experience                   June 2015
       describes simulation setup, including simulation environment, the
       metrics being evaluated and the topologies used for simulation.
       The third part documents the results of performance evaluations
-      under different senarios.  And finally from all the above, we draw
-      our conclusions.
+      under different scenarios.  And finally from all the above, we
+      draw our conclusions.
 
 
 2.  Implementations
@@ -164,26 +164,106 @@ Internet-Draft               DNCP Experience                   June 2015
 
 
 
-Jin, et al.              Expires January 1, 2016                [Page 3]
+Jin, et al.              Expires January 2, 2016                [Page 3]
 
-Internet-Draft               DNCP Experience                   June 2015
+Internet-Draft               DNCP Experience                   July 2015
 
 
 3.  Simulation Setup
 
 3.1.  Simulation Environment
 
-   dncp + ns3
+   The current dncp implementation relies largely on linux library (for
+   opening sockets, sending and receiving packets..etc) and uses uloop
+   for scheduling events.  To integrate dncp into ns3, we have to
+   redefine all the functions in the code that are related to these two
+   parts so that packets can be sent and received in ns3 and events can
+   be scheduled using ns3 scheduler.
 
-   layer 2 settings
+   We used CSMA model in ns3 to simulate layer one and layer two.  CSMA
+   model is designed in the spirit of Ethernet but different from the
+   real-life Ethernet in the sense that the CSMA channel can provide
+   instantaneous carrier sense and priority-based collision avoidance.
+   The channel has three states: TRANSMITTING, PROPAGATING and IDLE, the
+   states can be seen immediately by the devices attached to the channel
+   so collision never happens.  CSMA model consists of two parts: CSMA
+   channel and CSMA device.  CSMA channel is the model of the
+   transmission medium, and CSMA device is like the an Ethernet device,
+   the CSMA devices are connected to the channel.
+
+   Listed below are several attributes of the CSMA device that we can
+   configure:
+
+   o  MTU:The mac level maximum transmission unit, set to 1500
+
+   o  Encapsulation Mode: Type of link layer encapsulation to use.  In
+      our simulation we use the default mode "Dix" which is commonly
+      used in Ethernet.
+
+   o  TxQueue: Type of the transmit queue used by the device.  In ns3,
+      we have the possibility to choose from Codel queue, drop tail
+      queue and RED (random early detection) queue.  Here we use the
+      drop tail queue and set the buffer of the queue to 100 packets.
+      (bytes can also be used as the maximum queue size metrics)
+
+   o  Interframe gap: The pause between two frames
+
+   And the attributes of the CSMA channel that we can configure:
+
+   o  Data rate: The transmission data rate to be provided to the
+      devices connected to the channel.  That is the rate of the device
+      pushing data into the channel.  This attribute applies to all the
+      devices on the same channel.  In the simulation we set it to
+      1000Mbps thus providing an infinite throughput to eliminate the
+      impact of throughput on the performance of dncp, in order to
+      calculate the actual throughput comsumed.
+
+
+
+Jin, et al.              Expires January 2, 2016                [Page 4]
+
+Internet-Draft               DNCP Experience                   July 2015
+
+
+   o  Delay: The spped-of-light propagation delay over the medium.
+      Imagine there is a symmetrical hub that is of equal cable lenghth
+      to all the devices of the channel.  When one device sends a packet
+      to another device, the packet fist reaches the hub and is
+      forwarded to the destination device, so the propagation delay is
+      always the same for a given channel.  In our simulation, this
+      delay is set to 1 micro second.
 
 3.2.  Performance metric
 
-   convergence time ...
+   o  Convergence time: The time that dncp takes for the network to
+      converge.
 
-   convergence ratio...
+   o  Traffic consumption: The amount of traffic that dncp uses to
+      converge.  To evaluate the traffic consumption we count the
+      overall amount of bytes sent during the converging process as well
+      as the throughput per second.
 
 3.3.  Chosen toplogies
+
+3.3.1.  Link topology
+
+   All the nodes are on the same link, share the medium.
+
+3.3.2.  String topology
+
+   Nodes connected by point-to-point link in a line.
+
+3.3.3.  Mesh topology
+
+   A fully connected mesh.
+
+3.3.4.  Tree topology
+
+   A binary tree
+
+3.3.5.  Double Tree topology
+
+   Add some redundancy on the top of binary tree topology
 
 
 4.  Performance Evaluation
@@ -191,6 +271,14 @@ Internet-Draft               DNCP Experience                   June 2015
 4.1.  Scenario 1: xxx
 
 4.2.  Scenario 2: xxx
+
+
+
+
+
+Jin, et al.              Expires January 2, 2016                [Page 5]
+
+Internet-Draft               DNCP Experience                   July 2015
 
 
 5.  Conclusion
@@ -216,13 +304,6 @@ Authors' Addresses
    Phone:
    Email:
    URI:
-
-
-
-
-Jin, et al.              Expires January 1, 2016                [Page 4]
-
-Internet-Draft               DNCP Experience                   June 2015
 
 
    Jiazi Yi
@@ -251,30 +332,5 @@ Internet-Draft               DNCP Experience                   June 2015
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Jin, et al.              Expires January 1, 2016                [Page 5]
+Jin, et al.              Expires January 2, 2016                [Page 6]
 
