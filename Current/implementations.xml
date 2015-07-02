@@ -1,22 +1,10 @@
 <section title="Implementations" anchor="implementation">
-	<t>
-		
-       <list style="symbols">
-       		<t>
-       			The implementation that we use in the simulation is condected by 
-       		</t>
-       		
-       		<t>
-       			This implementation is completely open sourse, ans is available at https://github.com/sbyx/hnetd/tree/libdncp
-       		</t>
-       		
-       		<t>
-       			if available, number of lines/foot print
-       		</t>
+    <t>At the time of starting this study, the main Open-Source implementation of DNCP was 'hnetd', available online on github (https://github.com/sbyx/hnetd). hnetd is an implementation of the Home Network Control Protocol, HNCP, which includes various elements, such as DNCP, Prefix Assignment, host configuration, and is detailed in <xref target="I-D.ietf-homenet-hncp"/>. At the time being, hnetd is the most complete implementation of HNCP.</t>
 
-			<t>
-				if available, operational experience. 
-			</t>
-       </list>
-	</t>
+    <t>A new implementation of DNCP has recently been made available online (http://www.pps.univ-paris-diderot.fr/~jch/private/shncpd-20150701.tar.gz). We have not evaluated this implementation.</t>
+
+    <t>For the purpose of this work, 'hnetd' was modified in order to provide a statically linkable library containing DNCP implementation. This branch is still available on the main 'hnetd' repository in the 'libdncp' branch. Since then, 'hnetd' maintainers have published a new library, libdncp2, which is statically or dynamically linkable and which is based on the same code as the most recent versions of 'hnetd'. As a matter of timing, we could not evaluate libdncp2, but we plan to use it in further updates of this document.</t>
+
+    <t>'hnetd', DNCP included, is comprised of 15651 lines of code (18220 when including test files). The binary weights 576KB when compiled for debian X86_64 with no optimization and 727KB when compiled for OpenWrt MIPS. libdncp2 is roughly comprised of 2300 lines of code (2590 when including security option), it weights 193KB when compiled with no optimization for debian x86_64 and 192KB when compiled for OpenWrt MIPS.
+    </t>
 </section>
