@@ -145,10 +145,10 @@
 <tr><td class="header">Home Networking</td><td class="header">K. Jin</td></tr>
 <tr><td class="header">Internet-Draft</td><td class="header">Ecole Polytechnique / Cisco</td></tr>
 <tr><td class="header">Intended status: Informational</td><td class="header">P. Pfister</td></tr>
-<tr><td class="header">Expires: January 2, 2016</td><td class="header">Cisco</td></tr>
+<tr><td class="header">Expires: January 3, 2016</td><td class="header">Cisco</td></tr>
 <tr><td class="header">&nbsp;</td><td class="header">J. Yi</td></tr>
 <tr><td class="header">&nbsp;</td><td class="header">LIX, Ecole Polytechnique</td></tr>
-<tr><td class="header">&nbsp;</td><td class="header">July 1, 2015</td></tr>
+<tr><td class="header">&nbsp;</td><td class="header">July 2, 2015</td></tr>
 </table></td></tr></table>
 <h1><br />Experience with the Distributed Node Consensus Protocol (DNCP)<br />draft-jin-homenet-dncp-experience-00</h1>
 
@@ -173,7 +173,7 @@ and may be updated, replaced, or obsoleted by other documents at any time.
 It is inappropriate to use Internet-Drafts as reference material or to cite
 them other than as &ldquo;work in progress.&rdquo;</p>
 <p>
-This Internet-Draft will expire on January 2, 2016.</p>
+This Internet-Draft will expire on January 3, 2016.</p>
 
 <h3>Copyright Notice</h3>
 <p>
@@ -262,16 +262,15 @@ Introduction</h3>
 Implementations</h3>
 
 <p>
-		TODO list, for each known implementations (I think we have only one at this point?) 
 		
        </p>
 <ul class="text">
 <li>
-       			conducted by who?
+       			The implementation that we use in the simulation is condected by 
        		
 </li>
 <li>
-       			open/close source? if open source, the link?
+       			This implementation is completely open sourse, ans is available at https://github.com/sbyx/hnetd/tree/libdncp
        		
 </li>
 <li>
@@ -297,7 +296,7 @@ Simulation Environment</h3>
 
 <p>
 
-	The current dncp implementation relies largely on linux library (for opening sockets, sending and receiving packets..etc) and uses uloop for scheduling events. To integrate dncp into ns3, we have to redefine all the functions in the code that are related to these two parts so that packets can be sent and received in ns3 and events can be scheduled using ns3 scheduler.
+	The current dncp implementation relies largely on linux library (for opening sockets, sending and receiving packets..etc) and uses libubox for scheduling events. To integrate dncp into ns3, we have to redefine all the functions in the code that are related to these two parts so that packets can be sent and received in ns3 and events can be scheduled using ns3 scheduler.
 		
 </p>
 <p>
@@ -334,11 +333,11 @@ And the attributes of the CSMA channel that we can configure:
 </p>
 <ul class="text">
 <li>
-Data rate: The transmission data rate to be provided to the devices connected to the channel. That is the rate of the device pushing data into the channel. This attribute applies to all the devices on the same channel. In the simulation we set it to 1000Mbps thus providing an infinite throughput to eliminate the impact of throughput on the performance of dncp, in order to calculate the actual throughput comsumed. 
+Data rate: The transmission data rate to be provided to the devices connected to the channel. That is the rate of the device pushing data into the channel. This attribute applies to all the devices on the same channel. In the simulation we set it to 1000Mbps thus providing an infinite throughput to eliminate the impact of throughput on the performance of dncp, in order to calculate the actual throughput consumed. 
 			
 </li>
 <li>
-Delay: The spped-of-light propagation delay over the medium. Imagine there is a symmetrical hub that is of equal cable lenghth to all the devices of the channel. When one device sends a packet to another device, the packet fist reaches the hub and is forwarded to the destination device, so the propagation delay is always the same for a given channel. In our simulation, this delay is set to 1 micro second.
+Delay: The speed-of-light propagation delay over the medium. Imagine there is a symmetrical hub that is of equal cable length to all the devices of the channel. When one device sends a packet to another device, the packet fist reaches the hub and is forwarded to the destination device, so the propagation delay is always the same for a given channel. In our simulation, this delay is set to 1 micro second.
 			
 </li>
 </ul>
@@ -349,7 +348,7 @@ Performance metric</h3>
 
 <ul class="text">
 <li>
-Convergence time: The time that dncp takes for the network to converge. 
+Convergence time: The time that dncp takes for the network to converge. We use a concept of converging percentage to represent the converging state, basically the converging percentage is the proportion of the biggest cluster of nodes that share the same network hash. Apparently when this percentage is 100%, the network hqs coverged. 
 		
 </li>
 <li>
@@ -368,9 +367,22 @@ Chosen toplogies</h3>
 Link topology</h3>
 
 <p>
-All the nodes are on the same link, share the medium.
+All the nodes are on the same link, share the medium:
 			
-</p>
+</p><br /><hr class="insert" />
+<a name="figure_link"></a>
+
+<p>
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+n1	n2	n3	n4
+|	|	|	 |
+---------------------------
+
+
+</pre></div>
+<p>A simple example of link topology
+</p><table border="0" cellpadding="0" cellspacing="2" align="center"><tr><td align="center"><font face="monaco, MS Sans Serif" size="1"><b>&nbsp;Figure&nbsp;1&nbsp;</b></font><br /></td></tr></table><hr class="insert" />
+
 <a name="anchor5"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.3.3.2"></a><h3>3.3.2.&nbsp;
@@ -379,7 +391,23 @@ String topology</h3>
 <p>
 Nodes connected by point-to-point link in a line.
 			
-</p>
+</p><br /><hr class="insert" />
+<a name="figure_string"></a>
+
+<p>
+</p><div style='display: table; width: 0; margin-left: 3em; margin-right: auto'><pre>
+
+	---------	---------
+	|	|	|	|
+n1	n2	n3	n4	n5	n6
+|	|	|	|	|	|
+---------	---------	---------
+
+
+</pre></div>
+<p>A simple example of String topology
+</p><table border="0" cellpadding="0" cellspacing="2" align="center"><tr><td align="center"><font face="monaco, MS Sans Serif" size="1"><b>&nbsp;Figure&nbsp;2&nbsp;</b></font><br /></td></tr></table><hr class="insert" />
+
 <a name="anchor6"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.3.3.3"></a><h3>3.3.3.&nbsp;
@@ -416,7 +444,13 @@ Performance Evaluation</h3>
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.1"></a><h3>4.1.&nbsp;
 Scenario 1: Link topology of different size</h3>
-<br /><hr class="insert" />
+
+<ul class="text">
+<li>
+Convergence time
+		
+</li>
+</ul><br /><hr class="insert" />
 <a name="table"></a>
 
 <p style='text-align: center'>The average value is calculated over 10 experiments
@@ -424,14 +458,14 @@ Scenario 1: Link topology of different size</h3>
 <col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center">
 <tr><th align="center">10 nodes</th><th align="center">20 nodes</th><th align="center">30 nodes</th><th align="center">40 nodes</th><th align="center">50 nodes</th><th align="center">60 nodes</th><th align="center">70 nodes</th><th align="center">80 nodes</th></tr>
 <tr>
-<td align="center">1.843 s</td>
-<td align="center">3.092 s</td>
-<td align="center">*4.432 s </td>
-<td align="center">5.143 s</td>
-<td align="center">6.535 s</td>
-<td align="center">*8.61 s</td>
-<td align="center">11.57 s</td>
-<td align="center">14.05 s</td>
+<td align="center">1.84s</td>
+<td align="center">3.09s</td>
+<td align="center">*4.43s </td>
+<td align="center">5.14s</td>
+<td align="center">6.53s</td>
+<td align="center">*8.61s</td>
+<td align="center">11.57s</td>
+<td align="center">14.05s</td>
 </tr>
 </table>
 <br clear="all" />
@@ -439,11 +473,72 @@ Scenario 1: Link topology of different size</h3>
 <p style='text-align: center'>*: the average value is calculated over the results of 9 experiments because the other one diverges too much 
 </p><table border="0" cellpadding="0" cellspacing="2" align="center"><tr><td align="center"><font face="monaco, MS Sans Serif" size="1"><b>&nbsp;Table 1: the average convergence time of link topology&nbsp;</b></font><br /></td></tr></table><hr class="insert" />
 
+<p>
+	Note that we observed two accidents during the simulation. One happens in one experiment among the 10 that we ran for 30-node network, the network first converges at 4.016s, which is very close to the averge convergence time, but at 25.949s this converging state is broken and the network finally reconverges at 26.12s. The other one happens in the case of 60-node network where it fist converges at 7.081s then gets disturbed at 25.822s and comes back to converging at 26.303. As for the the reason of this happening, we will dig deeper into the logs and hope to find an explaination soon.
+	
+</p>
+<ul class="text">
+<li>
+Verbosity
+		
+</li>
+</ul><br /><hr class="insert" />
+<a name="byte1"></a>
+
+<p style='text-align: center'>The first row shows the overall bytes sent in the converging process, the second shows the bytes sent per node, calculated over 10 experiments
+</p><table class="full" align="center" border="0" cellpadding="2" cellspacing="2">
+<col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center">
+<tr><th align="center"></th><th align="center">10 nodes</th><th align="center">20 nodes</th><th align="center">30 nodes</th><th align="center">40 nodes</th><th align="center">50 nodes</th><th align="center">60 nodes</th><th align="center">70 nodes</th><th align="center">80 nodes</th></tr>
+<tr>
+<td align="center">bytes</td>
+<td align="center">85.3KB</td>
+<td align="center">604.7KB</td>
+<td align="center">2.3MB</td>
+<td align="center">5.4MB</td>
+<td align="center">11.9MB</td>
+<td align="center">23.7MB</td>
+<td align="center">51.7MB</td>
+<td align="center">88.1MB</td>
+</tr>
+<tr>
+<td align="center">---</td>
+<td align="center">---</td>
+<td align="center">----</td>
+<td align="center">----</td>
+<td align="center">----</td>
+<td align="center">----</td>
+<td align="center">----</td>
+<td align="center">----</td>
+<td align="center">----</td>
+</tr>
+<tr>
+<td align="center">bytes per node</td>
+<td align="center">8.5KB</td>
+<td align="center">30.2KB</td>
+<td align="center">79.6KB</td>
+<td align="center">140.7KB</td>
+<td align="center">245.KB</td>
+<td align="center">404.8KB</td>
+<td align="center">757.2KB</td>
+<td align="center">1.1MB</td>
+</tr>
+</table>
+<br clear="all" />
+
+<p style='text-align: center'>
+</p><table border="0" cellpadding="0" cellspacing="2" align="center"><tr><td align="center"><font face="monaco, MS Sans Serif" size="1"><b>&nbsp;Table 2: the traffic of dncp in link topology&nbsp;</b></font><br /></td></tr></table><hr class="insert" />
+
 <a name="anchor10"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.2"></a><h3>4.2.&nbsp;
 Scenario 2: String topology of different size</h3>
-<br /><hr class="insert" />
+
+<ul class="text">
+<li>
+Convergence time
+		
+</li>
+</ul><br /><hr class="insert" />
 <a name="table2"></a>
 
 <p style='text-align: center'>The average value is calculated over 10 experiments
@@ -451,21 +546,80 @@ Scenario 2: String topology of different size</h3>
 <col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center">
 <tr><th align="center">10 nodes</th><th align="center">20 nodes</th><th align="center">30 nodes</th><th align="center">40 nodes</th><th align="center">50 nodes</th><th align="center">60 nodes</th><th align="center">70 nodes</th><th align="center">80 nodes</th></tr>
 <tr>
-<td align="center">1.84 s</td>
-<td align="center">3.653 s</td>
-<td align="center">5.244 s</td>
-<td align="center">7.099 s</td>
-<td align="center">8.786 s</td>
-<td align="center">11.111 s</td>
-<td align="center">12.869 s</td>
-<td align="center">15.032 s</td>
+<td align="center">1.84s</td>
+<td align="center">3.65s</td>
+<td align="center">5.24s</td>
+<td align="center">7.09s</td>
+<td align="center">8.79s</td>
+<td align="center">11.11s</td>
+<td align="center">12.87s</td>
+<td align="center">15.03s</td>
 </tr>
 </table>
 <br clear="all" />
 
 <p style='text-align: center'>
-</p><table border="0" cellpadding="0" cellspacing="2" align="center"><tr><td align="center"><font face="monaco, MS Sans Serif" size="1"><b>&nbsp;Table 2: the average convergence time of string topology&nbsp;</b></font><br /></td></tr></table><hr class="insert" />
+</p><table border="0" cellpadding="0" cellspacing="2" align="center"><tr><td align="center"><font face="monaco, MS Sans Serif" size="1"><b>&nbsp;Table 3: the average convergence time of string topology&nbsp;</b></font><br /></td></tr></table><hr class="insert" />
 
+<p>
+
+If we plot the average convering time against the number of nodes, it is discernible that the graph is leaner. This result is exactly the same as we expected.
+	
+</p>
+<ul class="text">
+<li>
+Verbosity
+		
+</li>
+</ul><br /><hr class="insert" />
+<a name="byte2"></a>
+
+<p style='text-align: center'>The first row shows the overall bytes sent in the converging process, the second shows the bytes sent per node, calculated over 10 experiments
+</p><table class="full" align="center" border="0" cellpadding="2" cellspacing="2">
+<col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center">
+<tr><th align="center">10 nodes</th><th align="center">20 nodes</th><th align="center">30 nodes</th><th align="center">40 nodes</th><th align="center">50 nodes</th><th align="center">60 nodes</th><th align="center">70 nodes</th><th align="center">80 nodes</th></tr>
+<tr>
+<td align="center">51.5KB</td>
+<td align="center">243.44KB</td>
+<td align="center">605KB</td>
+<td align="center">1.2MB</td>
+<td align="center">2MB</td>
+<td align="center">3MB</td>
+<td align="center">4.1MB</td>
+<td align="center">5.6MB</td>
+</tr>
+<tr>
+<td align="center">---</td>
+<td align="center">----</td>
+<td align="center">----</td>
+<td align="center">----</td>
+<td align="center">----</td>
+<td align="center">----</td>
+<td align="center">----</td>
+<td align="center">----</td>
+</tr>
+<tr>
+<td align="center">5.1KB</td>
+<td align="center">12.2KB</td>
+<td align="center">20.1KB</td>
+<td align="center">30.9KB</td>
+<td align="center">40.5KB</td>
+<td align="center">50.4KB</td>
+<td align="center">59.2KB</td>
+<td align="center">70.1KB</td>
+</tr>
+</table>
+<br clear="all" />
+
+<p style='text-align: center'>
+</p><table border="0" cellpadding="0" cellspacing="2" align="center"><tr><td align="center"><font face="monaco, MS Sans Serif" size="1"><b>&nbsp;Table 4: the traffic of dncp in string topology&nbsp;</b></font><br /></td></tr></table><hr class="insert" />
+
+<ul class="text">
+<li>
+Convergence time
+		
+</li>
+</ul>
 <a name="anchor11"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.3"></a><h3>4.3.&nbsp;
@@ -478,21 +632,75 @@ Scenario 3: Mesh topology of different size</h3>
 <col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center">
 <tr><th align="center">10 nodes</th><th align="center">20 nodes</th><th align="center">30 nodes</th><th align="center">40 nodes</th><th align="center">50 nodes</th><th align="center">60 nodes</th><th align="center">70 nodes</th><th align="center">80 nodes</th></tr>
 <tr>
-<td align="center">1.71 s</td>
-<td align="center">3.205 s</td>
-<td align="center">4.833 s</td>
-<td align="center">*6.19 s</td>
-<td align="center">10.638 s</td>
-<td align="center">13.018 s</td>
-<td align="center">15.334 s</td>
-<td align="center">17.931 s</td>
+<td align="center">1.71s</td>
+<td align="center">3.2s</td>
+<td align="center">4.83s</td>
+<td align="center">*6.19s</td>
+<td align="center">10.64s</td>
+<td align="center">13.02s</td>
+<td align="center">15.33s</td>
+<td align="center">17.93s</td>
 </tr>
 </table>
 <br clear="all" />
 
 <p style='text-align: center'>*: the average value is calculated over the results of 9 experiments because the other one diverges too much 
-</p><table border="0" cellpadding="0" cellspacing="2" align="center"><tr><td align="center"><font face="monaco, MS Sans Serif" size="1"><b>&nbsp;Table 3: the average convergence time of mesh topology&nbsp;</b></font><br /></td></tr></table><hr class="insert" />
+</p><table border="0" cellpadding="0" cellspacing="2" align="center"><tr><td align="center"><font face="monaco, MS Sans Serif" size="1"><b>&nbsp;Table 5: the average convergence time of mesh topology&nbsp;</b></font><br /></td></tr></table><hr class="insert" />
 
+<ul class="text">
+<li>
+Verbosity
+		
+</li>
+</ul><br /><hr class="insert" />
+<a name="byte3"></a>
+
+<p style='text-align: center'>The first row shows the overall bytes sent in the converging process, the second shows the bytes sent per node, calculated over 10 experiments
+</p><table class="full" align="center" border="0" cellpadding="2" cellspacing="2">
+<col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center">
+<tr><th align="center">10 nodes</th><th align="center">20 nodes</th><th align="center">30 nodes</th><th align="center">40 nodes</th><th align="center">50 nodes</th><th align="center">60 nodes</th><th align="center">70 nodes</th><th align="center">80 nodes</th></tr>
+<tr>
+<td align="center">202.7KB</td>
+<td align="center">1.6MB</td>
+<td align="center">6.6MB</td>
+<td align="center">18.1MB</td>
+<td align="center">49.1MB</td>
+<td align="center">95.8MB</td>
+<td align="center">167.4MB</td>
+<td align="center">271.9MB</td>
+</tr>
+<tr>
+<td align="center">---</td>
+<td align="center">----</td>
+<td align="center">----</td>
+<td align="center">----</td>
+<td align="center">----</td>
+<td align="center">----</td>
+<td align="center">----</td>
+<td align="center">----</td>
+</tr>
+<tr>
+<td align="center">20.3KB</td>
+<td align="center">83.5KB</td>
+<td align="center">222.1KB</td>
+<td align="center">453.8KB</td>
+<td align="center">983.1KB</td>
+<td align="center">1.6MB</td>
+<td align="center">2.4MB</td>
+<td align="center">3.4MB</td>
+</tr>
+</table>
+<br clear="all" />
+
+<p style='text-align: center'>
+</p><table border="0" cellpadding="0" cellspacing="2" align="center"><tr><td align="center"><font face="monaco, MS Sans Serif" size="1"><b>&nbsp;Table 6: the traffic of dncp in mesh topology&nbsp;</b></font><br /></td></tr></table><hr class="insert" />
+
+<ul class="text">
+<li>
+Convergence time
+		
+</li>
+</ul>
 <a name="anchor12"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.4"></a><h3>4.4.&nbsp;
@@ -505,26 +713,80 @@ Scenario 4: Tree topology of different size</h3>
 <col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center">
 <tr><th align="center">10 nodes</th><th align="center">20 nodes</th><th align="center">30 nodes</th><th align="center">40 nodes</th><th align="center">50 nodes</th><th align="center">60 nodes</th><th align="center">70 nodes</th><th align="center">80 nodes</th></tr>
 <tr>
-<td align="center">1.165</td>
-<td align="center">1.574 s</td>
-<td align="center">1.861 s</td>
-<td align="center">1.997 s</td>
-<td align="center">2.33 s</td>
-<td align="center">2.42 s</td>
-<td align="center">2.561 s</td>
-<td align="center">2.597 s</td>
+<td align="center">1.16s</td>
+<td align="center">1.57s</td>
+<td align="center">1.86s</td>
+<td align="center">2s</td>
+<td align="center">2.33s</td>
+<td align="center">2.42s</td>
+<td align="center">2.56s</td>
+<td align="center">2.6s</td>
 </tr>
 </table>
 <br clear="all" />
 
 <p style='text-align: center'>
-</p><table border="0" cellpadding="0" cellspacing="2" align="center"><tr><td align="center"><font face="monaco, MS Sans Serif" size="1"><b>&nbsp;Table 4: the average convergence time of tree topology&nbsp;</b></font><br /></td></tr></table><hr class="insert" />
+</p><table border="0" cellpadding="0" cellspacing="2" align="center"><tr><td align="center"><font face="monaco, MS Sans Serif" size="1"><b>&nbsp;Table 7: the average convergence time of tree topology&nbsp;</b></font><br /></td></tr></table><hr class="insert" />
+
+<ul class="text">
+<li>
+Verbosity
+		
+</li>
+</ul><br /><hr class="insert" />
+<a name="byte4"></a>
+
+<p style='text-align: center'>The first row shows the overall bytes sent in the converging process, the second shows the bytes sent per node, calculated over 10 experiments
+</p><table class="full" align="center" border="0" cellpadding="2" cellspacing="2">
+<col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center">
+<tr><th align="center">10 nodes</th><th align="center">20 nodes</th><th align="center">30 nodes</th><th align="center">40 nodes</th><th align="center">50 nodes</th><th align="center">60 nodes</th><th align="center">70 nodes</th><th align="center">80 nodes</th></tr>
+<tr>
+<td align="center">40.7KB</td>
+<td align="center">166.7KB</td>
+<td align="center">374KB</td>
+<td align="center">644.5KB</td>
+<td align="center">1MB</td>
+<td align="center">1.3MB</td>
+<td align="center">1.9MB</td>
+<td align="center">2.4MB</td>
+</tr>
+<tr>
+<td align="center">---</td>
+<td align="center">----</td>
+<td align="center">----</td>
+<td align="center">----</td>
+<td align="center">----</td>
+<td align="center">----</td>
+<td align="center">----</td>
+<td align="center">----</td>
+</tr>
+<tr>
+<td align="center">4.1KB</td>
+<td align="center">8.3KB</td>
+<td align="center">12.4KB</td>
+<td align="center">16.1KB</td>
+<td align="center">20.2KB</td>
+<td align="center">22.8KB</td>
+<td align="center">26.7KB</td>
+<td align="center">29.9KB</td>
+</tr>
+</table>
+<br clear="all" />
+
+<p style='text-align: center'>
+</p><table border="0" cellpadding="0" cellspacing="2" align="center"><tr><td align="center"><font face="monaco, MS Sans Serif" size="1"><b>&nbsp;Table 8: the traffic of dncp in tree topology&nbsp;</b></font><br /></td></tr></table><hr class="insert" />
 
 <a name="anchor13"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>
 <a name="rfc.section.4.5"></a><h3>4.5.&nbsp;
 Scenario 5: Tree topology of different size</h3>
-<br /><hr class="insert" />
+
+<ul class="text">
+<li>
+Convergence time
+		
+</li>
+</ul><br /><hr class="insert" />
 <a name="table5"></a>
 
 <p style='text-align: center'>The average value is calculated over 10 experiments
@@ -532,20 +794,68 @@ Scenario 5: Tree topology of different size</h3>
 <col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center">
 <tr><th align="center">10 nodes</th><th align="center">20 nodes</th><th align="center">30 nodes</th><th align="center">40 nodes</th><th align="center">50 nodes</th><th align="center">60 nodes</th><th align="center">70 nodes</th><th align="center">80 nodes</th></tr>
 <tr>
-<td align="center">1.044 s</td>
-<td align="center">1.436 s</td>
-<td align="center">1.5 s</td>
-<td align="center">1.704 s</td>
-<td align="center">1.96 s</td>
-<td align="center">1.98 s</td>
-<td align="center">2.06 s</td>
-<td align="center">2.086 s</td>
+<td align="center">1.04s</td>
+<td align="center">1.44s</td>
+<td align="center">1.5s</td>
+<td align="center">1.7s</td>
+<td align="center">1.96s</td>
+<td align="center">1.98s</td>
+<td align="center">2.06s</td>
+<td align="center">2.09s</td>
 </tr>
 </table>
 <br clear="all" />
 
 <p style='text-align: center'>
-</p><table border="0" cellpadding="0" cellspacing="2" align="center"><tr><td align="center"><font face="monaco, MS Sans Serif" size="1"><b>&nbsp;Table 5: the average convergence time of double topology&nbsp;</b></font><br /></td></tr></table><hr class="insert" />
+</p><table border="0" cellpadding="0" cellspacing="2" align="center"><tr><td align="center"><font face="monaco, MS Sans Serif" size="1"><b>&nbsp;Table 9: the average convergence time of double tree topology&nbsp;</b></font><br /></td></tr></table><hr class="insert" />
+
+<ul class="text">
+<li>
+Verbosity
+		
+</li>
+</ul><br /><hr class="insert" />
+<a name="byte5"></a>
+
+<p style='text-align: center'>The first row shows the overall bytes sent in the converging process, the second shows the bytes sent per node, calculated over 10 experiments
+</p><table class="full" align="center" border="0" cellpadding="2" cellspacing="2">
+<col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center"><col align="center">
+<tr><th align="center">10 nodes</th><th align="center">20 nodes</th><th align="center">30 nodes</th><th align="center">40 nodes</th><th align="center">50 nodes</th><th align="center">60 nodes</th><th align="center">70 nodes</th><th align="center">80 nodes</th></tr>
+<tr>
+<td align="center">66.9KB</td>
+<td align="center">265KB</td>
+<td align="center">605.1KB</td>
+<td align="center">1MB</td>
+<td align="center">1.5MB</td>
+<td align="center">2MB</td>
+<td align="center">2.8MB</td>
+<td align="center">3.5MB</td>
+</tr>
+<tr>
+<td align="center">---</td>
+<td align="center">----</td>
+<td align="center">----</td>
+<td align="center">----</td>
+<td align="center">----</td>
+<td align="center">----</td>
+<td align="center">----</td>
+<td align="center">----</td>
+</tr>
+<tr>
+<td align="center">6.7KB</td>
+<td align="center">13.2KB</td>
+<td align="center">20.2KB</td>
+<td align="center">25.3KB</td>
+<td align="center">30.8KB</td>
+<td align="center">33.2KB</td>
+<td align="center">39.7KB</td>
+<td align="center">44.7KB</td>
+</tr>
+</table>
+<br clear="all" />
+
+<p style='text-align: center'>
+</p><table border="0" cellpadding="0" cellspacing="2" align="center"><tr><td align="center"><font face="monaco, MS Sans Serif" size="1"><b>&nbsp;Table 10: the traffic of dncp in tree topology&nbsp;</b></font><br /></td></tr></table><hr class="insert" />
 
 <a name="conclusion"></a><br /><hr />
 <table summary="layout" cellpadding="0" cellspacing="2" class="TOCbug" align="right"><tr><td class="TOCbug"><a href="#toc">&nbsp;TOC&nbsp;</a></td></tr></table>

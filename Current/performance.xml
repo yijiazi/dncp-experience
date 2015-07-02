@@ -1,6 +1,10 @@
 <section title="Performance Evaluation" anchor="evaluation">
-	
 	<section title="Scenario 1: Link topology of different size">
+ 		<list style="symbols">
+		<t>
+Convergence time
+		</t>
+ 		 </list>
 		<texttable anchor='table' title="the average convergence time of link topology">
         	<preamble>The average value is calculated over 10 experiments</preamble>
         	<ttcol align='center'>10 nodes</ttcol>
@@ -12,19 +16,75 @@
         	<ttcol align='center'>70 nodes</ttcol>
         	<ttcol align='center'>80 nodes</ttcol>
 
-        	<c>1.843 s</c>
-        	<c>3.092 s</c> 
-        	<c>*4.432 s </c>
-        	<c>5.143 s</c>
-        	<c>6.535 s</c>
-        	<c>*8.61 s</c>
-		<c>11.57 s</c>
-		<c>14.05 s</c>
+        	<c>1.84s</c>
+        	<c>3.09s</c> 
+        	<c>*4.43s </c>
+        	<c>5.14s</c>
+        	<c>6.53s</c>
+        	<c>*8.61s</c>
+		<c>11.57s</c>
+		<c>14.05s</c>
         	<postamble>*: the average value is calculated over the results of 9 experiments because the other one diverges too much </postamble>
+    		</texttable>
+
+	<t>
+	Note that we observed two accidents during the simulation. One happens in one experiment among the 10 that we ran for 30-node network, the network first converges at 4.016s, which is very close to the averge convergence time, but at 25.949s this converging state is broken and the network finally reconverges at 26.12s. The other one happens in the case of 60-node network where it fist converges at 7.081s then gets disturbed at 25.822s and comes back to converging at 26.303. As for the the reason of this happening, we will dig deeper into the logs and hope to find an explaination soon.
+	</t>
+
+ 		<list style="symbols">
+		<t>
+Verbosity
+		</t>
+ 		 </list>
+		<texttable anchor='byte1' title="the traffic of dncp in link topology">
+        	<preamble>The first row shows the overall bytes sent in the converging process, the second shows the bytes sent per node, calculated over 10 experiments</preamble>
+		<ttcol align='center'> </ttcol>
+        	<ttcol align='center'>10 nodes</ttcol>
+        	<ttcol align='center'>20 nodes</ttcol>
+        	<ttcol align='center'>30 nodes</ttcol>
+        	<ttcol align='center'>40 nodes</ttcol>
+        	<ttcol align='center'>50 nodes</ttcol>
+        	<ttcol align='center'>60 nodes</ttcol>
+        	<ttcol align='center'>70 nodes</ttcol>
+        	<ttcol align='center'>80 nodes</ttcol>
+
+		<c>bytes</c>
+        	<c>85.3KB</c>
+        	<c>604.7KB</c> 
+        	<c>2.3MB</c>
+        	<c>5.4MB</c>
+        	<c>11.9MB</c>
+        	<c>23.7MB</c>
+        	<c>51.7MB</c>
+        	<c>88.1MB</c>
+		<c>---</c>
+        	<c>---</c>
+        	<c>----</c> 
+        	<c>----</c>
+        	<c>----</c>
+        	<c>----</c>
+        	<c>----</c>
+        	<c>----</c>
+        	<c>----</c>
+		<c>bytes per node</c>
+        	<c>8.5KB</c>
+        	<c>30.2KB</c> 
+        	<c>79.6KB</c> 
+        	<c>140.7KB</c>
+        	<c>245.KB</c>
+        	<c>404.8KB</c>
+        	<c>757.2KB</c>
+        	<c>1.1MB</c>
+        	<postamble></postamble>
     		</texttable>
 	</section>
 	
 	<section title="Scenario 2: String topology of different size">
+ 		<list style="symbols">
+		<t>
+Convergence time
+		</t>
+ 		 </list>
 		<texttable anchor='table2' title="the average convergence time of string topology">
         	<preamble>The average value is calculated over 10 experiments</preamble>
         	<ttcol align='center'>10 nodes</ttcol>
@@ -36,18 +96,70 @@
         	<ttcol align='center'>70 nodes</ttcol>
         	<ttcol align='center'>80 nodes</ttcol>
 
-        	<c>1.84 s</c>
-        	<c>3.653 s</c> 
-        	<c>5.244 s</c>
-        	<c>7.099 s</c>
-        	<c>8.786 s</c>
-        	<c>11.111 s</c>
-        	<c>12.869 s</c>
-        	<c>15.032 s</c>
+        	<c>1.84s</c>
+        	<c>3.65s</c> 
+        	<c>5.24s</c>
+        	<c>7.09s</c>
+        	<c>8.79s</c>
+        	<c>11.11s</c>
+        	<c>12.87s</c>
+        	<c>15.03s</c>
+        	<postamble></postamble>
+    		</texttable>
+
+	<t>
+
+If we plot the average convering time against the number of nodes, it is discernible that the graph is leaner. This result is exactly the same as we expected.
+	</t>
+
+ 		<list style="symbols">
+		<t>
+Verbosity
+		</t>
+ 		 </list>
+		<texttable anchor='byte2' title="the traffic of dncp in string topology">
+        	<preamble>The first row shows the overall bytes sent in the converging process, the second shows the bytes sent per node, calculated over 10 experiments</preamble>
+        	<ttcol align='center'>10 nodes</ttcol>
+        	<ttcol align='center'>20 nodes</ttcol>
+        	<ttcol align='center'>30 nodes</ttcol>
+        	<ttcol align='center'>40 nodes</ttcol>
+        	<ttcol align='center'>50 nodes</ttcol>
+        	<ttcol align='center'>60 nodes</ttcol>
+        	<ttcol align='center'>70 nodes</ttcol>
+        	<ttcol align='center'>80 nodes</ttcol>
+
+        	<c>51.5KB</c>
+        	<c>243.44KB</c> 
+        	<c>605KB</c>
+        	<c>1.2MB</c>
+        	<c>2MB</c>
+        	<c>3MB</c>
+        	<c>4.1MB</c>
+        	<c>5.6MB</c>
+        	<c>---</c>
+        	<c>----</c> 
+        	<c>----</c>
+        	<c>----</c>
+        	<c>----</c>
+        	<c>----</c>
+        	<c>----</c>
+        	<c>----</c>
+        	<c>5.1KB</c>
+        	<c>12.2KB</c> 
+        	<c>20.1KB</c> 
+        	<c>30.9KB</c>
+        	<c>40.5KB</c>
+        	<c>50.4KB</c>
+        	<c>59.2KB</c>
+        	<c>70.1KB</c>
         	<postamble></postamble>
     		</texttable>
 	</section>
-
+ 		<list style="symbols">
+		<t>
+Convergence time
+		</t>
+ 		 </list>
 	<section title="Scenario 3: Mesh topology of different size">
 		<texttable anchor='table3' title="the average convergence time of mesh topology">
         	<preamble>The average value is calculated over 10 experiments</preamble>
@@ -60,18 +172,64 @@
         	<ttcol align='center'>70 nodes</ttcol>
         	<ttcol align='center'>80 nodes</ttcol>
 
-        	<c>1.71 s</c>
-        	<c>3.205 s</c> 
-        	<c>4.833 s</c>
-        	<c>*6.19 s</c>
-        	<c>10.638 s</c>
-        	<c>13.018 s</c>
-        	<c>15.334 s</c>
-        	<c>17.931 s</c>
+        	<c>1.71s</c>
+        	<c>3.2s</c> 
+        	<c>4.83s</c>
+        	<c>*6.19s</c>
+        	<c>10.64s</c>
+        	<c>13.02s</c>
+        	<c>15.33s</c>
+        	<c>17.93s</c>
         	<postamble>*: the average value is calculated over the results of 9 experiments because the other one diverges too much </postamble>
     		</texttable>
-	</section>
+ 		<list style="symbols">
+		<t>
+Verbosity
+		</t>
+ 		 </list>
+		<texttable anchor='byte3' title="the traffic of dncp in mesh topology">
+        	<preamble>The first row shows the overall bytes sent in the converging process, the second shows the bytes sent per node, calculated over 10 experiments</preamble>
+        	<ttcol align='center'>10 nodes</ttcol>
+        	<ttcol align='center'>20 nodes</ttcol>
+        	<ttcol align='center'>30 nodes</ttcol>
+        	<ttcol align='center'>40 nodes</ttcol>
+        	<ttcol align='center'>50 nodes</ttcol>
+        	<ttcol align='center'>60 nodes</ttcol>
+        	<ttcol align='center'>70 nodes</ttcol>
+        	<ttcol align='center'>80 nodes</ttcol>
 
+        	<c>202.7KB</c>
+        	<c>1.6MB</c> 
+        	<c>6.6MB</c>
+        	<c>18.1MB</c>
+        	<c>49.1MB</c>
+        	<c>95.8MB</c>
+        	<c>167.4MB</c>
+        	<c>271.9MB</c>
+        	<c>---</c>
+        	<c>----</c> 
+        	<c>----</c>
+        	<c>----</c>
+        	<c>----</c>
+        	<c>----</c>
+        	<c>----</c>
+        	<c>----</c>
+        	<c>20.3KB</c>
+        	<c>83.5KB</c> 
+        	<c>222.1KB</c> 
+        	<c>453.8KB</c>
+        	<c>983.1KB</c>
+        	<c>1.6MB</c>
+        	<c>2.4MB</c>
+        	<c>3.4MB</c>
+        	<postamble></postamble>
+    		</texttable>
+	</section>
+ 		<list style="symbols">
+		<t>
+Convergence time
+		</t>
+ 		 </list>
 	<section title="Scenario 4: Tree topology of different size">
 		<texttable anchor='table4' title="the average convergence time of tree topology">
         	<preamble>The average value is calculated over 10 experiments</preamble>
@@ -84,20 +242,69 @@
         	<ttcol align='center'>70 nodes</ttcol>
         	<ttcol align='center'>80 nodes</ttcol>
 
-        	<c>1.165</c>
-        	<c>1.574 s</c> 
-        	<c>1.861 s</c>
-        	<c>1.997 s</c>
-        	<c>2.33 s</c>
-        	<c>2.42 s</c>
-        	<c>2.561 s</c>
-        	<c>2.597 s</c>
+        	<c>1.16s</c>
+        	<c>1.57s</c> 
+        	<c>1.86s</c>
+        	<c>2s</c>
+        	<c>2.33s</c>
+        	<c>2.42s</c>
+        	<c>2.56s</c>
+        	<c>2.6s</c>
+        	<postamble></postamble>
+    		</texttable>
+
+ 		<list style="symbols">
+		<t>
+Verbosity
+		</t>
+ 		 </list>
+
+<texttable anchor='byte4' title="the traffic of dncp in tree topology">
+        	<preamble>The first row shows the overall bytes sent in the converging process, the second shows the bytes sent per node, calculated over 10 experiments</preamble>
+        	<ttcol align='center'>10 nodes</ttcol>
+        	<ttcol align='center'>20 nodes</ttcol>
+        	<ttcol align='center'>30 nodes</ttcol>
+        	<ttcol align='center'>40 nodes</ttcol>
+        	<ttcol align='center'>50 nodes</ttcol>
+        	<ttcol align='center'>60 nodes</ttcol>
+        	<ttcol align='center'>70 nodes</ttcol>
+        	<ttcol align='center'>80 nodes</ttcol>
+        	<c>40.7KB</c>
+        	<c>166.7KB</c> 
+        	<c>374KB</c>
+        	<c>644.5KB</c>
+        	<c>1MB</c>
+        	<c>1.3MB</c>
+        	<c>1.9MB</c>
+        	<c>2.4MB</c>
+        	<c>---</c>
+        	<c>----</c> 
+        	<c>----</c>
+        	<c>----</c>
+        	<c>----</c>
+        	<c>----</c>
+        	<c>----</c>
+        	<c>----</c>
+        	<c>4.1KB</c>
+        	<c>8.3KB</c> 
+        	<c>12.4KB</c> 
+        	<c>16.1KB</c>
+        	<c>20.2KB</c>
+        	<c>22.8KB</c>
+        	<c>26.7KB</c>
+        	<c>29.9KB</c>
         	<postamble></postamble>
     		</texttable>
 	</section>
 
 	<section title="Scenario 5: Tree topology of different size">
-		<texttable anchor='table5' title="the average convergence time of double topology">
+
+ 		<list style="symbols">
+		<t>
+Convergence time
+		</t>
+ 		 </list>
+		<texttable anchor='table5' title="the average convergence time of double tree topology">
         	<preamble>The average value is calculated over 10 experiments</preamble>
         	<ttcol align='center'>10 nodes</ttcol>
         	<ttcol align='center'>20 nodes</ttcol>
@@ -108,14 +315,58 @@
         	<ttcol align='center'>70 nodes</ttcol>
         	<ttcol align='center'>80 nodes</ttcol>
 
-        	<c>1.044 s</c>
-        	<c>1.436 s</c> 
-        	<c>1.5 s</c>
-        	<c>1.704 s</c>
-        	<c>1.96 s</c>
-        	<c>1.98 s</c>
-        	<c>2.06 s</c>
-        	<c>2.086 s</c>
+        	<c>1.04s</c>
+        	<c>1.44s</c> 
+        	<c>1.5s</c>
+        	<c>1.7s</c>
+        	<c>1.96s</c>
+        	<c>1.98s</c>
+        	<c>2.06s</c>
+        	<c>2.09s</c>
+        	<postamble></postamble>
+    		</texttable>
+
+ 		<list style="symbols">
+		<t>
+Verbosity
+		</t>
+ 		 </list>
+
+<texttable anchor='byte5' title="the traffic of dncp in tree topology">
+        	<preamble>The first row shows the overall bytes sent in the converging process, the second shows the bytes sent per node, calculated over 10 experiments</preamble>
+        	<ttcol align='center'>10 nodes</ttcol>
+        	<ttcol align='center'>20 nodes</ttcol>
+        	<ttcol align='center'>30 nodes</ttcol>
+        	<ttcol align='center'>40 nodes</ttcol>
+        	<ttcol align='center'>50 nodes</ttcol>
+        	<ttcol align='center'>60 nodes</ttcol>
+        	<ttcol align='center'>70 nodes</ttcol>
+        	<ttcol align='center'>80 nodes</ttcol>
+
+        	<c>66.9KB</c>
+        	<c>265KB</c> 
+        	<c>605.1KB</c>
+        	<c>1MB</c>
+        	<c>1.5MB</c>
+        	<c>2MB</c>
+        	<c>2.8MB</c>
+        	<c>3.5MB</c>
+        	<c>---</c>
+        	<c>----</c> 
+        	<c>----</c>
+        	<c>----</c>
+        	<c>----</c>
+        	<c>----</c>
+        	<c>----</c>
+        	<c>----</c>
+        	<c>6.7KB</c>
+        	<c>13.2KB</c> 
+        	<c>20.2KB</c> 
+        	<c>25.3KB</c>
+        	<c>30.8KB</c>
+        	<c>33.2KB</c>
+        	<c>39.7KB</c>
+        	<c>44.7KB</c>
         	<postamble></postamble>
     		</texttable>
 	</section>

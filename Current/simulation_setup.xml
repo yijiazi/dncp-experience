@@ -2,7 +2,7 @@
 	<section title="Simulation Environment">
 		<t>
 
-	The current dncp implementation relies largely on linux library (for opening sockets, sending and receiving packets..etc) and uses uloop for scheduling events. To integrate dncp into ns3, we have to redefine all the functions in the code that are related to these two parts so that packets can be sent and received in ns3 and events can be scheduled using ns3 scheduler.
+	The current dncp implementation relies largely on linux library (for opening sockets, sending and receiving packets..etc) and uses libubox for scheduling events. To integrate dncp into ns3, we have to redefine all the functions in the code that are related to these two parts so that packets can be sent and received in ns3 and events can be scheduled using ns3 scheduler.
 		</t>
 		
 		<t>
@@ -31,10 +31,10 @@ And the attributes of the CSMA channel that we can configure:
 		</t>
        		<list style="symbols">
        			<t>
-Data rate: The transmission data rate to be provided to the devices connected to the channel. That is the rate of the device pushing data into the channel. This attribute applies to all the devices on the same channel. In the simulation we set it to 1000Mbps thus providing an infinite throughput to eliminate the impact of throughput on the performance of dncp, in order to calculate the actual throughput comsumed. 
+Data rate: The transmission data rate to be provided to the devices connected to the channel. That is the rate of the device pushing data into the channel. This attribute applies to all the devices on the same channel. In the simulation we set it to 1000Mbps thus providing an infinite throughput to eliminate the impact of throughput on the performance of dncp, in order to calculate the actual throughput consumed. 
 			</t>
 			<t>
-Delay: The spped-of-light propagation delay over the medium. Imagine there is a symmetrical hub that is of equal cable lenghth to all the devices of the channel. When one device sends a packet to another device, the packet fist reaches the hub and is forwarded to the destination device, so the propagation delay is always the same for a given channel. In our simulation, this delay is set to 1 micro second.
+Delay: The speed-of-light propagation delay over the medium. Imagine there is a symmetrical hub that is of equal cable length to all the devices of the channel. When one device sends a packet to another device, the packet fist reaches the hub and is forwarded to the destination device, so the propagation delay is always the same for a given channel. In our simulation, this delay is set to 1 micro second.
 			</t>
 
 		</list>
@@ -45,7 +45,7 @@ Delay: The spped-of-light propagation delay over the medium. Imagine there is a 
 
 	<list style="symbols">
 		<t>
-Convergence time: The time that dncp takes for the network to converge. 
+Convergence time: The time that dncp takes for the network to converge. We use a concept of converging percentage to represent the converging state, basically the converging percentage is the proportion of the biggest cluster of nodes that share the same network hash. Apparently when this percentage is 100%, the network hqs coverged. 
 		</t>
 		
 		<t>
@@ -58,24 +58,58 @@ Traffic consumption: The amount of traffic that dncp uses to converge. To evalua
  
 		<section title="Link topology">
 			<t>
-All the nodes are on the same link, share the medium.
+All the nodes are on the same link, share the medium:
 			</t>
+
+    	<figure anchor='figure_link'>
+        <preamble></preamble>
+        <artwork>
+n1	n2	n3	n4
+|	|	|	 |
+---------------------------
+            
+
+        </artwork>
+        <postamble>A simple example of link topology</postamble>
+    </figure>
+
+
 		</section>
 		<section title="String topology">
 			<t>
 Nodes connected by point-to-point link in a line.
-			</t>		
+			</t>	
+	
+    	<figure anchor='figure_string'>
+        <preamble></preamble>
+        <artwork>
+
+	---------	---------
+	|	|	|	|
+n1	n2	n3	n4	n5	n6
+|	|	|	|	|	|
+---------	---------	---------
+            
+
+        </artwork>
+        <postamble>A simple example of String topology</postamble>
+    </figure>
+	
 		</section>		
 		<section title="Mesh topology">
 			<t>
 A fully connected mesh.
-			</t>		
+			</t>
+
+	
 		</section>
 		<section title="Tree topology">
 			<t>
 A binary tree
-			</t>		
+			</t>
+
 		</section>
+
 		<section title="Double Tree topology">
 			<t>
 Add some redundancy on the top of binary tree topology

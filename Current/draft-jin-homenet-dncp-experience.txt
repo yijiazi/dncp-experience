@@ -4,10 +4,10 @@
 Home Networking                                                   K. Jin
 Internet-Draft                               Ecole Polytechnique / Cisco
 Intended status: Informational                                P. Pfister
-Expires: January 2, 2016                                           Cisco
+Expires: January 3, 2016                                           Cisco
                                                                    J. Yi
                                                 LIX, Ecole Polytechnique
-                                                            July 1, 2015
+                                                            July 2, 2015
 
 
      Experience with the Distributed Node Consensus Protocol (DNCP)
@@ -34,7 +34,7 @@ Status of this Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on January 2, 2016.
+   This Internet-Draft will expire on January 3, 2016.
 
 Copyright Notice
 
@@ -52,7 +52,7 @@ Copyright Notice
 
 
 
-Jin, et al.              Expires January 2, 2016                [Page 1]
+Jin, et al.              Expires January 3, 2016                [Page 1]
 
 Internet-Draft               DNCP Experience                   July 2015
 
@@ -62,25 +62,25 @@ Internet-Draft               DNCP Experience                   July 2015
 
 Table of Contents
 
-   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . . . 3
-   2.  Implementations . . . . . . . . . . . . . . . . . . . . . . . . 3
-   3.  Simulation Setup  . . . . . . . . . . . . . . . . . . . . . . . 4
-     3.1.  Simulation Environment  . . . . . . . . . . . . . . . . . . 4
-     3.2.  Performance metric  . . . . . . . . . . . . . . . . . . . . 5
-     3.3.  Chosen toplogies  . . . . . . . . . . . . . . . . . . . . . 5
-       3.3.1.  Link topology . . . . . . . . . . . . . . . . . . . . . 5
-       3.3.2.  String topology . . . . . . . . . . . . . . . . . . . . 5
-       3.3.3.  Mesh topology . . . . . . . . . . . . . . . . . . . . . 5
-       3.3.4.  Tree topology . . . . . . . . . . . . . . . . . . . . . 5
-       3.3.5.  Double Tree topology  . . . . . . . . . . . . . . . . . 5
-   4.  Performance Evaluation  . . . . . . . . . . . . . . . . . . . . 5
-     4.1.  Scenario 1: Link topology of different size . . . . . . . . 6
-     4.2.  Scenario 2: String topology of different size . . . . . . . 6
-     4.3.  Scenario 3: Mesh topology of different size . . . . . . . . 6
-     4.4.  Scenario 4: Tree topology of different size . . . . . . . . 7
-     4.5.  Scenario 5: Tree topology of different size . . . . . . . . 7
-   5.  Conclusion  . . . . . . . . . . . . . . . . . . . . . . . . . . 7
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . . . 7
+   1.  Introduction . . . . . . . . . . . . . . . . . . . . . . . . .  3
+   2.  Implementations  . . . . . . . . . . . . . . . . . . . . . . .  3
+   3.  Simulation Setup . . . . . . . . . . . . . . . . . . . . . . .  4
+     3.1.  Simulation Environment . . . . . . . . . . . . . . . . . .  4
+     3.2.  Performance metric . . . . . . . . . . . . . . . . . . . .  5
+     3.3.  Chosen toplogies . . . . . . . . . . . . . . . . . . . . .  5
+       3.3.1.  Link topology  . . . . . . . . . . . . . . . . . . . .  5
+       3.3.2.  String topology  . . . . . . . . . . . . . . . . . . .  5
+       3.3.3.  Mesh topology  . . . . . . . . . . . . . . . . . . . .  6
+       3.3.4.  Tree topology  . . . . . . . . . . . . . . . . . . . .  6
+       3.3.5.  Double Tree topology . . . . . . . . . . . . . . . . .  6
+   4.  Performance Evaluation . . . . . . . . . . . . . . . . . . . .  6
+     4.1.  Scenario 1: Link topology of different size  . . . . . . .  6
+     4.2.  Scenario 2: String topology of different size  . . . . . .  7
+     4.3.  Scenario 3: Mesh topology of different size  . . . . . . .  8
+     4.4.  Scenario 4: Tree topology of different size  . . . . . . .  9
+     4.5.  Scenario 5: Tree topology of different size  . . . . . . . 10
+   5.  Conclusion . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+   Authors' Addresses . . . . . . . . . . . . . . . . . . . . . . . . 11
 
 
 
@@ -108,7 +108,7 @@ Table of Contents
 
 
 
-Jin, et al.              Expires January 2, 2016                [Page 2]
+Jin, et al.              Expires January 3, 2016                [Page 2]
 
 Internet-Draft               DNCP Experience                   July 2015
 
@@ -148,12 +148,10 @@ Internet-Draft               DNCP Experience                   July 2015
 
 2.  Implementations
 
-   TODO list, for each known implementations (I think we have only one
-   at this point?)
+   o  The implementation that we use in the simulation is condected by
 
-   o  conducted by who?
-
-   o  open/close source? if open source, the link?
+   o  This implementation is completely open sourse, ans is available at
+      https://github.com/sbyx/hnetd/tree/libdncp
 
    o  if available, number of lines/foot print
 
@@ -164,7 +162,9 @@ Internet-Draft               DNCP Experience                   July 2015
 
 
 
-Jin, et al.              Expires January 2, 2016                [Page 3]
+
+
+Jin, et al.              Expires January 3, 2016                [Page 3]
 
 Internet-Draft               DNCP Experience                   July 2015
 
@@ -174,7 +174,7 @@ Internet-Draft               DNCP Experience                   July 2015
 3.1.  Simulation Environment
 
    The current dncp implementation relies largely on linux library (for
-   opening sockets, sending and receiving packets..etc) and uses uloop
+   opening sockets, sending and receiving packets..etc) and uses libubox
    for scheduling events.  To integrate dncp into ns3, we have to
    redefine all the functions in the code that are related to these two
    parts so that packets can be sent and received in ns3 and events can
@@ -216,17 +216,17 @@ Internet-Draft               DNCP Experience                   July 2015
       devices on the same channel.  In the simulation we set it to
       1000Mbps thus providing an infinite throughput to eliminate the
       impact of throughput on the performance of dncp, in order to
-      calculate the actual throughput comsumed.
+      calculate the actual throughput consumed.
 
 
 
-Jin, et al.              Expires January 2, 2016                [Page 4]
+Jin, et al.              Expires January 3, 2016                [Page 4]
 
 Internet-Draft               DNCP Experience                   July 2015
 
 
-   o  Delay: The spped-of-light propagation delay over the medium.
-      Imagine there is a symmetrical hub that is of equal cable lenghth
+   o  Delay: The speed-of-light propagation delay over the medium.
+      Imagine there is a symmetrical hub that is of equal cable length
       to all the devices of the channel.  When one device sends a packet
       to another device, the packet fist reaches the hub and is
       forwarded to the destination device, so the propagation delay is
@@ -236,7 +236,11 @@ Internet-Draft               DNCP Experience                   July 2015
 3.2.  Performance metric
 
    o  Convergence time: The time that dncp takes for the network to
-      converge.
+      converge.  We use a concept of converging percentage to represent
+      the converging state, basically the converging percentage is the
+      proportion of the biggest cluster of nodes that share the same
+      network hash.  Apparently when this percentage is 100%, the
+      network hqs coverged.
 
    o  Traffic consumption: The amount of traffic that dncp uses to
       converge.  To evaluate the traffic consumption we count the
@@ -247,11 +251,47 @@ Internet-Draft               DNCP Experience                   July 2015
 
 3.3.1.  Link topology
 
-   All the nodes are on the same link, share the medium.
+   All the nodes are on the same link, share the medium:
+
+
+   n1      n2      n3      n4
+   |       |       |        |
+   ---------------------------
+
+
+
+   A simple example of link topology
+
+                                 Figure 1
 
 3.3.2.  String topology
 
    Nodes connected by point-to-point link in a line.
+
+
+
+
+
+
+
+
+
+Jin, et al.              Expires January 3, 2016                [Page 5]
+
+Internet-Draft               DNCP Experience                   July 2015
+
+
+           ---------       ---------
+           |       |       |       |
+   n1      n2      n3      n4      n5      n6
+   |       |       |       |       |       |
+   ---------       ---------       ---------
+
+
+
+   A simple example of String topology
+
+                                 Figure 2
 
 3.3.3.  Mesh topology
 
@@ -268,20 +308,9 @@ Internet-Draft               DNCP Experience                   July 2015
 
 4.  Performance Evaluation
 
-
-
-
-
-
-
-
-
-Jin, et al.              Expires January 2, 2016                [Page 5]
-
-Internet-Draft               DNCP Experience                   July 2015
-
-
 4.1.  Scenario 1: Link topology of different size
+
+   o  Convergence time
 
             The average value is calculated over 10 experiments
 
@@ -289,8 +318,7 @@ Internet-Draft               DNCP Experience                   July 2015
    |   10  |   20  |   30   |   40  |   50  |   60   |   70   |   80   |
    | nodes | nodes |  nodes | nodes | nodes |  nodes |  nodes |  nodes |
    +-------+-------+--------+-------+-------+--------+--------+--------+
-   | 1.843 | 3.092 | *4.432 | 5.143 | 6.535 |  *8.61 |  11.57 |  14.05 |
-   |   s   |   s   |    s   |   s   |   s   |    s   |    s   |    s   |
+   | 1.84s | 3.09s | *4.43s | 5.14s | 6.53s | *8.61s | 11.57s | 14.05s |
    +-------+-------+--------+-------+-------+--------+--------+--------+
 
    *: the average value is calculated over the results of 9 experiments
@@ -298,7 +326,50 @@ Internet-Draft               DNCP Experience                   July 2015
 
           Table 1: the average convergence time of link topology
 
+   Note that we observed two accidents during the simulation.  One
+   happens in one experiment among the 10 that we ran for 30-node
+   network, the network first converges at 4.016s, which is very close
+
+
+
+Jin, et al.              Expires January 3, 2016                [Page 6]
+
+Internet-Draft               DNCP Experience                   July 2015
+
+
+   to the averge convergence time, but at 25.949s this converging state
+   is broken and the network finally reconverges at 26.12s.  The other
+   one happens in the case of 60-node network where it fist converges at
+   7.081s then gets disturbed at 25.822s and comes back to converging at
+   26.303.  As for the the reason of this happening, we will dig deeper
+   into the logs and hope to find an explaination soon.
+
+   o  Verbosity
+
+   The first row shows the overall bytes sent in the converging process,
+       the second shows the bytes sent per node, calculated over 10
+                                experiments
+
+   +-----+------+------+-------+-------+-------+-------+-------+-------+
+   |     |  10  |  20  |   30  |   40  |   50  |   60  |   70  |   80  |
+   |     | node | node | nodes | nodes | nodes | nodes | nodes | nodes |
+   |     |   s  |   s  |       |       |       |       |       |       |
+   +-----+------+------+-------+-------+-------+-------+-------+-------+
+   | byt | 85.3 | 604. | 2.3MB | 5.4MB | 11.9M | 23.7M | 51.7M | 88.1M |
+   |  es |  KB  |  7KB |       |       |   B   |   B   |   B   |   B   |
+   | --- |  --- | ---- |  ---- |  ---- |  ---- |  ---- |  ---- |  ---- |
+   | byt | 8.5K | 30.2 | 79.6K | 140.7 | 245.K | 404.8 | 757.2 | 1.1MB |
+   |  es |   B  |  KB  |   B   |   KB  |   B   |   KB  |   KB  |       |
+   | per |      |      |       |       |       |       |       |       |
+   | nod |      |      |       |       |       |       |       |       |
+   |  e  |      |      |       |       |       |       |       |       |
+   +-----+------+------+-------+-------+-------+-------+-------+-------+
+
+               Table 2: the traffic of dncp in link topology
+
 4.2.  Scenario 2: String topology of different size
+
+   o  Convergence time
 
             The average value is calculated over 10 experiments
 
@@ -306,36 +377,97 @@ Internet-Draft               DNCP Experience                   July 2015
    |   10  |   20  |   30  |   40  |   50   |   60   |   70   |   80   |
    | nodes | nodes | nodes | nodes |  nodes |  nodes |  nodes |  nodes |
    +-------+-------+-------+-------+--------+--------+--------+--------+
-   |  1.84 | 3.653 | 5.244 | 7.099 |  8.786 | 11.111 | 12.869 | 15.032 |
-   |   s   |   s   |   s   |   s   |    s   |    s   |    s   |    s   |
+   | 1.84s | 3.65s | 5.24s | 7.09s |  8.79s | 11.11s | 12.87s | 15.03s |
    +-------+-------+-------+-------+--------+--------+--------+--------+
 
-         Table 2: the average convergence time of string topology
+         Table 3: the average convergence time of string topology
+
+   If we plot the average convering time against the number of nodes, it
+   is discernible that the graph is leaner.  This result is exactly the
+   same as we expected.
+
+
+
+Jin, et al.              Expires January 3, 2016                [Page 7]
+
+Internet-Draft               DNCP Experience                   July 2015
+
+
+   o  Verbosity
+
+   The first row shows the overall bytes sent in the converging process,
+       the second shows the bytes sent per node, calculated over 10
+                                experiments
+
+   +-------+--------+-------+-------+-------+--------+--------+--------+
+   |   10  |   20   |   30  |   40  |   50  |   60   |   70   |   80   |
+   | nodes |  nodes | nodes | nodes | nodes |  nodes |  nodes |  nodes |
+   +-------+--------+-------+-------+-------+--------+--------+--------+
+   | 51.5K | 243.44 | 605KB | 1.2MB |  2MB  |   3MB  |  4.1MB |  5.6MB |
+   |   B   |   KB   |       |       |       |        |        |        |
+   |  ---  |  ----  |  ---- |  ---- |  ---- |  ----  |  ----  |  ----  |
+   | 5.1KB | 12.2KB | 20.1K | 30.9K | 40.5K | 50.4KB | 59.2KB | 70.1KB |
+   |       |        |   B   |   B   |   B   |        |        |        |
+   +-------+--------+-------+-------+-------+--------+--------+--------+
+
+              Table 4: the traffic of dncp in string topology
+
+   o  Convergence time
 
 4.3.  Scenario 3: Mesh topology of different size
 
             The average value is calculated over 10 experiments
 
-   +-------+-------+-------+-------+--------+--------+--------+--------+
-   |   10  |   20  |   30  |   40  |   50   |   60   |   70   |   80   |
-   | nodes | nodes | nodes | nodes |  nodes |  nodes |  nodes |  nodes |
-   +-------+-------+-------+-------+--------+--------+--------+--------+
-   |  1.71 | 3.205 | 4.833 | *6.19 | 10.638 | 13.018 | 15.334 | 17.931 |
-   |   s   |   s   |   s   |   s   |    s   |    s   |    s   |    s   |
-   +-------+-------+-------+-------+--------+--------+--------+--------+
+   +------+-------+-------+--------+--------+--------+--------+--------+
+   |  10  |   20  |   30  |   40   |   50   |   60   |   70   |   80   |
+   | node | nodes | nodes |  nodes |  nodes |  nodes |  nodes |  nodes |
+   |   s  |       |       |        |        |        |        |        |
+   +------+-------+-------+--------+--------+--------+--------+--------+
+   | 1.71 |  3.2s | 4.83s | *6.19s | 10.64s | 13.02s | 15.33s | 17.93s |
+   |   s  |       |       |        |        |        |        |        |
+   +------+-------+-------+--------+--------+--------+--------+--------+
 
    *: the average value is calculated over the results of 9 experiments
                   because the other one diverges too much
 
-          Table 3: the average convergence time of mesh topology
+          Table 5: the average convergence time of mesh topology
+
+   o  Verbosity
 
 
 
 
-Jin, et al.              Expires January 2, 2016                [Page 6]
+
+
+
+
+
+
+
+Jin, et al.              Expires January 3, 2016                [Page 8]
 
 Internet-Draft               DNCP Experience                   July 2015
 
+
+   The first row shows the overall bytes sent in the converging process,
+       the second shows the bytes sent per node, calculated over 10
+                                experiments
+
+   +-------+------+--------+--------+--------+-------+--------+--------+
+   |   10  |  20  |   30   |   40   |   50   |   60  |   70   |   80   |
+   | nodes | node |  nodes |  nodes |  nodes | nodes |  nodes |  nodes |
+   |       |   s  |        |        |        |       |        |        |
+   +-------+------+--------+--------+--------+-------+--------+--------+
+   | 202.7 | 1.6M |  6.6MB | 18.1MB | 49.1MB | 95.8M | 167.4M | 271.9M |
+   |   KB  |   B  |        |        |        |   B   |    B   |    B   |
+   |  ---  | ---- |  ----  |  ----  |  ----  |  ---- |  ----  |  ----  |
+   | 20.3K | 83.5 | 222.1K | 453.8K | 983.1K | 1.6MB |  2.4MB |  3.4MB |
+   |   B   |  KB  |    B   |    B   |    B   |       |        |        |
+   +-------+------+--------+--------+--------+-------+--------+--------+
+
+               Table 6: the traffic of dncp in mesh topology
+
+   o  Convergence time
 
 4.4.  Scenario 4: Tree topology of different size
 
@@ -345,13 +477,54 @@ Internet-Draft               DNCP Experience                   July 2015
    |   10  |   20  |   30  |   40  |   50   |   60   |   70   |   80   |
    | nodes | nodes | nodes | nodes |  nodes |  nodes |  nodes |  nodes |
    +-------+-------+-------+-------+--------+--------+--------+--------+
-   | 1.165 | 1.574 | 1.861 | 1.997 | 2.33 s | 2.42 s |  2.561 |  2.597 |
-   |       |   s   |   s   |   s   |        |        |    s   |    s   |
+   | 1.16s | 1.57s | 1.86s |   2s  |  2.33s |  2.42s |  2.56s |  2.6s  |
    +-------+-------+-------+-------+--------+--------+--------+--------+
 
-          Table 4: the average convergence time of tree topology
+          Table 7: the average convergence time of tree topology
+
+   o  Verbosity
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Jin, et al.              Expires January 3, 2016                [Page 9]
+
+Internet-Draft               DNCP Experience                   July 2015
+
+
+   The first row shows the overall bytes sent in the converging process,
+       the second shows the bytes sent per node, calculated over 10
+                                experiments
+
+   +-------+--------+-------+--------+-------+-------+--------+--------+
+   |   10  |   20   |   30  |   40   |   50  |   60  |   70   |   80   |
+   | nodes |  nodes | nodes |  nodes | nodes | nodes |  nodes |  nodes |
+   +-------+--------+-------+--------+-------+-------+--------+--------+
+   | 40.7K | 166.7K | 374KB | 644.5K |  1MB  | 1.3MB |  1.9MB |  2.4MB |
+   |   B   |    B   |       |    B   |       |       |        |        |
+   |  ---  |  ----  |  ---- |  ----  |  ---- |  ---- |  ----  |  ----  |
+   | 4.1KB |  8.3KB | 12.4K | 16.1KB | 20.2K | 22.8K | 26.7KB | 29.9KB |
+   |       |        |   B   |        |   B   |   B   |        |        |
+   +-------+--------+-------+--------+-------+-------+--------+--------+
+
+               Table 8: the traffic of dncp in tree topology
 
 4.5.  Scenario 5: Tree topology of different size
+
+   o  Convergence time
 
             The average value is calculated over 10 experiments
 
@@ -359,11 +532,36 @@ Internet-Draft               DNCP Experience                   July 2015
    |   10  |   20  |   30  |   40  |   50   |   60   |   70   |   80   |
    | nodes | nodes | nodes | nodes |  nodes |  nodes |  nodes |  nodes |
    +-------+-------+-------+-------+--------+--------+--------+--------+
-   | 1.044 | 1.436 | 1.5 s | 1.704 | 1.96 s | 1.98 s | 2.06 s |  2.086 |
-   |   s   |   s   |       |   s   |        |        |        |    s   |
+   | 1.04s | 1.44s |  1.5s |  1.7s |  1.96s |  1.98s |  2.06s |  2.09s |
    +-------+-------+-------+-------+--------+--------+--------+--------+
 
-         Table 5: the average convergence time of double topology
+       Table 9: the average convergence time of double tree topology
+
+   o  Verbosity
+
+   The first row shows the overall bytes sent in the converging process,
+       the second shows the bytes sent per node, calculated over 10
+                                experiments
+
+   +-------+-------+--------+-------+-------+--------+--------+--------+
+   |   10  |   20  |   30   |   40  |   50  |   60   |   70   |   80   |
+   | nodes | nodes |  nodes | nodes | nodes |  nodes |  nodes |  nodes |
+   +-------+-------+--------+-------+-------+--------+--------+--------+
+   | 66.9K | 265KB | 605.1K |  1MB  | 1.5MB |   2MB  |  2.8MB |  3.5MB |
+   |   B   |       |    B   |       |       |        |        |        |
+   |  ---  |  ---- |  ----  |  ---- |  ---- |  ----  |  ----  |  ----  |
+   | 6.7KB | 13.2K | 20.2KB | 25.3K | 30.8K | 33.2KB | 39.7KB | 44.7KB |
+   |       |   B   |        |   B   |   B   |        |        |        |
+   +-------+-------+--------+-------+-------+--------+--------+--------+
+
+
+
+Jin, et al.              Expires January 3, 2016               [Page 10]
+
+Internet-Draft               DNCP Experience                   July 2015
+
+
+              Table 10: the traffic of dncp in tree topology
 
 
 5.  Conclusion
@@ -380,17 +578,6 @@ Authors' Addresses
    Phone:
    Email:
    URI:
-
-
-
-
-
-
-
-
-Jin, et al.              Expires January 2, 2016                [Page 7]
-
-Internet-Draft               DNCP Experience                   July 2015
 
 
    Pierre Pfister
@@ -425,24 +612,5 @@ Internet-Draft               DNCP Experience                   July 2015
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Jin, et al.              Expires January 2, 2016                [Page 8]
+Jin, et al.              Expires January 3, 2016               [Page 11]
 
