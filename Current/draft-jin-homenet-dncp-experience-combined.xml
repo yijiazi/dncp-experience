@@ -279,8 +279,7 @@ Verbosity
 		</t>
  		 </list>
 		<texttable anchor='byte1' title="the traffic of dncp in link topology">
-        	<preamble>The first row shows the overall bytes sent in the converging process, the second shows the bytes sent per node, calculated over 10 experiments</preamble>
-		<ttcol align='center'> </ttcol>
+        	<preamble>The first row shows the overall bytes sent in the converging process, the second shows the bytes sent per node, calculated over 10 experiments</preamble>>
         	<ttcol align='center'>10 nodes</ttcol>
         	<ttcol align='center'>20 nodes</ttcol>
         	<ttcol align='center'>30 nodes</ttcol>
@@ -290,7 +289,6 @@ Verbosity
         	<ttcol align='center'>70 nodes</ttcol>
         	<ttcol align='center'>80 nodes</ttcol>
 
-		<c>bytes</c>
         	<c>85.3KB</c>
         	<c>604.7KB</c> 
         	<c>2.3MB</c>
@@ -299,7 +297,6 @@ Verbosity
         	<c>23.7MB</c>
         	<c>51.7MB</c>
         	<c>88.1MB</c>
-		<c>---</c>
         	<c>---</c>
         	<c>----</c> 
         	<c>----</c>
@@ -308,7 +305,6 @@ Verbosity
         	<c>----</c>
         	<c>----</c>
         	<c>----</c>
-		<c>bytes per node</c>
         	<c>8.5KB</c>
         	<c>30.2KB</c> 
         	<c>79.6KB</c> 

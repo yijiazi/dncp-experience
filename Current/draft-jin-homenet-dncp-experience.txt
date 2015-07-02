@@ -350,20 +350,16 @@ Internet-Draft               DNCP Experience                   July 2015
        the second shows the bytes sent per node, calculated over 10
                                 experiments
 
-   +-----+------+------+-------+-------+-------+-------+-------+-------+
-   |     |  10  |  20  |   30  |   40  |   50  |   60  |   70  |   80  |
-   |     | node | node | nodes | nodes | nodes | nodes | nodes | nodes |
-   |     |   s  |   s  |       |       |       |       |       |       |
-   +-----+------+------+-------+-------+-------+-------+-------+-------+
-   | byt | 85.3 | 604. | 2.3MB | 5.4MB | 11.9M | 23.7M | 51.7M | 88.1M |
-   |  es |  KB  |  7KB |       |       |   B   |   B   |   B   |   B   |
-   | --- |  --- | ---- |  ---- |  ---- |  ---- |  ---- |  ---- |  ---- |
-   | byt | 8.5K | 30.2 | 79.6K | 140.7 | 245.K | 404.8 | 757.2 | 1.1MB |
-   |  es |   B  |  KB  |   B   |   KB  |   B   |   KB  |   KB  |       |
-   | per |      |      |       |       |       |       |       |       |
-   | nod |      |      |       |       |       |       |       |       |
-   |  e  |      |      |       |       |       |       |       |       |
-   +-----+------+------+-------+-------+-------+-------+-------+-------+
+   +-------+-------+-------+-------+--------+--------+--------+--------+
+   |   10  |   20  |   30  |   40  |   50   |   60   |   70   |   80   |
+   | nodes | nodes | nodes | nodes |  nodes |  nodes |  nodes |  nodes |
+   +-------+-------+-------+-------+--------+--------+--------+--------+
+   | 85.3K | 604.7 | 2.3MB | 5.4MB | 11.9MB | 23.7MB | 51.7MB | 88.1MB |
+   |   B   |   KB  |       |       |        |        |        |        |
+   |  ---  |  ---- |  ---- |  ---- |  ----  |  ----  |  ----  |  ----  |
+   | 8.5KB | 30.2K | 79.6K | 140.7 | 245.KB | 404.8K | 757.2K |  1.1MB |
+   |       |   B   |   B   |   KB  |        |    B   |    B   |        |
+   +-------+-------+-------+-------+--------+--------+--------+--------+
 
                Table 2: the traffic of dncp in link topology
 
@@ -386,14 +382,16 @@ Internet-Draft               DNCP Experience                   July 2015
    is discernible that the graph is leaner.  This result is exactly the
    same as we expected.
 
+   o  Verbosity
+
+
+
 
 
 Jin, et al.              Expires January 3, 2016                [Page 7]
 
 Internet-Draft               DNCP Experience                   July 2015
 
-
-   o  Verbosity
 
    The first row shows the overall bytes sent in the converging process,
        the second shows the bytes sent per node, calculated over 10
@@ -433,6 +431,8 @@ Internet-Draft               DNCP Experience                   July 2015
           Table 5: the average convergence time of mesh topology
 
    o  Verbosity
+
+
 
 
 
