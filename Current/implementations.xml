@@ -1,14 +1,13 @@
 <section title="Implementations" anchor="implementation">
 	<t>
-		TODO list, for each known implementations (I think we have only one at this point?) 
 		
        <list style="symbols">
        		<t>
-       			conducted by who?
+       			The implementation that we use in the simulation is condected by 
        		</t>
        		
        		<t>
-       			open/close source? if open source, the link?
+       			This implementation is completely open sourse, ans is available at https://github.com/sbyx/hnetd/tree/libdncp
        		</t>
        		
        		<t>

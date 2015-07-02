@@ -1,27 +1,120 @@
 <section title="Simulation Setup" anchor="setup">
-	
 	<section title="Simulation Environment">
 		<t>
-			dncp + ns3
+
+	The current dncp implementation relies largely on linux library (for opening sockets, sending and receiving packets..etc) and uses libubox for scheduling events. To integrate dncp into ns3, we have to redefine all the functions in the code that are related to these two parts so that packets can be sent and received in ns3 and events can be scheduled using ns3 scheduler.
 		</t>
 		
 		<t>
-			layer 2 settings
+	We used CSMA model in ns3 to simulate layer one and layer two. CSMA model is designed in the spirit of Ethernet but different from the real-life Ethernet in the sense that the CSMA channel can provide instantaneous carrier sense and priority-based collision avoidance. The channel has three states: TRANSMITTING, PROPAGATING and IDLE, the states can be seen immediately by the devices attached to the channel so collision never happens. CSMA model consists of two parts: CSMA channel and CSMA device. CSMA channel is the model of the transmission medium, and CSMA device is like the an Ethernet device, the CSMA devices are connected to the channel. 
 		</t>
+		<t>
+Listed below are several attributes of the CSMA device that we can configure: 
+
+       		<list style="symbols">
+       			<t>
+MTU:The mac level maximum transmission unit, set to 1500
+			</t>
+       			<t>
+Encapsulation Mode: Type of link layer encapsulation to use. In our simulation we use the default mode "Dix" which is commonly used in Ethernet.
+			</t>
+			<t>
+TxQueue: Type of the transmit queue used by the device. In ns3, we have the possibility to choose from Codel queue, drop tail queue and RED (random early detection) queue. Here we use the drop tail queue and set the buffer of the queue to 100 packets. (bytes can also be used as the maximum queue size metrics)
+			</t>
+			<t>
+Interframe gap: The pause between two frames
+			</t>
+		</list>
+		</t>
+		<t>
+And the attributes of the CSMA channel that we can configure:
+		</t>
+       		<list style="symbols">
+       			<t>
+Data rate: The transmission data rate to be provided to the devices connected to the channel. That is the rate of the device pushing data into the channel. This attribute applies to all the devices on the same channel. In the simulation we set it to 1000Mbps thus providing an infinite throughput to eliminate the impact of throughput on the performance of dncp, in order to calculate the actual throughput consumed. 
+			</t>
+			<t>
+Delay: The speed-of-light propagation delay over the medium. Imagine there is a symmetrical hub that is of equal cable length to all the devices of the channel. When one device sends a packet to another device, the packet fist reaches the hub and is forwarded to the destination device, so the propagation delay is always the same for a given channel. In our simulation, this delay is set to 1 micro second.
+			</t>
+
+		</list>
+
 	</section>
 	
 	<section title="Performance metric">
+
+	<list style="symbols">
 		<t>
-			convergence time ...
+Convergence time: The time that dncp takes for the network to converge. We use a concept of converging percentage to represent the converging state, basically the converging percentage is the proportion of the biggest cluster of nodes that share the same network hash. Apparently when this percentage is 100%, the network hqs coverged. 
 		</t>
 		
 		<t>
-			convergence ratio...
-		</t>
-		
+Traffic consumption: The amount of traffic that dncp uses to converge. To evaluate the traffic consumption we count the overall amount of bytes sent during the converging process as well as the throughput per second.
+		</t>.
+	</list>	
 	</section> 
 
 	<section title="Chosen toplogies">
-		
+ 
+		<section title="Link topology">
+			<t>
+All the nodes are on the same link, share the medium:
+			</t>
+
+    	<figure anchor='figure_link'>
+        <preamble></preamble>
+        <artwork>
+n1	n2	n3	n4
+|	|	|	 |
+---------------------------
+            
+
+        </artwork>
+        <postamble>A simple example of link topology</postamble>
+    </figure>
+
+
+		</section>
+		<section title="String topology">
+			<t>
+Nodes connected by point-to-point link in a line.
+			</t>	
+	
+    	<figure anchor='figure_string'>
+        <preamble></preamble>
+        <artwork>
+
+	---------	---------
+	|	|	|	|
+n1	n2	n3	n4	n5	n6
+|	|	|	|	|	|
+---------	---------	---------
+            
+
+        </artwork>
+        <postamble>A simple example of String topology</postamble>
+    </figure>
+	
+		</section>		
+		<section title="Mesh topology">
+			<t>
+A fully connected mesh.
+			</t>
+
+	
+		</section>
+		<section title="Tree topology">
+			<t>
+A binary tree
+			</t>
+
+		</section>
+
+		<section title="Double Tree topology">
+			<t>
+Add some redundancy on the top of binary tree topology
+			</t>		
+		</section>
+	
 	</section> 
 </section>
