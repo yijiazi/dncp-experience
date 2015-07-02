@@ -1,0 +1,4 @@
+<references title="Informative References">
+    <?rfc include="reference.I-D.ietf-homenet-dncp.xml"?>
+    <?rfc include="reference.I-D.ietf-homenet-hncp.xml"?>
+</references>
