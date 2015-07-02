@@ -58,64 +58,66 @@ Traffic consumption: The amount of traffic that dncp uses to converge. To evalua
 	</section> 
 
 	<section title="Chosen toplogies">
+
+    <t>This section describes the different topologies that have been used for our performances analysis. We picked topoligies which were:
+            <list style="symbols">
+                <t>Deterministic.</t>
+                <t>Easily described and generated as a function of the number of nodes (called N).</t>
+                <t>Representing different situation ultimatly testing different scalability properties.</t>
+                </list>
+    </t>
  
-		<section title="Link topology">
+		<section title="Single link topology">
 			<t>
-All the nodes are on the same link, share the medium:
+                The single link topology puts all the nodes on the same link. Each node therefore has a single DNCP End-Point with N-1 neighbors. Such topology is well suited to evaluate DNCP scalability in terms of number of neighbors on a given link.
 			</t>
 
     	<figure anchor='figure_link'>
         <preamble></preamble>
         <artwork>
-n1	n2	n3	n4
-|	|	|	 |
----------------------------
-            
-
+n1	     n2	      n3       n4
+|        |        |        |
+----------------------------
         </artwork>
-        <postamble>A simple example of link topology</postamble>
+        <postamble>The single link topology for N=4.</postamble>
     </figure>
 
 
 		</section>
 		<section title="String topology">
 			<t>
-Nodes connected by point-to-point link in a line.
+                The string topology chains all nodes one after the other. Each node has two DNCP End-Points with one neighbor on each side (except for the two extremities). Such topology is well suited to evaluate the converge time depending on the diameter of a network, as well as the scalability in terms of number of nodes.
 			</t>	
 	
     	<figure anchor='figure_string'>
         <preamble></preamble>
         <artwork>
-
-	---------	---------
-	|	|	|	|
-n1	n2	n3	n4	n5	n6
-|   |	|	|	|	|
----------	---------	---------
-            
-
+        ---------       ---------
+        |       |       |       |
+n1      n2      n3      n4      n5      n6
+|       |       |       |       |       |
+---------       ---------       ---------
         </artwork>
-        <postamble>A simple example of String topology</postamble>
+        <postamble>The string topolofy for N=6<./postamble>
     </figure>
 	
 		</section>		
 		<section title="Mesh topology">
 			<t>
-A fully connected mesh.
+                The mesh topology connects all nodes with distinct links. Each node has N-1 DNCP End-Points with one neighor on each side. Such topology is well suited to evualate DNCP scalability in terms of the amount of nodes and end-points.
 			</t>
 
 	
 		</section>
 		<section title="Tree topology">
 			<t>
-A binary tree
+                The tree topology forms a typical binary tree. More formaly, node i is connected with node 2*i + 1 and 2*i + 2, unless those numbers are greater or equal to N. In such topology, all nodes except the root one have three DNCP End-Points with one neighbor on each. This topology offer a more realistic tradeoff between the diameter and the number of nodes.
 			</t>
-
 		</section>
 
 		<section title="Double Tree topology">
 			<t>
-Add some redundancy on the top of binary tree topology
+                The double tree topology is identical to the binary tree case, but each node is doubled with a redundancy node. In such topology, all nodes except the two root node have 6 DNCP End-Point with one neighbor on each. This topology also offers a more realistic tradeoff between the network diameter and the number of nodes, but also adds redundancy and loops.
 			</t>		
 		</section>
 	
