@@ -188,8 +188,8 @@ Internet-Draft               DNCP Experience                   July 2015
    states can be seen immediately by the devices attached to the channel
    so collision never happens.  CSMA model consists of two parts: CSMA
    channel and CSMA device.  CSMA channel is the model of the
-   transmission medium, and CSMA device is like the an Ethernet device,
-   the CSMA devices are connected to the channel.
+   transmission medium, and CSMA device is like an Ethernet device, the
+   CSMA devices are connected to the channel.
 
    Listed below are several attributes of the CSMA device that we can
    configure:
@@ -206,7 +206,8 @@ Internet-Draft               DNCP Experience                   July 2015
       drop tail queue and set the buffer of the queue to 100 packets.
       (bytes can also be used as the maximum queue size metrics)
 
-   o  Interframe gap: The pause between two frames
+   o  Interframe gap: The pause between two frames, in the simulation we
+      just use 0.
 
    And the attributes of the CSMA channel that we can configure:
 
@@ -216,7 +217,6 @@ Internet-Draft               DNCP Experience                   July 2015
       devices on the same channel.  In the simulation we set it to
       1000Mbps thus providing an infinite throughput to eliminate the
       impact of throughput on the performance of dncp, in order to
-      calculate the actual throughput consumed.
 
 
 
@@ -224,6 +224,8 @@ Jin, et al.              Expires January 3, 2016                [Page 4]
 
 Internet-Draft               DNCP Experience                   July 2015
 
+
+      calculate the actual throughput consumed.
 
    o  Delay: The speed-of-light propagation delay over the medium.
       Imagine there is a symmetrical hub that is of equal cable length
@@ -267,8 +269,6 @@ Internet-Draft               DNCP Experience                   July 2015
 3.3.2.  String topology
 
    Nodes connected by point-to-point link in a line.
-
-
 
 
 
@@ -401,8 +401,8 @@ Internet-Draft               DNCP Experience                   July 2015
    |   10  |   20   |   30  |   40  |   50  |   60   |   70   |   80   |
    | nodes |  nodes | nodes | nodes | nodes |  nodes |  nodes |  nodes |
    +-------+--------+-------+-------+-------+--------+--------+--------+
-   | 51.5K | 243.44 | 605KB | 1.2MB |  2MB  |   3MB  |  4.1MB |  5.6MB |
-   |   B   |   KB   |       |       |       |        |        |        |
+   | 51.5K | 243.4K | 605KB | 1.2MB |  2MB  |   3MB  |  4.1MB |  5.6MB |
+   |   B   |    B   |       |       |       |        |        |        |
    |  ---  |  ----  |  ---- |  ---- |  ---- |  ----  |  ----  |  ----  |
    | 5.1KB | 12.2KB | 20.1K | 30.9K | 40.5K | 50.4KB | 59.2KB | 70.1KB |
    |       |        |   B   |   B   |   B   |        |        |        |

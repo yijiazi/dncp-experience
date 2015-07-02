@@ -239,6 +239,10 @@ Authors' Addresses<br />
 Introduction</h3>
 
 <p>
+			
+	
+</p>
+<p>
        </p>
 <ul class="text">
 <li>
@@ -300,7 +304,7 @@ Simulation Environment</h3>
 		
 </p>
 <p>
-	We used CSMA model in ns3 to simulate layer one and layer two. CSMA model is designed in the spirit of Ethernet but different from the real-life Ethernet in the sense that the CSMA channel can provide instantaneous carrier sense and priority-based collision avoidance. The channel has three states: TRANSMITTING, PROPAGATING and IDLE, the states can be seen immediately by the devices attached to the channel so collision never happens. CSMA model consists of two parts: CSMA channel and CSMA device. CSMA channel is the model of the transmission medium, and CSMA device is like the an Ethernet device, the CSMA devices are connected to the channel. 
+	We used CSMA model in ns3 to simulate layer one and layer two. CSMA model is designed in the spirit of Ethernet but different from the real-life Ethernet in the sense that the CSMA channel can provide instantaneous carrier sense and priority-based collision avoidance. The channel has three states: TRANSMITTING, PROPAGATING and IDLE, the states can be seen immediately by the devices attached to the channel so collision never happens. CSMA model consists of two parts: CSMA channel and CSMA device. CSMA channel is the model of the transmission medium, and CSMA device is like an Ethernet device, the CSMA devices are connected to the channel. 
 		
 </p>
 <p>
@@ -321,7 +325,7 @@ TxQueue: Type of the transmit queue used by the device. In ns3, we have the poss
 			
 </li>
 <li>
-Interframe gap: The pause between two frames
+Interframe gap: The pause between two frames, in the simulation we just use 0.
 			
 </li>
 </ul><p>
@@ -577,7 +581,7 @@ Verbosity
 <tr><th align="center">10 nodes</th><th align="center">20 nodes</th><th align="center">30 nodes</th><th align="center">40 nodes</th><th align="center">50 nodes</th><th align="center">60 nodes</th><th align="center">70 nodes</th><th align="center">80 nodes</th></tr>
 <tr>
 <td align="center">51.5KB</td>
-<td align="center">243.44KB</td>
+<td align="center">243.4KB</td>
 <td align="center">605KB</td>
 <td align="center">1.2MB</td>
 <td align="center">2MB</td>
