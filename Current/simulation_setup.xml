@@ -29,6 +29,7 @@ Interframe gap: The pause between two frames, in the simulation we just use 0.
 		<t>
 And the attributes of the CSMA channel that we can configure:
 		</t>
+        <t>
        		<list style="symbols">
        			<t>
 Data rate: The transmission data rate to be provided to the devices connected to the channel. That is the rate of the device pushing data into the channel. This attribute applies to all the devices on the same channel. In the simulation we set it to 1000Mbps thus providing an infinite throughput to eliminate the impact of throughput on the performance of dncp, in order to calculate the actual throughput consumed. 
@@ -38,20 +39,22 @@ Delay: The speed-of-light propagation delay over the medium. Imagine there is a 
 			</t>
 
 		</list>
+            </t>
 
 	</section>
 	
 	<section title="Performance metric">
-
-	<list style="symbols">
+        <t>
+            <list style="symbols">
 		<t>
 Convergence time: The time that dncp takes for the network to converge. We use a concept of converging percentage to represent the converging state, basically the converging percentage is the proportion of the biggest cluster of nodes that share the same network hash. Apparently when this percentage is 100%, the network hqs coverged. 
 		</t>
 		
 		<t>
 Traffic consumption: The amount of traffic that dncp uses to converge. To evaluate the traffic consumption we count the overall amount of bytes sent during the converging process as well as the throughput per second.
-		</t>.
-	</list>	
+		</t>
+            </list>
+    </t>
 	</section> 
 
 	<section title="Chosen toplogies">
@@ -87,7 +90,7 @@ Nodes connected by point-to-point link in a line.
 	---------	---------
 	|	|	|	|
 n1	n2	n3	n4	n5	n6
-|	|	|	|	|	|
+|   |	|	|	|	|
 ---------	---------	---------
             
 
