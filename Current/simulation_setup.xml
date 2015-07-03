@@ -1,45 +1,63 @@
 <section title="Simulation Setup" anchor="setup">
 	<section title="Simulation Environment">
-		<t>
+<t>
+To integrate dncp into ns3, an application in ns3 called "DncpApplication" is created, this application can be installed on the node and can be started and stopped at given time. Once the application is launched, the node will begin the process of topology discovery and data synchronization by calling the founctions in the libdnc static library from inside the ns3 application. The APIs in libdncp interacting with lower layers and the event scheduler are redifined.
+</t>
 
-	The current dncp implementation relies largely on linux library (for opening sockets, sending and receiving packets..etc) and uses libubox for scheduling events. To integrate dncp into ns3, we have to redefine all the functions in the code that are related to these two parts so that packets can be sent and received in ns3 and events can be scheduled using ns3 scheduler.
-		</t>
+    	<figure anchor='figure_simulation'>
+        <preamble></preamble>
+        <artwork>
+     
+        +-----------------------------+
+        |dncp implementation (Libdncp)|      
+        +-----------------------------+
+  +------------socket API----------------+  
+  |     +----------------+               |    
+  |     |  L4 (UDP)      |               |
+  |     +----------------+               | 
+  |                              NS3     |
+  |     +----------------+               |    
+  |     |  L3 (Ipv6)     |               |
+  |     +----------------+               | 
+  |                                      |
+  |     +---------------------+          |	  
+  |     |L1 and L2 (CsmaModel)|          |
+  |     +---------------------+          |
+  +--------------------------------------+
+
+        </artwork>
+        <postamble></postamble>
+    </figure>
 		
-		<t>
-	We used CSMA model in ns3 to simulate layer one and layer two. CSMA model is designed in the spirit of Ethernet but different from the real-life Ethernet in the sense that the CSMA channel can provide instantaneous carrier sense and priority-based collision avoidance. The channel has three states: TRANSMITTING, PROPAGATING and IDLE, the states can be seen immediately by the devices attached to the channel so collision never happens. CSMA model consists of two parts: CSMA channel and CSMA device. CSMA channel is the model of the transmission medium, and CSMA device is like an Ethernet device, the CSMA devices are connected to the channel. 
+		<t>  
+As showed in the graph above, all the application-level actions (processing packets, publishing tlvs...) are performed inside the libdncp implementation, the packets are sent to or received from the lower layers in ns3 through the redefined socket API. Udp is used for layer4 and Ipv6 for layer3. For layer1 and layer2, the CSMA model is chosen because it is designed in the spirit of Ethernet and is close to reality. CSMA model consists of 2 parts: CSMA channel and CSMA device. CSMA channel is the model of the transmission medium, and CSMA device is like an Ethernet device, CSMA devices are connected to the channel.
 		</t>
 		<t>
-Listed below are several attributes of the CSMA device that we can configure: 
+Listed below are layer1 and layer2 configurations that are used in simulation: 
 
        		<list style="symbols">
        			<t>
 MTU:The mac level maximum transmission unit, set to 1500
 			</t>
        			<t>
-Encapsulation Mode: Type of link layer encapsulation to use. In our simulation we use the default mode "Dix" which is commonly used in Ethernet.
+Encapsulation Mode: Type of link layer encapsulation to use. The mode is set to "Dix" which is commonly used in Ethernet.
 			</t>
 			<t>
-TxQueue: Type of the transmit queue used by the device. In ns3, we have the possibility to choose from Codel queue, drop tail queue and RED (random early detection) queue. Here we use the drop tail queue and set the buffer of the queue to 100 packets. (bytes can also be used as the maximum queue size metrics)
+TxQueue: Type of the transmit queue used by the device. Ns3 provides the possibility to choose from Codel queue, drop tail queue and RED (random early detection) queue. In the simulation drop tail queue is used and its buffer size is 100 packets. (bytes can also be used as the maximum queue size metrics)
 			</t>
 			<t>
-Interframe gap: The pause between two frames, in the simulation we just use 0.
+Interframe gap: The pause between two frames, in the simulation it is 0.
 			</t>
-		</list>
-		</t>
-		<t>
-And the attributes of the CSMA channel that we can configure:
-		</t>
-        <t>
-       		<list style="symbols">
+
        			<t>
-Data rate: The transmission data rate to be provided to the devices connected to the channel. That is the rate of the device pushing data into the channel. This attribute applies to all the devices on the same channel. In the simulation we set it to 1000Mbps thus providing an infinite throughput to eliminate the impact of throughput on the performance of dncp, in order to calculate the actual throughput consumed. 
+Data rate: The transmission data rate to be provided to the devices connected to the channel. That is the rate of the device pushing data into the channel. This attribute applies to all the devices on the same channel alike. In the simulation the value is set to 1000Mbps thus providing an infinite throughput to eliminate the impact of throughput on the performance of dncp, for the purpose of evaluating verbosity.
 			</t>
 			<t>
-Delay: The speed-of-light propagation delay over the medium. Imagine there is a symmetrical hub that is of equal cable length to all the devices of the channel. When one device sends a packet to another device, the packet fist reaches the hub and is forwarded to the destination device, so the propagation delay is always the same for a given channel. In our simulation, this delay is set to 1 micro second.
+Delay: The speed-of-light propagation delay over the medium. Imagine there is a symmetrical hub that is of equal cable length to all the devices of the channel. When one device sends a packet to another device, the packet fist reaches the hub and is forwarded to the destination device, so the propagation delay is always the same for a given channel. In simulation, this delay is set to 1 micro second.
 			</t>
 
 		</list>
-            </t>
+            	</t>
 
 	</section>
 	
@@ -47,11 +65,11 @@ Delay: The speed-of-light propagation delay over the medium. Imagine there is a 
         <t>
             <list style="symbols">
 		<t>
-Convergence time: The time that dncp takes for the network to converge. We use a concept of converging percentage to represent the converging state, basically the converging percentage is the proportion of the biggest cluster of nodes that share the same network hash. Apparently when this percentage is 100%, the network has coverged. 
+Convergence time: The time that dncp takes for the network to converge. To show the network converging state a concept of converging percentage is introduced, which basically is the proportion of the biggest cluster of nodes in te network that shares the same network hash. Apparently when this percentage is 100%, the network has coverged. 
 		</t>
 		
 		<t>
-Traffic consumption: The amount of traffic that dncp uses to converge. To evaluate the traffic consumption we count the overall amount of bytes sent during the converging process as well as the throughput per second.
+Verbosity: The number of overall bytes sent in the network before converging and the number of bytes sent by a node before converging.
 		</t>
             </list>
     </t>
@@ -75,7 +93,7 @@ Traffic consumption: The amount of traffic that dncp uses to converge. To evalua
     	<figure anchor='figure_link'>
         <preamble></preamble>
         <artwork>
-n1	     n2	      n3       n4
+n1       n2       n3       n4
 |        |        |        |
 ----------------------------
         </artwork>
