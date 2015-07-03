@@ -1,10 +1,50 @@
-<section title="Simulation Setup" anchor="setup">
-	<section title="Simulation Environment">
-<t>
+
+
+<section title="Experimental Setup" anchor="setup">
+
+    <t>This section describes the environment, the parameters and topologies which were used for measuring DNCP performances.</t>
+
+    <section title="Simulation Environment">
+
+        <t>Running experiments in simulated environments offers multiple advantages such as the ability to run long-lived scenarios in short period of time, simulate networks of hundread of nodes without requiring lots of resources, or isolate tested components from external interferances. On the other hand, NS3 executes program steps virtually instantaneously, it is therefore hard to take into account hardware speed when measuring time-related performances metrics. For these first experiments, virtually perfect links with no delay were used, and a processing delay of 0.5ms for each received packet was introduced in order to simulate the packet processing time.</t>
+
+	<t>
 To integrate dncp into ns3, an application in ns3 called "DncpApplication" is created, this application can be installed on the node and can be started and stopped at given time. Once the application is launched, the node will begin the process of topology discovery and data synchronization by calling the founctions in the libdnc static library from inside the ns3 application. The APIs in libdncp interacting with lower layers and the event scheduler are redifined.
 </t>
+		
+		<t>  
+As showed in the graph above, all the application-level actions (processing packets, publishing tlvs...) are performed inside the libdncp implementation, the packets are sent to or received from the lower layers in ns3 through the redefined socket API. Udp is used for layer4 and Ipv6 for layer3. For layer1 and layer2, the CSMA model is chosen because it is designed in the spirit of Ethernet and is close to reality. CSMA model consists of 2 parts: CSMA channel and CSMA device. CSMA channel is the model of the transmission medium, and CSMA device is like an Ethernet device, CSMA devices are connected to the channel.
+		</t>
 
-    	<figure anchor='figure_simulation'>
+        <t>Running DNCP in NS3 required libdncp to be integrated and built with NS3. DNCP runs on an event loop managed by libubox, which therefore specifies how to set timers and listen to file descriptors. Integration was quite straitforward. Event-loop and system calls were identified and replaced with their NS3 equivalent. It is expected that integration with libdncp2 will be even simpler, as this new library put the DNCP profile definition at runtime instead of compilation time.</t>
+
+    </section>
+
+    <section title="Link Model">
+        <t>NS3 implements different types of links. For these measures, the so called 'CSMA' link type is used. The NS3 CSMA link is designed in the spirit of Ethernet but implements fail-proof carrier sense used for collision avoidance, i.e., there are no collisions. For this first round of tests, where measuring DNCP link usage was desired, link of virtually infinite throughput are used.</t>
+
+        <t>NS3 CSMA channel has three states: TRANSMITTING, PROPAGATING and IDLE. The states can be seen immediately by the devices attached to the channel so collision never happens. A CSMA link consists of two parts: a CSMA channel and a CSMA device. The CSMA channel describes the physical transmission medium. The CSMA device is similar to the Ethernet layer, plugged into the CSMA channel.</t>
+
+        <t>
+            Listed below are several attributes of the CSMA device:
+            <list style="hanging">
+                <t hangText="MTU: ">The link layer maximum transmission unit, set to 1500.</t>
+                <t hangText="Encapsulation Mode: ">Type of link layer encapsulation. "Dix" mode was used, which model an Ethernet II layer.</t>
+                <t hangText="TxQueue">Type of the transmit queue used by the device. NS3 provides "Codel queue", "Drop tail" and "RED" (random early detection) queues. "Drop tail" queue was used with a size of 100 packets.</t>
+                <t hangText="Interframe Gap">The pause between two frames, in the simulation we just use 0.</t>
+            </list>
+        </t>
+
+        <t>
+            Listed below are the CSMA channel attributes:
+            <list style="hanging">
+                <t hangText="Data Rate: ">Physical layer bit rate, enforcing the time it takes for a frame to be transmitted. It was set to 1Gbps, which is significantly greater than what DNCP was expected to use.</t>
+                <t hangText="Delay: ">Signal propagation time within the medium. It was set to 1micro second.</t>
+            </list>
+            Assuming a constant frame size, the theorethical throughput of the medium is given by the formula FrameSize/(FrameSize/DataRate + Delay). For a frame size of 1500 bytes, the throughput is 923Mbps. For a FrameSize of 100 bytes, the throughput is 444Mbps.
+        </t>
+
+	<figure anchor='figure_simulation'>
         <preamble></preamble>
         <artwork>
      
@@ -28,116 +68,111 @@ To integrate dncp into ns3, an application in ns3 called "DncpApplication" is cr
         </artwork>
         <postamble></postamble>
     </figure>
-		
-		<t>  
-As showed in the graph above, all the application-level actions (processing packets, publishing tlvs...) are performed inside the libdncp implementation, the packets are sent to or received from the lower layers in ns3 through the redefined socket API. Udp is used for layer4 and Ipv6 for layer3. For layer1 and layer2, the CSMA model is chosen because it is designed in the spirit of Ethernet and is close to reality. CSMA model consists of 2 parts: CSMA channel and CSMA device. CSMA channel is the model of the transmission medium, and CSMA device is like an Ethernet device, CSMA devices are connected to the channel.
-		</t>
-		<t>
-Listed below are layer1 and layer2 configurations that are used in simulation: 
+        
+    </section>
 
-       		<list style="symbols">
-       			<t>
-MTU:The mac level maximum transmission unit, set to 1500
-			</t>
-       			<t>
-Encapsulation Mode: Type of link layer encapsulation to use. The mode is set to "Dix" which is commonly used in Ethernet.
-			</t>
-			<t>
-TxQueue: Type of the transmit queue used by the device. Ns3 provides the possibility to choose from Codel queue, drop tail queue and RED (random early detection) queue. In the simulation drop tail queue is used and its buffer size is 100 packets. (bytes can also be used as the maximum queue size metrics)
-			</t>
-			<t>
-Interframe gap: The pause between two frames, in the simulation it is 0.
-			</t>
+    <section title="Performance metric">
+        <t>These first measurements focused on the following two performance metrics:
+            <list style="hanging">
+                <t hangText="Convergence Time:">
+                    This is the time it takes for all the nodes in the network to share the same network state.
+                </t>
 
-       			<t>
-Data rate: The transmission data rate to be provided to the devices connected to the channel. That is the rate of the device pushing data into the channel. This attribute applies to all the devices on the same channel alike. In the simulation the value is set to 1000Mbps thus providing an infinite throughput to eliminate the impact of throughput on the performance of dncp, for the purpose of evaluating verbosity.
-			</t>
-			<t>
-Delay: The speed-of-light propagation delay over the medium. Imagine there is a symmetrical hub that is of equal cable length to all the devices of the channel. When one device sends a packet to another device, the packet fist reaches the hub and is forwarded to the destination device, so the propagation delay is always the same for a given channel. In simulation, this delay is set to 1 micro second.
-			</t>
-
-		</list>
-            	</t>
-
-	</section>
-	
-	<section title="Performance metric">
-        <t>
-            <list style="symbols">
-		<t>
-Convergence time: The time that dncp takes for the network to converge. To show the network converging state a concept of converging percentage is introduced, which basically is the proportion of the biggest cluster of nodes in te network that shares the same network hash. Apparently when this percentage is 100%, the network has coverged. 
-		</t>
-		
-		<t>
-Verbosity: The number of overall bytes sent in the network before converging and the number of bytes sent by a node before converging.
-		</t>
+                <t hangText="Overall Traffic Before Convergence:">
+                    The amount of traffic that is generated by DNCP before the network converges.
+                </t>
             </list>
-    </t>
-	</section> 
+        </t>
+    </section>
 
-	<section title="Chosen toplogies">
+    <section title="Chosen toplogies">
 
-    <t>This section describes the different topologies that have been used for our performances analysis. We picked topoligies which were:
+        <t>This section describes the different topologies that have been used for our performances analysis. We picked topoligies which were:
             <list style="symbols">
-                <t>Deterministic.</t>
                 <t>Easily described and generated as a function of the number of nodes (called N).</t>
-                <t>Representing different situation ultimatly testing different scalability properties.</t>
-                </list>
-    </t>
- 
-		<section title="Single link topology">
-			<t>
-                The single link topology puts all the nodes on the same link. Each node therefore has a single DNCP End-Point with N-1 neighbors. Such topology is well suited to evaluate DNCP scalability in terms of number of neighbors on a given link.
-			</t>
+                <t>Deterministic.</t>
+                <t>Representing different situations testing different scalability properties.</t>
+            </list>
+        </t>
 
-    	<figure anchor='figure_link'>
-        <preamble></preamble>
-        <artwork>
+        <section title="Single link topology">
+            <t>
+                The single link topology puts all the nodes on the same link. Each node has a single DNCP End-Point with N-1 neighbors. Such topology is well suited to evaluate DNCP scalability capabilities in terms of the number of neighbors on a given link.
+            </t>
+
+            <figure anchor='figure_link'>
+                <preamble></preamble>
+                <artwork>
 n1       n2       n3       n4
 |        |        |        |
 ----------------------------
-        </artwork>
-        <postamble>The single link topology for N=4.</postamble>
-    </figure>
+                </artwork>
+                <postamble>The single link topology for N=4.</postamble>
+            </figure>
 
 
-		</section>
-		<section title="String topology">
-			<t>
-                The string topology chains all nodes one after the other. Each node has two DNCP End-Points with one neighbor on each side (except for the two extremities). Such topology is well suited to evaluate the converge time depending on the diameter of a network, as well as the scalability in terms of number of nodes.
-			</t>	
-	
-    	<figure anchor='figure_string'>
-        <preamble></preamble>
-        <artwork>
+        </section>
+        <section title="String topology">
+            <t>
+                The string topology chains all nodes one after the other. Each node has two DNCP End-Points with one neighbor on each(except for the two extremities). Such topology is well suited to evaluate the convergence time depending on the diameter of the network as well as the scalability of DNCP in terms of the overall number of nodes.
+            </t>
+
+            <figure anchor='figure_string'>
+                <preamble></preamble>
+                <artwork>
         ---------       ---------
-        |       |       |       |
+|       |       |       |       |
 n1      n2      n3      n4      n5      n6
 |       |       |       |       |       |
 ---------       ---------       ---------
-        </artwork>
-        <postamble>The string topolofy for N=6</postamble>
-    </figure>
-	
-		</section>		
-		<section title="Mesh topology">
-			<t>
-                The mesh topology connects all nodes with distinct links. Each node has N-1 DNCP End-Points with one neighor on each side. Such topology is well suited to evaluate DNCP scalability in terms of the amount of nodes and end-points.
-			</t>
+                </artwork>
+                <postamble>The string topology for N=6</postamble>
+            </figure>
 
-	
-		</section>
-		<section title="Tree topology">
-			<t>
-                The tree topology forms a typical binary tree. More formaly, node i is connected with node 2*i + 1 and 2*i + 2, unless those numbers are greater or equal to N. In such topology, all nodes except the root one have three DNCP End-Points with one neighbor on each. This topology offer a more realistic tradeoff between the diameter and the number of nodes.
-			</t>
-		</section>
+        </section>
+        <section title="Full mesh topology">
+            <t>
+                The mesh topology connects all nodes with distinct links. Each node has N-1 DNCP End-Points with one neighor on each. Such topology is well suited to evaluate DNCP scalability caiabilities in terms of the amount of nodes and end-points.
+            </t>
+            <figure anchor='figure_mesh'>
+                <preamble></preamble>
+                <artwork>
+n1----n2--+
+| \   |   |
+|  \  |   |
+|   \ |   |
+|    \|   |
+n3----n4  |
+|         |
++---------+
+                </artwork>
+                <postamble>The full mesh topology for N=4</postamble>
+            </figure>
+        </section>
+        <section title="Tree topology">
+            <t>
+                The tree topology forms a typical binary tree. Node 'i' is connected with node '2*i + 1' and '2*i + 2', unless those numbers are greater or equal to N. In such topology, all nodes except the root one have three DNCP End-Points with one neighbor on each. This topology offers a more realistic tradeoff between the diameter and the number of nodes.
+            </t>
+            <figure anchor='figure_tree'>
+                <preamble></preamble>
+                <artwork>
+                   n1
+                  /  \
+                 n2   n3
+                / |   |
+               /  |   |
+              n4  n5  n6
+                </artwork>
+                <postamble>The tree topology for N=6</postamble>
+            </figure>
+        </section>
+        
+        <section title="Double Tree topology">
+            <t>
+                The double tree topology is identical to the binary tree, but each node is paired with a redundancy node. In such topology, all nodes except the two root node have 6 DNCP End-Point with one neighbor on each. This topology also offers a more realistic tradeoff between the network diameter and the number of nodes, but also adds redundancy and loops.
+            </t>
+            <t>Here stops my ASCII art capabilities.</t>
+        </section>
 
-		<section title="Double Tree topology">
-			<t>
-                The double tree topology is identical to the binary tree case, but each node is doubled with a redundancy node. In such topology, all nodes except the two root node have 6 DNCP End-Point with one neighbor on each. This topology also offers a more realistic tradeoff between the network diameter and the number of nodes, but also adds redundancy and loops.
-			</t>		
-		</section>
-	
 	</section> 
 </section>
