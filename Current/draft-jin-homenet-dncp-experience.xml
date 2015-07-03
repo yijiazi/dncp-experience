@@ -76,7 +76,7 @@
 
     <abstract>
       <t>
-        The Distributed Node Consensus Protocol (DNCP) is a protocol framework that offers dynamic network topology discovery and data synchronization within a network of participaing nodes. This document reports experience with the main DNCP Open-Source implementation ('libdncp', part of 'hnetd') and provides a performance evaluation of this same implementation in a simulated environment.
+        The Distributed Node Consensus Protocol (DNCP) is a protocol framework that offers dynamic network topology discovery and data synchronization within a network of participating nodes. This document reports experience with the main DNCP Open-Source implementation ('libdncp', part of 'hnetd') and provides a performance evaluation of this same implementation in a simulated environment.
       </t>
     </abstract>
 

@@ -1,5 +1,26 @@
 <section title="Conclusion" anchor="conclusion">
 	<t>
-		conclusions
+The convergence time is proportional to the network diameter.A good example is string network where the convergence time is linear to the network size. It is also interesting to look at the tree topology, a tree-network of 80 nodes only takes 2.6 seconds to converge because its diameter is only 6. 
 	</t>
+
+	<t>
+We believe another factor affecting convergence time is the average number of neighbors of a node in the network. The diameters of mesh and link network are also very small but they converges really slowly, because for a node in such network, the number of neighbors is n-1 (assuming the network is of size n). As mentioned above, a tree network of 80 nodes converges at 2.6s,  while a string network of 7 nodes converges at about 1.6s (They are of the same diameter).That is probably because in string network a node only has 2 neighbors but in tree network it has 3.
+	</t>
+
+	<t>
+It is obvious from the results that dncp is well suited for tree-like topologies. It is logic because this kind of topologies has small diameters. And the bigger the network is, the tree takes more nodes to gain one depth, which explains why the convergence time of tree and double tree grow more and more slowly as number of nodes increases.
+	</t>
+
+	<t>
+The amount of traffic depends on the average number of neighbors as well as the size of the network. 
+	</t>
+
+	<t>
+Another interesting point to note is that from about 50 nodes, link and mesh topology change the pace of growing in convergence time. We suppose it is due to dncp fragmentation.
+	</t>
+
+<t>
+In conclusion, dncp can provide very good convergence time at a low traffic price in a proper topology. 
+</t>
+
 </section>

@@ -47,7 +47,7 @@ Delay: The speed-of-light propagation delay over the medium. Imagine there is a 
         <t>
             <list style="symbols">
 		<t>
-Convergence time: The time that dncp takes for the network to converge. We use a concept of converging percentage to represent the converging state, basically the converging percentage is the proportion of the biggest cluster of nodes that share the same network hash. Apparently when this percentage is 100%, the network hqs coverged. 
+Convergence time: The time that dncp takes for the network to converge. We use a concept of converging percentage to represent the converging state, basically the converging percentage is the proportion of the biggest cluster of nodes that share the same network hash. Apparently when this percentage is 100%, the network has coverged. 
 		</t>
 		
 		<t>
@@ -104,7 +104,7 @@ n1      n2      n3      n4      n5      n6
 		</section>		
 		<section title="Mesh topology">
 			<t>
-                The mesh topology connects all nodes with distinct links. Each node has N-1 DNCP End-Points with one neighor on each side. Such topology is well suited to evualate DNCP scalability in terms of the amount of nodes and end-points.
+                The mesh topology connects all nodes with distinct links. Each node has N-1 DNCP End-Points with one neighor on each side. Such topology is well suited to evaluate DNCP scalability in terms of the amount of nodes and end-points.
 			</t>
 
 	

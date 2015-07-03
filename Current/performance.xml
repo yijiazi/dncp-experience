@@ -26,14 +26,14 @@ Convergence time
     		</texttable>
 
 	<t>
-	Note that we observed two accidents during the simulation. One happens in one experiment among the 10 that we ran for 30-node network, the network first converges at 4.016s, which is very close to the averge convergence time, but at 25.949s this converging state is broken and the network finally reconverges at 26.12s. The other one happens in the case of 60-node network where it fist converges at 7.081s then gets disturbed at 25.822s and comes back to converging at 26.303. As for the the reason of this happening, we will dig deeper into the logs and hope to find an explaination soon.
+	Note that we observed two accidents during the simulation. One happens in one experiment among the 10 that we ran for 30-node network, the network first converges at 4.016s, which is very close to the average convergence time, but at 25.949s this converging state is broken and the network finally reconverges at 26.12s. The other one happens in the case of 60-node network where it fist converges at 7.081s then gets disturbed at 25.822s and comes back to converging at 26.303. As for the the reason of this happening, we will dig deeper into the logs and hope to find an explanation soon.
 	</t>
 
 		<t>
 Verbosity
 		</t>
 		<texttable anchor='byte1' title="the traffic of dncp in link topology">
-        	<preamble>The first row shows the overall bytes sent in the converging process, the second shows the bytes sent per node, calculated over 10 experiments</preamble>>
+        	<preamble>The first row shows the overall bytes sent in the converging process, the second shows the bytes sent per node, calculated over 10 experiments</preamble>
         	<ttcol align='center'>10 nodes</ttcol>
         	<ttcol align='center'>20 nodes</ttcol>
         	<ttcol align='center'>30 nodes</ttcol>
@@ -70,7 +70,7 @@ Verbosity
         	<postamble></postamble>
     		</texttable>
 		<t>
-With the number of nodes increasing, the traffic grows dramatically. Actually, when we run the simulation of large link network (more than 60 nodes) with limited data rate (12Mbps) and larger delay (6us), the network does not converge at all. Part of the reason maybe that in the current implementation, dncp sends a packet for every node state request and every node state reply instead of wrapping all the requests or replies together in one packet. So when there are many nodes in the network, at certain moment, a node may send tons of reqeusts or replies, thus congesting the device buffer and causing a lot of packets loss.
+With the number of nodes increasing, the traffic grows dramatically. Actually, when we run the simulation of large link network (more than 60 nodes) with limited data rate (12Mbps) and larger delay (6us), the network does not converge at all. Part of the reason may be that in the current implementation, dncp sends a packet for every node state request and every node state reply instead of wrapping all the requests or replies together in one packet. So when there are many nodes in the network, at certain moment, a node may send tons of requests or replies, thus congesting the device buffer and causing a lot of packets loss.
 		</t>
 	</section>
 	
@@ -102,7 +102,7 @@ Convergence time
 
 	<t>
 
-If we plot the average convering time against the number of nodes, it is discernible that the graph is leaner. This result is exactly the same as we expected. Because the convergence time should be proportional to the diameter of the network.
+If we plot the average converging time against the number of nodes, it is discernible that the graph is leaner. This result is exactly the same as we expected. Because the convergence time should be proportional to the diameter of the network.
 	</t>
 
 		<t>
@@ -145,6 +145,9 @@ Verbosity
         	<c>70.1KB</c>
         	<postamble></postamble>
     		</texttable>
+	<t>
+	The average traffic sent per nodes is almost linear against the number of nodes, since for string topology, the convergence time is also linear against the number of nodes, we can deduce that the average traffic sent per nodes per second is almost a constant value irrelevant to the network size. 
+	</t>
 	</section>
 
 	<section title="Scenario 3: Mesh topology of different size">
@@ -173,6 +176,9 @@ Convergence time
         	<c>17.93s</c>
         	<postamble>*: the average value is calculated over the results of 9 experiments because the other one diverges too much </postamble>
     		</texttable>
+	<t>
+The converging time grows faster after 50 nodes, the possible reason is DNCP fragmentation limit
+	</t>
 		<t>
 Verbosity
 		</t>
@@ -242,7 +248,9 @@ Convergence time
         	<c>2.6s</c>
         	<postamble></postamble>
     		</texttable>
-
+<t>
+With the number of nodes increasing, the time used to converge grows more and more slowly. The difference between 60-node tree and 70-node tree, 70-node tree and 80-node tree is only about 0.1 seconds, the network converges quite fast.
+</t>
 		<t>
 Verbosity
 		</t>
@@ -283,9 +291,11 @@ Verbosity
         	<c>29.9KB</c>
         	<postamble></postamble>
     		</texttable>
+<t>
+</t>
 	</section>
 
-	<section title="Scenario 5: Tree topology of different size">
+	<section title="Scenario 5: Double tree topology of different size">
 
 		<t>
 Convergence time
@@ -311,12 +321,14 @@ Convergence time
         	<c>2.09s</c>
         	<postamble></postamble>
     		</texttable>
-
+<t>
+The situation is similar to that of tree topology, and it converges even faster.
+</t>
 		<t>
 Verbosity
 		</t>
 
-<texttable anchor='byte5' title="the traffic of dncp in tree topology">
+<texttable anchor='byte5' title="the traffic of dncp in double tree topology">
         	<preamble>The first row shows the overall bytes sent in the converging process, the second shows the bytes sent per node, calculated over 10 experiments</preamble>
         	<ttcol align='center'>10 nodes</ttcol>
         	<ttcol align='center'>20 nodes</ttcol>
