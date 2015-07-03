@@ -1,0 +1,6 @@
+<section title="Security Considerations">
+	<t>
+		This document does not specify a protocol or a procedure. DNCP's security architecture is described in Section 8 of <xref target="I-D.ietf-homenet-dncp"/>. 
+	</t>
+
+</section>
