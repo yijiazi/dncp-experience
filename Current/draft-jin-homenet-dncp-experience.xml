@@ -3,6 +3,7 @@
 <!ENTITY I-D.ietf-homenet-dncp SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-homenet-dncp.xml">
 <!ENTITY I-D.ietf-homenet-hncp SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-homenet-hncp.xml">
 <!ENTITY I-D.ietf-homenet-prefix-assignment SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-homenet-prefix-assignment.xml">
+<!ENTITY RFC6206 SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.6206.xml">
 ]>
 <?rfc toc="yes"?>
 <?rfc tocompact="yes"?>
@@ -20,7 +21,7 @@
 	 docName="draft-jin-homenet-dncp-experience-00">
 
   <front>
-    <title abbrev="DNCP Experience">Experience and Evaluation of the Distributed Node Consensus Protocol (DNCP)</title>
+    <title abbrev="DNCP Experience">Experience and Evaluation of the Distributed Node Consensus Protocol</title>
 
     <author fullname="Kaiwen Jin" initials="K.J." surname="Jin">
       <organization>Ecole Polytechnique / Cisco Systems</organization>
@@ -77,8 +78,10 @@
 
     <abstract>
       <t>
-        The Distributed Node Consensus Protocol (DNCP) is a protocol framework that offers dynamic network topology discovery and data synchronization within a network of participating nodes. This document reports experience with the main DNCP Open-Source implementation ('libdncp', part of 'hnetd') and provides a performance evaluation of this same implementation in a simulated environment.
+        The Distributed Node Consensus Protocol (DNCP) is a generic state synchronization protocol that offers data synchronization and dynamic network topology discovery within a network. This document reports experience with the DNCP, which includes its implementation status and performance evaluation in a simulated environment.
       </t>
+      
+      <!--        main DNCP Open-Source implementation ('libdncp', part of 'hnetd') and provides a performance evaluation of this same implementation in a simulated environment.-->
     </abstract>
 
   </front>
