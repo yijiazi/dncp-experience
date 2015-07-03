@@ -2,6 +2,7 @@
 <!DOCTYPE rfc SYSTEM "rfc2629.dtd"[
 <!ENTITY I-D.ietf-homenet-dncp SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-homenet-dncp.xml">
 <!ENTITY I-D.ietf-homenet-hncp SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-homenet-hncp.xml">
+<!ENTITY I-D.ietf-homenet-prefix-assignment SYSTEM "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-homenet-prefix-assignment.xml">
 ]>
 <?rfc toc="yes"?>
 <?rfc tocompact="yes"?>
@@ -19,14 +20,14 @@
 	 docName="draft-jin-homenet-dncp-experience-00">
 
   <front>
-    <title abbrev="DNCP Experience">Experience and Evaluation of the Distributed Node Consensus Protocol (DNCP) Implementation</title>
+    <title abbrev="DNCP Experience">Experience and Evaluation of the Distributed Node Consensus Protocol (DNCP)</title>
 
     <author fullname="Kaiwen Jin" initials="K.J." surname="Jin">
-      <organization>Ecole Polytechnique / Cisco</organization>
+      <organization>Ecole Polytechnique / Cisco Systems</organization>
       <address>
         <postal>
           <street></street>
-          <city></city>
+          <city>Palaiseau</city>
           <region></region>
           <country>France</country>
         </postal>
@@ -38,11 +39,11 @@
     </author>
     
     <author fullname="Pierre Pfister" initials="P.P." surname="Pfister">
-      <organization>Cisco</organization>
+      <organization>Cisco Systems</organization>
       <address>
         <postal>
           <street></street>
-          <city></city>
+          <city>Paris</city>
           <region></region>
           <country>France</country>
         </postal>
@@ -57,8 +58,8 @@
       <organization>LIX, Ecole Polytechnique</organization>
       <address>
         <postal>
-          <street></street>
-          <city></city>
+          <street>Route de Saclay</street>
+          <city>Palaiseau 91128</city>
           <region></region>
           <country>France</country>
         </postal>
@@ -89,6 +90,8 @@
     <?rfc include='simulation_setup'?>
     <?rfc include='performance'?>
     <?rfc include='conclusion'?>
+    <?rfc include='security'?>
+    <?rfc include='IANA'?>
 
   </middle>
 

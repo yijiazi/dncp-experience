@@ -4,6 +4,7 @@
     <t>At the time of starting this work, 'hnetd' was the only publicly available implementation of DNCP. A few days before this draft, a new implementation was published. It is available online (http://www.pps.univ-paris-diderot.fr/~jch/private/shncpd-20150701.tar.gz), but we could not test it yet.</t>
 
     <t>For the purpose of this work, 'hnetd' was modified in order to provide a statically linkable library containing DNCP implementation. This branch is still available on the main 'hnetd' repository (libdncp). Since then, 'hnetd' maintainers have published a new library, libdncp2, which is statically or dynamically linkable and which is based on the same code as the most recent versions of 'hnetd'. For timing reasons, this document shows the performances of the older version. Bugs have since been corrected and performance issues have been corrected. We therefore plan to redo the same simulations with libdncp2 for future iterations of this document.
+    </t>
 
     <t>hnetd, DNCP included, consists of 15651 lines of code (18220 when including test files). The binary weights 576KB when compiled for debian X86_64 with no optimization and 727KB when compiled for OpenWrt MIPS. libdncp2 is roughly consists of 2300 lines of code (2590 when including security option), it weights 193KB when compiled with no optimization for debian x86_64 and 192KB when compiled for OpenWrt MIPS.</t>
 
