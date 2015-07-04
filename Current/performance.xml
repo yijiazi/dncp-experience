@@ -1,13 +1,25 @@
-<section title="Performance Evaluation" anchor="evaluation">
-	<section title="Scenario 1: Link topology of different size">
-		<texttable anchor='table1' title="performance of link topology">
-        	<preamble>The average values were calculated over 10 experiments, only the bytes before converging were counted</preamble>
-            <ttcol align='center'>network size</ttcol>
+<section title="DNCP Performance Evaluation" anchor="evaluation">
+    <t>This section provides different performance metrics for different network topologies of different sizes. Each value is the average over 10 simulations. Unless stated otherwise, the 10 measures always were pretty close (Small standard deviation).</t>
+
+<t>Each simulation reflects the same scenario. All DNCP instances are simultaneously initialized. The simulation is then run until the network converges, and performance metrics are computed. This section provides the following results:
+    <list style="hanging">
+        <t hangText="Convergence time: ">Time in seconds it took for the network to converge.</t>
+        <t hangText="Overall traffic sent: ">The amount of data that was sent onlink before convergence.</t>
+        <t hangText="Average traffic sent per node: ">The overall traffic sent divided by the number of nodes.</t>
+    </list>
+</t>
+
+<t>Important: Note that, as DNCP uses Trickle, it is expected to be very verbose in case of dramatic changes, but as a tradeoff should provide good convergence times and low verbosity in the absence of changes. An instantaneous and complete boostrap of the network, which is the present scenario, is a particularly significant state change. This scenario was selected as a worst case to see whether DNCP converges well, or at-all. On that side, DNCP behaved well, but as expected, the overall amount of generated traffic sometime appeared to be significant.</t>
+
+	<section title="Results for the single link topology">
+		<texttable anchor='table1' title="Single Link Topology (1)">
+        	<preamble></preamble>
+            <ttcol align='center'>Number of nodes</ttcol>
         	<ttcol align='center'>10 nodes</ttcol>
         	<ttcol align='center'>20 nodes</ttcol>
         	<ttcol align='center'>30 nodes</ttcol>
         	<ttcol align='center'>40 nodes</ttcol>
-            <c>convergence time</c>
+            <c>Convergence time</c>
         	<c>1.84s</c>
         	<c>3.09s</c> 
         	<c>*4.43s </c>
@@ -17,7 +29,7 @@
             <c>----</c>
             <c>----</c>
             <c>----</c>
-            <c>overall bytes sent</c>
+            <c>Traffic sent</c>
             <c>85.3KB</c>
             <c>604.7KB</c>
             <c>2.3MB</c>
@@ -27,7 +39,7 @@
             <c>----</c>
             <c>----</c>
             <c>----</c>
-            <c>bytes sent per node</c>
+            <c>Traffic sent per node</c>
             <c>8.5KB</c>
             <c>30.2KB</c>
             <c>79.6KB</c>
@@ -37,14 +49,14 @@
         
         
         
-        <texttable anchor='table11' title="performance of link topology">
+        <texttable anchor='table11' title="Single Link Topology (2)">
             <preamble></preamble>
-            <ttcol align='center'>network size</ttcol>
+            <ttcol align='center'>Number of nodes</ttcol>
             <ttcol align='center'>50 nodes</ttcol>
             <ttcol align='center'>60 nodes</ttcol>
             <ttcol align='center'>70 nodes</ttcol>
             <ttcol align='center'>80 nodes</ttcol>
-            <c>convergence time</c>
+            <c>Convergence time</c>
             <c>6.53s</c>
             <c>*8.61s</c>
             <c>11.57s</c>
@@ -54,7 +66,7 @@
             <c>----</c>
             <c>----</c>
             <c>----</c>
-            <c>overall bytes sent</c>
+            <c>Traffic sent</c>
             <c>11.9MB</c>
             <c>23.7MB</c>
             <c>51.7MB</c>
@@ -64,34 +76,32 @@
             <c>----</c>
             <c>----</c>
             <c>----</c>
-            <c>bytes sent per node</c>
+            <c>Traffic sent per node</c>
             <c>245.KB</c>
             <c>404.8KB</c>
             <c>757.2KB</c>
             <c>1.1MB</c>
 
-            <postamble>*: the average value was calculated over the results of 9 experiments because the other one diverges too much </postamble>
+            <postamble>*: the average value was calculated over the results of 9 experiments because one of the value was significantly greater.</postamble>
         </texttable>
 
 
 	<t>
-        Note that two accidents were observed during the simulation. One happened in one experiment among the 10 that we ran for 30-node network, the network first converged at 4.016s, which is very close to the average convergence time, but at 25.949s this converging state was broken and the network finally reconverged at 26.12s. The other one was in a 60-node network experiment where it fist converged at 7.081s then got disturbed at 25.822s and came back to converging at 26.303. An explanation regarding the reason of this happening is expected in the next version of this document.
+        Note that two accidents were observed during the simulation. One happened in one experiment among the 10 that we ran for 30-node network, the network first converged at 4.016s, which is very close to the average convergence time, but at 25.949s this converging state was broken and the network finally reconverged at 26.12s. The other one was in a 60-node network experiment where it first converged at 7.081s then got disturbed at 25.822s and converged again at 26.303.
 	</t>
 
-		<t>
-With the number of nodes increasing, the traffic grows dramatically. The converging time grows faster after 50 nodes.
-		</t>
+    <t>Although the convergence time seems to grow linearly with the number of nodes, the overall traffic sent before convergence increases dramatically. This is caused by the fact that not-only each node will synchronize with any other node on the link, but the data will grow as nodes discover their neighbors. The problem is explained in <xref target="I-D.ietf-homenet-dncp"/> Section 6.2 (Support For Dense Broadcast Links). An optional solution to this problem is also specified in the document, but *was not* implemented in libdncp, which explains the bad performances.</t>
+
 	</section>
 	
-	<section title="Scenario 2: String topology of different size">
-		<texttable anchor='table2' title="performance  of string topology">
-        	<preamble>The average values were calculated over 10 experiments, only the bytes before converging were counted</preamble>
-            <ttcol align='center'>network size</ttcol>
+	<section title="Results for the string topology">
+		<texttable anchor='table2' title="String topology (1)">
+            <ttcol align='center'>Number of nodes</ttcol>
         	<ttcol align='center'>10 nodes</ttcol>
         	<ttcol align='center'>20 nodes</ttcol>
         	<ttcol align='center'>30 nodes</ttcol>
             <ttcol align='center'>40 nodes</ttcol>
-            <c>convergence time</c>
+            <c>Convergence time</c>
         	<c>1.84s</c>
         	<c>3.65s</c> 
         	<c>5.24s</c>
@@ -101,7 +111,7 @@ With the number of nodes increasing, the traffic grows dramatically. The converg
             <c>----</c>
             <c>----</c>
             <c>----</c>
-            <c>overall bytes sent</c>
+            <c>Traffic sent</c>
             <c>51.5KB</c>
             <c>243.4KB</c>
             <c>605KB</c>
@@ -111,7 +121,7 @@ With the number of nodes increasing, the traffic grows dramatically. The converg
             <c>----</c>
             <c>----</c>
             <c>----</c>
-            <c>bytes sent per node</c>
+            <c>Traffic sent per node</c>
             <c>5.1KB</c>
             <c>12.2KB</c>
             <c>20.1KB</c>
@@ -121,14 +131,14 @@ With the number of nodes increasing, the traffic grows dramatically. The converg
         
         
         
-        <texttable anchor='table21' title="performance  of string topology">
+        <texttable anchor='table21' title="String topology (2)">
             <preamble></preamble>
-            <ttcol align='center'>network size</ttcol>
+            <ttcol align='center'>Number of nodes</ttcol>
             <ttcol align='center'>50 nodes</ttcol>
             <ttcol align='center'>60 nodes</ttcol>
             <ttcol align='center'>70 nodes</ttcol>
             <ttcol align='center'>80 nodes</ttcol>
-            <c>convergence time</c>
+            <c>Convergence time</c>
             <c>8.79s</c>
             <c>11.11s</c>
             <c>12.87s</c>
@@ -138,7 +148,7 @@ With the number of nodes increasing, the traffic grows dramatically. The converg
             <c>----</c>
             <c>----</c>
             <c>----</c>
-            <c>overall bytes sent</c>
+            <c>Traffic sent</c>
             <c>2MB</c>
             <c>3MB</c>
             <c>4.1MB</c>
@@ -148,7 +158,7 @@ With the number of nodes increasing, the traffic grows dramatically. The converg
             <c>----</c>
             <c>----</c>
             <c>----</c>
-            <c>bytes sent per node</c>
+            <c>Traffic sent per node</c>
             <c>40.5KB</c>
             <c>50.4KB</c>
             <c>59.2KB</c>
@@ -157,22 +167,18 @@ With the number of nodes increasing, the traffic grows dramatically. The converg
             <postamble></postamble>
         </texttable>
 
-	<t>
-
-If plotting the average converging time against the number of nodes, it is discernible that the graph is leaner. This result is exactly the same as expected since the convergence time should be proportional to the diameter of the network.
-	</t>
-
+    <t>These results show that in a linear network, convergence time is linear, but the overall tranmitted traffic is not. This can be easily explained as the convergence time reflects the time for both extremities to discover each other, but in the meantime, other updates are sent. The slope of the convergence time line is 0.18 second per node, which is pretty quick, but also comes at the cost of transmitting multiple updates before all nodes are discovered. Please note that, as DNCP is based on Trickle, it is expected to be particularly verbose in case of changes, but also very silent and fast to react when updates are rare.</t>
 	</section>
 
-	<section title="Scenario 3: Mesh topology of different size">
-		<texttable anchor='table3' title="performance  of mesh topology">
-            <preamble>The average values were calculated over 10 experiments, only the bytes before converging were counted</preamble>
-            <ttcol align='center'>network size</ttcol>
+	<section title="Results for the full mesh topology">
+		<texttable anchor='table3' title="Full mesh topology (1)">
+            <preamble></preamble>
+            <ttcol align='center'>Number of nodes</ttcol>
         	<ttcol align='center'>10 nodes</ttcol>
         	<ttcol align='center'>20 nodes</ttcol>
         	<ttcol align='center'>30 nodes</ttcol>
             <ttcol align='center'>40 nodes</ttcol>
-            <c>convergence time</c>
+            <c>Convergence time</c>
         	<c>1.71s</c>
         	<c>3.2s</c> 
         	<c>4.83s</c>
@@ -182,7 +188,7 @@ If plotting the average converging time against the number of nodes, it is disce
             <c>----</c>
             <c>----</c>
             <c>----</c>
-            <c>overall bytes sent</c>
+            <c>Traffic sent</c>
             <c>202.7KB</c>
             <c>1.6MB</c>
             <c>6.6MB</c>
@@ -193,7 +199,7 @@ If plotting the average converging time against the number of nodes, it is disce
             <c>----</c>
             <c>----</c>
             <c>----</c>
-            <c>bytes sent per node</c>
+            <c>Traffic sent per node</c>
             <c>20.3KB</c>
             <c>83.5KB</c>
             <c>222.1KB</c>
@@ -204,14 +210,14 @@ If plotting the average converging time against the number of nodes, it is disce
     		</texttable>
         
         
-        <texttable anchor='table31' title="performance of mesh topology">
+        <texttable anchor='table31' title="Full mesh topology (2)">
             <preamble></preamble>
-            <ttcol align='center'>network size</ttcol>
+            <ttcol align='center'>Number of nodes</ttcol>
             <ttcol align='center'>50 nodes</ttcol>
             <ttcol align='center'>60 nodes</ttcol>
             <ttcol align='center'>70 nodes</ttcol>
             <ttcol align='center'>80 nodes</ttcol>
-            <c>convergence time</c>
+            <c>Convergence time</c>
             <c>10.64s</c>
             <c>13.02s</c>
             <c>15.33s</c>
@@ -221,7 +227,7 @@ If plotting the average converging time against the number of nodes, it is disce
             <c>----</c>
             <c>----</c>
             <c>----</c>
-            <c>overall bytes sent</c>
+            <c>Traffic sent</c>
             <c>49.1MB</c>
             <c>95.8MB</c>
             <c>167.4MB</c>
@@ -232,7 +238,7 @@ If plotting the average converging time against the number of nodes, it is disce
             <c>----</c>
             <c>----</c>
             <c>----</c>
-            <c>bytes sent per node</c>
+            <c>Traffic sent per node</c>
             <c>983.1KB</c>
             <c>1.6MB</c>
             <c>2.4MB</c>
@@ -241,21 +247,19 @@ If plotting the average converging time against the number of nodes, it is disce
             <postamble></postamble>
         </texttable>
 
-	<t>
-A similar accident occurred as with single link topology. The traffic is enormous compared to other topologies. The converging time grows faster after 50 nodes.
-	</t>
+<t>An incident similar to the one that occured with a single link topology was observed. Although the convergence time is low, the amount of transmitted traffic is very high compared to other topologies. It can be explained by the number of distinct links (equal to N(N-1)/2): Trickle has to converge on each individual link. Unlike the single link topology, this situation is harder to detect and resolve.</t>
 	</section>
 
-	<section title="Scenario 4: Tree topology of different size">
+	<section title="Results for the tree topology">
 
-		<texttable anchor='table4' title="performance of tree topology">
-            <preamble>The average values were calculated over 10 experiments, only the bytes before converging were counted</preamble>
-            <ttcol align='center'>network size</ttcol>
+		<texttable anchor='table4' title="Tree topology (1)">
+            <preamble></preamble>
+            <ttcol align='center'>Number of nodes</ttcol>
         	<ttcol align='center'>10 nodes</ttcol>
         	<ttcol align='center'>20 nodes</ttcol>
         	<ttcol align='center'>30 nodes</ttcol>
             <ttcol align='center'>40 nodes</ttcol>
-            <c>convergence time</c>
+            <c>Convergence time</c>
         	<c>1.16s</c>
         	<c>1.57s</c> 
         	<c>1.86s</c>
@@ -265,7 +269,7 @@ A similar accident occurred as with single link topology. The traffic is enormou
             <c>----</c>
             <c>----</c>
             <c>----</c>
-            <c>overall bytes sent</c>
+            <c>Traffic sent</c>
             <c>40.7KB</c>
             <c>166.7KB</c>
             <c>374KB</c>
@@ -275,7 +279,7 @@ A similar accident occurred as with single link topology. The traffic is enormou
             <c>----</c>
             <c>----</c>
             <c>----</c>
-            <c>bytes sent per node</c>
+            <c>Traffic sent per node</c>
             <c>4.1KB</c>
             <c>8.3KB</c>
             <c>12.4KB</c>
@@ -285,14 +289,14 @@ A similar accident occurred as with single link topology. The traffic is enormou
     		</texttable>
         
         
-        <texttable anchor='table41' title="performance of tree topology">
+        <texttable anchor='table41' title="Tree topology (2)">
             <preamble></preamble>
-            <ttcol align='center'>network size</ttcol>
+            <ttcol align='center'>Number of nodes</ttcol>
             <ttcol align='center'>50 nodes</ttcol>
             <ttcol align='center'>60 nodes</ttcol>
             <ttcol align='center'>70 nodes</ttcol>
             <ttcol align='center'>80 nodes</ttcol>
-            <c>convergence time</c>
+            <c>Convergence time</c>
             <c>2.33s</c>
             <c>2.42s</c>
             <c>2.56s</c>
@@ -302,7 +306,7 @@ A similar accident occurred as with single link topology. The traffic is enormou
             <c>----</c>
             <c>----</c>
             <c>----</c>
-            <c>overall bytes sent</c>
+            <c>Traffic sent</c>
             <c>1MB</c>
             <c>1.3MB</c>
             <c>1.9MB</c>
@@ -312,32 +316,27 @@ A similar accident occurred as with single link topology. The traffic is enormou
             <c>----</c>
             <c>----</c>
             <c>----</c>
-            <c>bytes sent per node</c>
+            <c>Traffic sent per node</c>
             <c>20.2KB</c>
             <c>22.8KB</c>
             <c>26.7KB</c>
             <c>29.9KB</c>
             <postamble></postamble>
         </texttable>
-<t>
-With the number of nodes increasing, the time used to converge grows more and more slowly. The difference between 60-node tree and 70-node tree, 70-node tree and 80-node tree is only about 0.1 seconds, the network converges quite fast. The amount of traffic is small.
-</t>
 
-
-<t>
-</t>
+<t>As expected in a tree topology, the convergence time is sub-linear. We also oberve that the overall amount of traffic (and per node) is relativly low compared to other topologies. This is quite satisfying as the tree and double-tree topoligies were supposed to reflect more realistic networks.</t>
 	</section>
 
-	<section title="Scenario 5: Double tree topology of different size">
+	<section title="Results for the double-tree topology">
 
-            <texttable anchor='table5' title="performance of double tree topology">
-            <preamble>The average values were calculated over 10 experiments, only the bytes before converging were counted</preamble>
-            <ttcol align='center'>network size</ttcol>
+            <texttable anchor='table5' title="Double-tree topology (1)">
+            <preamble></preamble>
+            <ttcol align='center'>Number of nodes</ttcol>
         	<ttcol align='center'>10 nodes</ttcol>
         	<ttcol align='center'>20 nodes</ttcol>
         	<ttcol align='center'>30 nodes</ttcol>
             <ttcol align='center'>40 nodes</ttcol>
-            <c>convergence time</c>
+            <c>Convergence time</c>
         	<c>1.04s</c>
         	<c>1.44s</c> 
         	<c>1.5s</c>
@@ -347,7 +346,7 @@ With the number of nodes increasing, the time used to converge grows more and mo
             <c>----</c>
             <c>----</c>
             <c>----</c>
-            <c>overall bytes sent</c>
+            <c>Traffic sent</c>
             <c>66.9KB</c>
             <c>265KB</c>
             <c>605.1KB</c>
@@ -357,7 +356,7 @@ With the number of nodes increasing, the time used to converge grows more and mo
             <c>----</c>
             <c>----</c>
             <c>----</c>
-            <c>bytes sent per node</c>
+            <c>Traffic sent per node</c>
             <c>6.7KB</c>
             <c>13.2KB</c>
             <c>20.2KB</c>
@@ -368,14 +367,14 @@ With the number of nodes increasing, the time used to converge grows more and mo
         
         
         
-        <texttable anchor='table51' title="performance of double tree topology">
+        <texttable anchor='table51' title="Double-tree topology (2)">
             <preamble></preamble>
-            <ttcol align='center'>network size</ttcol>
+            <ttcol align='center'>Number of nodes</ttcol>
             <ttcol align='center'>50 nodes</ttcol>
             <ttcol align='center'>60 nodes</ttcol>
             <ttcol align='center'>70 nodes</ttcol>
             <ttcol align='center'>80 nodes</ttcol>
-            <c>convergence time</c>
+            <c>Convergence time</c>
             <c>1.96s</c>
             <c>1.98s</c>
             <c>2.06s</c>
@@ -385,7 +384,7 @@ With the number of nodes increasing, the time used to converge grows more and mo
             <c>----</c>
             <c>----</c>
             <c>----</c>
-            <c>overall bytes sent</c>
+            <c>Traffic sent</c>
             <c>1.5MB</c>
             <c>2MB</c>
             <c>2.8MB</c>
@@ -395,7 +394,7 @@ With the number of nodes increasing, the time used to converge grows more and mo
             <c>----</c>
             <c>----</c>
             <c>----</c>
-            <c>bytes sent per node</c>
+            <c>Traffic sent per node</c>
             <c>30.8KB</c>
             <c>33.2KB</c>
             <c>39.7KB</c>
@@ -403,7 +402,7 @@ With the number of nodes increasing, the time used to converge grows more and mo
             <postamble></postamble>
         </texttable>
 <t>
-The situation is similar to that of tree topology, and it converges even faster, but costs more traffic
+Results are quite similar to the simple tree topology. The convergence delay is very satisfying while the overall amount of traffic is pretty low compared to other topologies.
 </t>
 	</section>
 
