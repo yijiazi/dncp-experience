@@ -1,13 +1,66 @@
 <section title="Implementations" anchor="implementation">
-    <t>The DNCP implementation used for this study was developped as part of an implementation of the Homenet network stack called 'hnetd'. The code is available online (https://github.com/sbyx/hnetd) and is published under the GPLv2 license. As an implementation of the Home Network Control Protocol - HNCP <xref target="I-D.ietf-homenet-hncp"/>, it includes the source code to DNCP, the prefix assignment algorithm <xref target="I-D.ietf-homenet-prefix-assignment"/>, as well as other elements specific to Homenet. 'hnetd' is available as a package to be installed on OpenWrt, which is the platform it is most suited for (hnetd also runs on standard Linux, but works less fluently).</t>
+	<t>
+		Until July 2015, there are 3 publicly known implementations of DNCP. 
+	</t>
+	
+	<section title="hnetd Implementation" anchor="hnetd">
+	
+	<t>
+		hnetd is an open source implementation of the Homenet network stack called 'hnetd'. As an implementation of the Home Network Control Protocol - HNCP <xref target="I-D.ietf-homenet-hncp"/>, it includes the DNCP (libdncp), the prefix assignment algorithm <xref target="I-D.ietf-homenet-prefix-assignment"/>, as well as other elements specific to Homenet.  'hnetd' is available as a package to be installed on OpenWrt, which is the platform it is most suited for (hnetd also runs on standard Linux, but works less fluently). The code is available online (https://github.com/sbyx/hnetd) and is published under the GPLv2 license.
+	</t>
+	
+	  <t>hnetd, and therefore its DNCP part libdncp, were primarly developped to run on OpenWrt. For this reason, it is based on libdncp, a lightweight toolkit library containing useful structures (e.g., lists, trees), functions (e.g., md5), as well as a small event loop. Thanks to the quality of the original DNCP code, libdncp was easily extracted from hnetd. 
+    </t>
+	
+	    <t>hnetd, DNCP included, consists of 15651 lines of code (18220 when including test files). The binary weights 576KB when compiled for debian X86_64 with no optimization and 727KB when compiled for OpenWrt MIPS. libdncp2 is roughly consists of 2300 lines of code (2590 when including security option), it weights 193KB when compiled with no optimization for debian x86_64 and 192KB when compiled for OpenWrt MIPS.</t>
 
-    <t>At the time of starting this work, 'hnetd' was the only publicly available implementation of DNCP. A few days before this draft, a new implementation was published. It is available online (http://www.pps.univ-paris-diderot.fr/~jch/private/shncpd-20150701.tar.gz), but we could not test it yet.</t>
-
+<!--
     <t>For the purpose of this work, 'hnetd' was modified in order to provide a statically linkable library containing DNCP implementation. This branch is still available on the main 'hnetd' repository (libdncp). Since then, 'hnetd' maintainers have published a new library, libdncp2, which is statically or dynamically linkable and which is based on the same code as the most recent versions of 'hnetd'. For timing reasons, this document shows the performances of the older version. Bugs have since been corrected and performance issues have been corrected. We therefore plan to redo the same simulations with libdncp2 for future iterations of this document.
     </t>
+    
 
-    <t>hnetd, DNCP included, consists of 15651 lines of code (18220 when including test files). The binary weights 576KB when compiled for debian X86_64 with no optimization and 727KB when compiled for OpenWrt MIPS. libdncp2 is roughly consists of 2300 lines of code (2590 when including security option), it weights 193KB when compiled with no optimization for debian x86_64 and 192KB when compiled for OpenWrt MIPS.</t>
+    -->
 
-    <t>hnetd, and therefore libdncp, were primarly developped to run on OpenWrt. For this reason, it is based on libdncp, a lightweight toolkit library containing useful structures (e.g., lists, trees), functions (e.g., md5), as well as a small event loop. Thanks to the quality of the original DNCP code, libdncp was easily extracted from hnetd, and its interface with Linux and libubox replaced with NS3 (This was also made easy by NS3 as it adoptes an event-loop-like architecture). As libdncp2 version moves DNCP profile specificities from compilation-time to run-time, this newer version might be even easier to integrate to NS3.</t>
+    </section>
+    
+    <section title="libdncp2 Implementation">
+    <t>
+    libdncp2 is a new version of DNCP part in hnetd. It will be a more independent implementation of DNCP, with less coupling to HNCP <xref target="I-D.ietf-homenet-hncp"/>. libdncp2 moves DNCP profile specificities from compilation-time to run-time. It is an open source implementation published with GPLv2 license. The code is available at https://github.com/sbyx/hnetd/tree/libdncp2. 
+    </t>
+    
+    <!--
+The main Open-Source implementation of DNCP ('libdncp', part of 'hnetd') and provides a performance evaluation of this same implementation. For the purpose of this document, an early version of libdncp has been used. A newer version has since been published. The results presented in this document only reflect performances of the older version, but will be updated in next iterations of this document. A second DNCP implementation has also been published recently, but has not been evaluated.
+
+<t>
+    Experiments and measures were made in a simulated environment using the Network Simulator version 3 (NS3). NS3 is a discrete event simulator widely used and recognized by the scientific community.
+</t>
+-->
+
+    </section>
+    
+    <section title="shncpd Implementation">
+    	<t>
+    		shncpd is an open source implementation of DNCP developed by Juliusz Chroboczek. It uses HNCP <xref target="I-D.ietf-homenet-hncp"/> profile. The source code is available at https://github.com/jech/shncpd.  At the time when this document is published, shncpd implements:
+    		
+    		<list style="symbols">
+    			<t>
+    				the HNCP profile of DNCP;
+    			</t>
+    			
+    			<t>
+    				parsing of a significant subset of HNCP;
+    			</t>
+    			
+    			<t>
+    				address allocation (not prefix allocation).
+    			</t>
+    		</list>
+    		
+    	</t>
+    	
+    	<!--
+    	    <t>At the time of starting this work, 'hnetd' was the only publicly available implementation of DNCP. A few days before this draft, a new implementation was published. It is available online (http://www.pps.univ-paris-diderot.fr/~jch/private/shncpd-20150701.tar.gz), but we could not test it yet.</t>
+    	    -->
+    </section>
 
 </section>

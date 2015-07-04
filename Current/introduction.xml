@@ -21,13 +21,6 @@
 </t>
 
 
-<!--
-The main Open-Source implementation of DNCP ('libdncp', part of 'hnetd') and provides a performance evaluation of this same implementation. For the purpose of this document, an early version of libdncp has been used. A newer version has since been published. The results presented in this document only reflect performances of the older version, but will be updated in next iterations of this document. A second DNCP implementation has also been published recently, but has not been evaluated.
-
-<t>
-    Experiments and measures were made in a simulated environment using the Network Simulator version 3 (NS3). NS3 is a discrete event simulator widely used and recognized by the scientific community.
-</t>
--->
 
 
 
