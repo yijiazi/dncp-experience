@@ -8,20 +8,15 @@
 
         <t>Running experiments in simulated environments offers multiple advantages such as the ability to run long-lived scenarios in short period of time, simulate networks of hundread of nodes without requiring lots of resources, or isolate tested components from external interferances. On the other hand, NS3 executes program steps virtually instantaneously, it is therefore hard to take into account hardware speed when measuring time-related performances metrics. For these first experiments, virtually perfect links with no delay were used, and a processing delay of 0.5ms for each received packet was introduced in order to simulate the packet processing time.</t>
 
-	<t>
-To integrate dncp into ns3, an application in ns3 called "DncpApplication" is created, this application can be installed on the node and can be started and stopped at given time. Once the application is launched, the node will begin the process of topology discovery and data synchronization by calling the founctions in the libdnc static library from inside the ns3 application. The APIs in libdncp interacting with lower layers and the event scheduler are redifined.
-</t>
-		
-		<t>  
-As showed in the graph above, all the application-level actions (processing packets, publishing tlvs...) are performed inside the libdncp implementation, the packets are sent to or received from the lower layers in ns3 through the redefined socket API. Udp is used for layer4 and Ipv6 for layer3. For layer1 and layer2, the CSMA model is chosen because it is designed in the spirit of Ethernet and is close to reality. CSMA model consists of 2 parts: CSMA channel and CSMA device. CSMA channel is the model of the transmission medium, and CSMA device is like an Ethernet device, CSMA devices are connected to the channel.
-		</t>
+        
+        <t>Running DNCP in NS3 required libdncp to be integrated and built with NS3. DNCP runs on an event loop managed by libubox, which therefore specifies how to set timers and listen to file descriptors. Integration was quite straitforward. Event-loop and system calls were identified and replaced with their NS3 equivalent. Besides, an application in ns3 called "DncpApplication" is created, this application can be installed on the node and can be started and stopped at given time. Once the application is launched, dncp begins to run on that node by calling founctions in the libdncp static library from inside the ns3 application. It is expected that integration with libdncp2 will be even simpler, as this new library put the DNCP profile definition at runtime instead of compilation time.</t>
 
-        <t>Running DNCP in NS3 required libdncp to be integrated and built with NS3. DNCP runs on an event loop managed by libubox, which therefore specifies how to set timers and listen to file descriptors. Integration was quite straitforward. Event-loop and system calls were identified and replaced with their NS3 equivalent. It is expected that integration with libdncp2 will be even simpler, as this new library put the DNCP profile definition at runtime instead of compilation time.</t>
 
     </section>
 
     <section title="Link Model">
-        <t>NS3 implements different types of links. For these measures, the so called 'CSMA' link type is used. The NS3 CSMA link is designed in the spirit of Ethernet but implements fail-proof carrier sense used for collision avoidance, i.e., there are no collisions. For this first round of tests, where measuring DNCP link usage was desired, link of virtually infinite throughput are used.</t>
+
+        <t>  As showed in Figure 1, all the application-level actions (processing packets, publishing tlvs...) are performed inside the libdncp implementation, the packets are sent to or received from the lower layers in ns3 through the redefined socket API. Udp is used for layer4 and Ipv6 for layer3. NS3 implements different types of links for layer1 and layer2. For these measures, the so called 'CSMA' link type is used. The NS3 CSMA link is designed in the spirit of Ethernet but implements fail-proof carrier sense used for collision avoidance, i.e., there are no collisions. For this first round of tests, where measuring DNCP link usage was desired, link of virtually infinite throughput are used.</t>
 
         <t>NS3 CSMA channel has three states: TRANSMITTING, PROPAGATING and IDLE. The states can be seen immediately by the devices attached to the channel so collision never happens. A CSMA link consists of two parts: a CSMA channel and a CSMA device. The CSMA channel describes the physical transmission medium. The CSMA device is similar to the Ethernet layer, plugged into the CSMA channel.</t>
 

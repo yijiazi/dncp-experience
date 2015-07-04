@@ -1,370 +1,410 @@
 <section title="Performance Evaluation" anchor="evaluation">
 	<section title="Scenario 1: Link topology of different size">
-		<t>
-Convergence time
-		</t>
-		<texttable anchor='table' title="the average convergence time of link topology">
-        	<preamble>The average value is calculated over 10 experiments</preamble>
+		<texttable anchor='table1' title="performance of link topology">
+        	<preamble>The average values were calculated over 10 experiments, only the bytes before converging were counted</preamble>
+            <ttcol align='center'>network size</ttcol>
         	<ttcol align='center'>10 nodes</ttcol>
         	<ttcol align='center'>20 nodes</ttcol>
         	<ttcol align='center'>30 nodes</ttcol>
         	<ttcol align='center'>40 nodes</ttcol>
-        	<ttcol align='center'>50 nodes</ttcol>
-        	<ttcol align='center'>60 nodes</ttcol>
-        	<ttcol align='center'>70 nodes</ttcol>
-        	<ttcol align='center'>80 nodes</ttcol>
-
+            <c>convergence time</c>
         	<c>1.84s</c>
         	<c>3.09s</c> 
         	<c>*4.43s </c>
         	<c>5.14s</c>
-        	<c>6.53s</c>
-        	<c>*8.61s</c>
-		<c>11.57s</c>
-		<c>14.05s</c>
-        	<postamble>*: the average value is calculated over the results of 9 experiments because the other one diverges too much </postamble>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>overall bytes sent</c>
+            <c>85.3KB</c>
+            <c>604.7KB</c>
+            <c>2.3MB</c>
+            <c>5.4MB</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>bytes sent per node</c>
+            <c>8.5KB</c>
+            <c>30.2KB</c>
+            <c>79.6KB</c>
+            <c>140.7KB</c>
+        	<postamble> </postamble>
     		</texttable>
+        
+        
+        
+        <texttable anchor='table11' title="performance of link topology">
+            <preamble></preamble>
+            <ttcol align='center'>network size</ttcol>
+            <ttcol align='center'>50 nodes</ttcol>
+            <ttcol align='center'>60 nodes</ttcol>
+            <ttcol align='center'>70 nodes</ttcol>
+            <ttcol align='center'>80 nodes</ttcol>
+            <c>convergence time</c>
+            <c>6.53s</c>
+            <c>*8.61s</c>
+            <c>11.57s</c>
+            <c>14.05s</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>overall bytes sent</c>
+            <c>11.9MB</c>
+            <c>23.7MB</c>
+            <c>51.7MB</c>
+            <c>88.1MB</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>bytes sent per node</c>
+            <c>245.KB</c>
+            <c>404.8KB</c>
+            <c>757.2KB</c>
+            <c>1.1MB</c>
+
+            <postamble>*: the average value was calculated over the results of 9 experiments because the other one diverges too much </postamble>
+        </texttable>
+
 
 	<t>
-	Note that we observed two accidents during the simulation. One happens in one experiment among the 10 that we ran for 30-node network, the network first converges at 4.016s, which is very close to the average convergence time, but at 25.949s this converging state is broken and the network finally reconverges at 26.12s. The other one happens in the case of 60-node network where it fist converges at 7.081s then gets disturbed at 25.822s and comes back to converging at 26.303. As for the the reason of this happening, we will dig deeper into the logs and hope to find an explanation soon.
+        Note that two accidents were observed during the simulation. One happened in one experiment among the 10 that we ran for 30-node network, the network first converged at 4.016s, which is very close to the average convergence time, but at 25.949s this converging state was broken and the network finally reconverged at 26.12s. The other one was in a 60-node network experiment where it fist converged at 7.081s then got disturbed at 25.822s and came back to converging at 26.303. An explanation regarding the reason of this happening is expected in the next version of this document.
 	</t>
 
 		<t>
-Verbosity
-		</t>
-		<texttable anchor='byte1' title="the traffic of dncp in link topology">
-        	<preamble>The first row shows the overall bytes sent in the converging process, the second shows the bytes sent per node, calculated over 10 experiments</preamble>
-        	<ttcol align='center'>10 nodes</ttcol>
-        	<ttcol align='center'>20 nodes</ttcol>
-        	<ttcol align='center'>30 nodes</ttcol>
-        	<ttcol align='center'>40 nodes</ttcol>
-        	<ttcol align='center'>50 nodes</ttcol>
-        	<ttcol align='center'>60 nodes</ttcol>
-        	<ttcol align='center'>70 nodes</ttcol>
-        	<ttcol align='center'>80 nodes</ttcol>
-
-        	<c>85.3KB</c>
-        	<c>604.7KB</c> 
-        	<c>2.3MB</c>
-        	<c>5.4MB</c>
-        	<c>11.9MB</c>
-        	<c>23.7MB</c>
-        	<c>51.7MB</c>
-        	<c>88.1MB</c>
-        	<c>----</c>
-        	<c>----</c> 
-        	<c>----</c>
-        	<c>----</c>
-        	<c>----</c>
-        	<c>----</c>
-        	<c>----</c>
-        	<c>----</c>
-        	<c>8.5KB</c>
-        	<c>30.2KB</c> 
-        	<c>79.6KB</c> 
-        	<c>140.7KB</c>
-        	<c>245.KB</c>
-        	<c>404.8KB</c>
-        	<c>757.2KB</c>
-        	<c>1.1MB</c>
-        	<postamble></postamble>
-    		</texttable>
-		<t>
-With the number of nodes increasing, the traffic grows dramatically. Actually, when we run the simulation of large link network (more than 60 nodes) with limited data rate (12Mbps) and larger delay (6us), the network does not converge at all. Part of the reason may be that in the current implementation, dncp sends a packet for every node state request and every node state reply instead of wrapping all the requests or replies together in one packet. So when there are many nodes in the network, at certain moment, a node may send tons of requests or replies, thus congesting the device buffer and causing a lot of packets loss.
+With the number of nodes increasing, the traffic grows dramatically. The converging time grows faster after 50 nodes.
 		</t>
 	</section>
 	
 	<section title="Scenario 2: String topology of different size">
-		<t>
-Convergence time
-		</t>
-		<texttable anchor='table2' title="the average convergence time of string topology">
-        	<preamble>The average value is calculated over 10 experiments</preamble>
+		<texttable anchor='table2' title="performance  of string topology">
+        	<preamble>The average values were calculated over 10 experiments, only the bytes before converging were counted</preamble>
+            <ttcol align='center'>network size</ttcol>
         	<ttcol align='center'>10 nodes</ttcol>
         	<ttcol align='center'>20 nodes</ttcol>
         	<ttcol align='center'>30 nodes</ttcol>
-        	<ttcol align='center'>40 nodes</ttcol>
-        	<ttcol align='center'>50 nodes</ttcol>
-        	<ttcol align='center'>60 nodes</ttcol>
-        	<ttcol align='center'>70 nodes</ttcol>
-        	<ttcol align='center'>80 nodes</ttcol>
-
+            <ttcol align='center'>40 nodes</ttcol>
+            <c>convergence time</c>
         	<c>1.84s</c>
         	<c>3.65s</c> 
         	<c>5.24s</c>
         	<c>7.09s</c>
-        	<c>8.79s</c>
-        	<c>11.11s</c>
-        	<c>12.87s</c>
-        	<c>15.03s</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>overall bytes sent</c>
+            <c>51.5KB</c>
+            <c>243.4KB</c>
+            <c>605KB</c>
+            <c>1.2MB</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>bytes sent per node</c>
+            <c>5.1KB</c>
+            <c>12.2KB</c>
+            <c>20.1KB</c>
+            <c>30.9KB</c>
         	<postamble></postamble>
     		</texttable>
+        
+        
+        
+        <texttable anchor='table21' title="performance  of string topology">
+            <preamble></preamble>
+            <ttcol align='center'>network size</ttcol>
+            <ttcol align='center'>50 nodes</ttcol>
+            <ttcol align='center'>60 nodes</ttcol>
+            <ttcol align='center'>70 nodes</ttcol>
+            <ttcol align='center'>80 nodes</ttcol>
+            <c>convergence time</c>
+            <c>8.79s</c>
+            <c>11.11s</c>
+            <c>12.87s</c>
+            <c>15.03s</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>overall bytes sent</c>
+            <c>2MB</c>
+            <c>3MB</c>
+            <c>4.1MB</c>
+            <c>5.6MB</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>bytes sent per node</c>
+            <c>40.5KB</c>
+            <c>50.4KB</c>
+            <c>59.2KB</c>
+            <c>70.1KB</c>
+
+            <postamble></postamble>
+        </texttable>
 
 	<t>
 
-If we plot the average converging time against the number of nodes, it is discernible that the graph is leaner. This result is exactly the same as we expected. Because the convergence time should be proportional to the diameter of the network.
+If plotting the average converging time against the number of nodes, it is discernible that the graph is leaner. This result is exactly the same as expected since the convergence time should be proportional to the diameter of the network.
 	</t>
 
-		<t>
-Verbosity
-		</t>
-		<texttable anchor='byte2' title="the traffic of dncp in string topology">
-        	<preamble>The first row shows the overall bytes sent in the converging process, the second shows the bytes sent per node, calculated over 10 experiments</preamble>
-        	<ttcol align='center'>10 nodes</ttcol>
-        	<ttcol align='center'>20 nodes</ttcol>
-        	<ttcol align='center'>30 nodes</ttcol>
-        	<ttcol align='center'>40 nodes</ttcol>
-        	<ttcol align='center'>50 nodes</ttcol>
-        	<ttcol align='center'>60 nodes</ttcol>
-        	<ttcol align='center'>70 nodes</ttcol>
-        	<ttcol align='center'>80 nodes</ttcol>
-
-        	<c>51.5KB</c>
-        	<c>243.4KB</c> 
-        	<c>605KB</c>
-        	<c>1.2MB</c>
-        	<c>2MB</c>
-        	<c>3MB</c>
-        	<c>4.1MB</c>
-        	<c>5.6MB</c>
-        	<c>----</c>
-        	<c>----</c> 
-        	<c>----</c>
-        	<c>----</c>
-        	<c>----</c>
-        	<c>----</c>
-        	<c>----</c>
-        	<c>----</c>
-        	<c>5.1KB</c>
-        	<c>12.2KB</c> 
-        	<c>20.1KB</c> 
-        	<c>30.9KB</c>
-        	<c>40.5KB</c>
-        	<c>50.4KB</c>
-        	<c>59.2KB</c>
-        	<c>70.1KB</c>
-        	<postamble></postamble>
-    		</texttable>
-	<t>
-	The average traffic sent per nodes is almost linear against the number of nodes, since for string topology, the convergence time is also linear against the number of nodes, we can deduce that the average traffic sent per nodes per second is almost a constant value irrelevant to the network size. 
-	</t>
 	</section>
 
 	<section title="Scenario 3: Mesh topology of different size">
-
-		<t>
-Convergence time
-		</t>
-		<texttable anchor='table3' title="the average convergence time of mesh topology">
-        	<preamble>The average value is calculated over 10 experiments</preamble>
+		<texttable anchor='table3' title="performance  of mesh topology">
+            <preamble>The average values were calculated over 10 experiments, only the bytes before converging were counted</preamble>
+            <ttcol align='center'>network size</ttcol>
         	<ttcol align='center'>10 nodes</ttcol>
         	<ttcol align='center'>20 nodes</ttcol>
         	<ttcol align='center'>30 nodes</ttcol>
-        	<ttcol align='center'>40 nodes</ttcol>
-        	<ttcol align='center'>50 nodes</ttcol>
-        	<ttcol align='center'>60 nodes</ttcol>
-        	<ttcol align='center'>70 nodes</ttcol>
-        	<ttcol align='center'>80 nodes</ttcol>
-
+            <ttcol align='center'>40 nodes</ttcol>
+            <c>convergence time</c>
         	<c>1.71s</c>
         	<c>3.2s</c> 
         	<c>4.83s</c>
         	<c>*6.19s</c>
-        	<c>10.64s</c>
-        	<c>13.02s</c>
-        	<c>15.33s</c>
-        	<c>17.93s</c>
-        	<postamble>*: the average value is calculated over the results of 9 experiments because the other one diverges too much </postamble>
-    		</texttable>
-	<t>
-The converging time grows faster after 50 nodes, the possible reason is DNCP fragmentation limit
-	</t>
-		<t>
-Verbosity
-		</t>
-		<texttable anchor='byte3' title="the traffic of dncp in mesh topology">
-        	<preamble>The first row shows the overall bytes sent in the converging process, the second shows the bytes sent per node, calculated over 10 experiments</preamble>
-        	<ttcol align='center'>10 nodes</ttcol>
-        	<ttcol align='center'>20 nodes</ttcol>
-        	<ttcol align='center'>30 nodes</ttcol>
-        	<ttcol align='center'>40 nodes</ttcol>
-        	<ttcol align='center'>50 nodes</ttcol>
-        	<ttcol align='center'>60 nodes</ttcol>
-        	<ttcol align='center'>70 nodes</ttcol>
-        	<ttcol align='center'>80 nodes</ttcol>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>overall bytes sent</c>
+            <c>202.7KB</c>
+            <c>1.6MB</c>
+            <c>6.6MB</c>
+            <c>18.1MB</c>
 
-        	<c>202.7KB</c>
-        	<c>1.6MB</c> 
-        	<c>6.6MB</c>
-        	<c>18.1MB</c>
-        	<c>49.1MB</c>
-        	<c>95.8MB</c>
-        	<c>167.4MB</c>
-        	<c>271.9MB</c>
-        	<c>----</c>
-        	<c>----</c> 
-        	<c>----</c>
-        	<c>----</c>
-        	<c>----</c>
-        	<c>----</c>
-        	<c>----</c>
-        	<c>----</c>
-        	<c>20.3KB</c>
-        	<c>83.5KB</c> 
-        	<c>222.1KB</c> 
-        	<c>453.8KB</c>
-        	<c>983.1KB</c>
-        	<c>1.6MB</c>
-        	<c>2.4MB</c>
-        	<c>3.4MB</c>
-        	<postamble></postamble>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>bytes sent per node</c>
+            <c>20.3KB</c>
+            <c>83.5KB</c>
+            <c>222.1KB</c>
+            <c>453.8KB</c>
+
+
+        	<postamble>*: the average value was calculated over the results of 9 experiments because the other one diverges too much </postamble>
     		</texttable>
+        
+        
+        <texttable anchor='table31' title="performance of mesh topology">
+            <preamble></preamble>
+            <ttcol align='center'>network size</ttcol>
+            <ttcol align='center'>50 nodes</ttcol>
+            <ttcol align='center'>60 nodes</ttcol>
+            <ttcol align='center'>70 nodes</ttcol>
+            <ttcol align='center'>80 nodes</ttcol>
+            <c>convergence time</c>
+            <c>10.64s</c>
+            <c>13.02s</c>
+            <c>15.33s</c>
+            <c>17.93s</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>overall bytes sent</c>
+            <c>49.1MB</c>
+            <c>95.8MB</c>
+            <c>167.4MB</c>
+            <c>271.9MB</c>
+            
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>bytes sent per node</c>
+            <c>983.1KB</c>
+            <c>1.6MB</c>
+            <c>2.4MB</c>
+            <c>3.4MB</c>
+
+            <postamble></postamble>
+        </texttable>
+
+	<t>
+A similar accident occurred as with single link topology. The traffic is enormous compared to other topologies. The converging time grows faster after 50 nodes.
+	</t>
 	</section>
 
 	<section title="Scenario 4: Tree topology of different size">
 
-		<t>
-Convergence time
-		</t>
-
-		<texttable anchor='table4' title="the average convergence time of tree topology">
-        	<preamble>The average value is calculated over 10 experiments</preamble>
+		<texttable anchor='table4' title="performance of tree topology">
+            <preamble>The average values were calculated over 10 experiments, only the bytes before converging were counted</preamble>
+            <ttcol align='center'>network size</ttcol>
         	<ttcol align='center'>10 nodes</ttcol>
         	<ttcol align='center'>20 nodes</ttcol>
         	<ttcol align='center'>30 nodes</ttcol>
-        	<ttcol align='center'>40 nodes</ttcol>
-        	<ttcol align='center'>50 nodes</ttcol>
-        	<ttcol align='center'>60 nodes</ttcol>
-        	<ttcol align='center'>70 nodes</ttcol>
-        	<ttcol align='center'>80 nodes</ttcol>
-
+            <ttcol align='center'>40 nodes</ttcol>
+            <c>convergence time</c>
         	<c>1.16s</c>
         	<c>1.57s</c> 
         	<c>1.86s</c>
         	<c>2s</c>
-        	<c>2.33s</c>
-        	<c>2.42s</c>
-        	<c>2.56s</c>
-        	<c>2.6s</c>
-        	<postamble></postamble>
-    		</texttable>
-<t>
-With the number of nodes increasing, the time used to converge grows more and more slowly. The difference between 60-node tree and 70-node tree, 70-node tree and 80-node tree is only about 0.1 seconds, the network converges quite fast.
-</t>
-		<t>
-Verbosity
-		</t>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>overall bytes sent</c>
+            <c>40.7KB</c>
+            <c>166.7KB</c>
+            <c>374KB</c>
+            <c>644.5KB</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>bytes sent per node</c>
+            <c>4.1KB</c>
+            <c>8.3KB</c>
+            <c>12.4KB</c>
+            <c>16.1KB</c>
 
-<texttable anchor='byte4' title="the traffic of dncp in tree topology">
-        	<preamble>The first row shows the overall bytes sent in the converging process, the second shows the bytes sent per node, calculated over 10 experiments</preamble>
-        	<ttcol align='center'>10 nodes</ttcol>
-        	<ttcol align='center'>20 nodes</ttcol>
-        	<ttcol align='center'>30 nodes</ttcol>
-        	<ttcol align='center'>40 nodes</ttcol>
-        	<ttcol align='center'>50 nodes</ttcol>
-        	<ttcol align='center'>60 nodes</ttcol>
-        	<ttcol align='center'>70 nodes</ttcol>
-        	<ttcol align='center'>80 nodes</ttcol>
-        	<c>40.7KB</c>
-        	<c>166.7KB</c> 
-        	<c>374KB</c>
-        	<c>644.5KB</c>
-        	<c>1MB</c>
-        	<c>1.3MB</c>
-        	<c>1.9MB</c>
-        	<c>2.4MB</c>
-        	<c>----</c>
-        	<c>----</c> 
-        	<c>----</c>
-        	<c>----</c>
-        	<c>----</c>
-        	<c>----</c>
-        	<c>----</c>
-        	<c>----</c>
-        	<c>4.1KB</c>
-        	<c>8.3KB</c> 
-        	<c>12.4KB</c> 
-        	<c>16.1KB</c>
-        	<c>20.2KB</c>
-        	<c>22.8KB</c>
-        	<c>26.7KB</c>
-        	<c>29.9KB</c>
         	<postamble></postamble>
     		</texttable>
+        
+        
+        <texttable anchor='table41' title="performance of tree topology">
+            <preamble></preamble>
+            <ttcol align='center'>network size</ttcol>
+            <ttcol align='center'>50 nodes</ttcol>
+            <ttcol align='center'>60 nodes</ttcol>
+            <ttcol align='center'>70 nodes</ttcol>
+            <ttcol align='center'>80 nodes</ttcol>
+            <c>convergence time</c>
+            <c>2.33s</c>
+            <c>2.42s</c>
+            <c>2.56s</c>
+            <c>2.6s</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>overall bytes sent</c>
+            <c>1MB</c>
+            <c>1.3MB</c>
+            <c>1.9MB</c>
+            <c>2.4MB</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>bytes sent per node</c>
+            <c>20.2KB</c>
+            <c>22.8KB</c>
+            <c>26.7KB</c>
+            <c>29.9KB</c>
+            <postamble></postamble>
+        </texttable>
+<t>
+With the number of nodes increasing, the time used to converge grows more and more slowly. The difference between 60-node tree and 70-node tree, 70-node tree and 80-node tree is only about 0.1 seconds, the network converges quite fast. The amount of traffic is small.
+</t>
+
+
 <t>
 </t>
 	</section>
 
 	<section title="Scenario 5: Double tree topology of different size">
 
-		<t>
-Convergence time
-		</t>
-		<texttable anchor='table5' title="the average convergence time of double tree topology">
-        	<preamble>The average value is calculated over 10 experiments</preamble>
+            <texttable anchor='table5' title="performance of double tree topology">
+            <preamble>The average values were calculated over 10 experiments, only the bytes before converging were counted</preamble>
+            <ttcol align='center'>network size</ttcol>
         	<ttcol align='center'>10 nodes</ttcol>
         	<ttcol align='center'>20 nodes</ttcol>
         	<ttcol align='center'>30 nodes</ttcol>
-        	<ttcol align='center'>40 nodes</ttcol>
-        	<ttcol align='center'>50 nodes</ttcol>
-        	<ttcol align='center'>60 nodes</ttcol>
-        	<ttcol align='center'>70 nodes</ttcol>
-        	<ttcol align='center'>80 nodes</ttcol>
-
+            <ttcol align='center'>40 nodes</ttcol>
+            <c>convergence time</c>
         	<c>1.04s</c>
         	<c>1.44s</c> 
         	<c>1.5s</c>
         	<c>1.7s</c>
-        	<c>1.96s</c>
-        	<c>1.98s</c>
-        	<c>2.06s</c>
-        	<c>2.09s</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>overall bytes sent</c>
+            <c>66.9KB</c>
+            <c>265KB</c>
+            <c>605.1KB</c>
+            <c>1MB</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>bytes sent per node</c>
+            <c>6.7KB</c>
+            <c>13.2KB</c>
+            <c>20.2KB</c>
+            <c>25.3KB</c>
+
         	<postamble></postamble>
     		</texttable>
+        
+        
+        
+        <texttable anchor='table51' title="performance of double tree topology">
+            <preamble></preamble>
+            <ttcol align='center'>network size</ttcol>
+            <ttcol align='center'>50 nodes</ttcol>
+            <ttcol align='center'>60 nodes</ttcol>
+            <ttcol align='center'>70 nodes</ttcol>
+            <ttcol align='center'>80 nodes</ttcol>
+            <c>convergence time</c>
+            <c>1.96s</c>
+            <c>1.98s</c>
+            <c>2.06s</c>
+            <c>2.09s</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>overall bytes sent</c>
+            <c>1.5MB</c>
+            <c>2MB</c>
+            <c>2.8MB</c>
+            <c>3.5MB</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>----</c>
+            <c>bytes sent per node</c>
+            <c>30.8KB</c>
+            <c>33.2KB</c>
+            <c>39.7KB</c>
+            <c>44.7KB</c>
+            <postamble></postamble>
+        </texttable>
 <t>
-The situation is similar to that of tree topology, and it converges even faster.
+The situation is similar to that of tree topology, and it converges even faster, but costs more traffic
 </t>
-		<t>
-Verbosity
-		</t>
-
-<texttable anchor='byte5' title="the traffic of dncp in double tree topology">
-        	<preamble>The first row shows the overall bytes sent in the converging process, the second shows the bytes sent per node, calculated over 10 experiments</preamble>
-        	<ttcol align='center'>10 nodes</ttcol>
-        	<ttcol align='center'>20 nodes</ttcol>
-        	<ttcol align='center'>30 nodes</ttcol>
-        	<ttcol align='center'>40 nodes</ttcol>
-        	<ttcol align='center'>50 nodes</ttcol>
-        	<ttcol align='center'>60 nodes</ttcol>
-        	<ttcol align='center'>70 nodes</ttcol>
-        	<ttcol align='center'>80 nodes</ttcol>
-
-        	<c>66.9KB</c>
-        	<c>265KB</c> 
-        	<c>605.1KB</c>
-        	<c>1MB</c>
-        	<c>1.5MB</c>
-        	<c>2MB</c>
-        	<c>2.8MB</c>
-        	<c>3.5MB</c>
-        	<c>----</c>
-        	<c>----</c> 
-        	<c>----</c>
-        	<c>----</c>
-        	<c>----</c>
-        	<c>----</c>
-        	<c>----</c>
-        	<c>----</c>
-        	<c>6.7KB</c>
-        	<c>13.2KB</c> 
-        	<c>20.2KB</c> 
-        	<c>25.3KB</c>
-        	<c>30.8KB</c>
-        	<c>33.2KB</c>
-        	<c>39.7KB</c>
-        	<c>44.7KB</c>
-        	<postamble></postamble>
-    		</texttable>
 	</section>
 
 </section>
