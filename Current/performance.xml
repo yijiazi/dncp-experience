@@ -319,7 +319,7 @@
             <postamble></postamble>
         </texttable>
 
-<t>As expected in a tree topology, the convergence time is sub-linear. We also oberve that the overall amount of traffic (and per node) is relativly low compared to other topologies. This is quite satisfying as the tree and double-tree topoligies were supposed to reflect more realistic networks.</t>
+<t>As expected in a tree topology, the convergence time is sub-linear. We also oberve that the overall amount of traffic (and per node) is relatively low compared to other topologies. This is quite satisfying as the tree and double-tree topoligies were supposed to reflect more realistic networks.</t>
 	</section>
 
 	<section title="Results for the double-tree topology">

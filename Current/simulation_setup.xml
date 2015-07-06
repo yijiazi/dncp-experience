@@ -66,7 +66,7 @@
             Listed below are the CSMA channel attributes:
             <list style="hanging">
                 <t hangText="Data Rate: ">Physical layer bit rate, enforcing the time it takes for a frame to be transmitted. It was set to 1Gbps, which is significantly greater than what DNCP was expected to use.</t>
-                <t hangText="Delay: ">Signal propagation time within the medium. It was set to 1micro second.</t>
+                <t hangText="Delay: ">Signal propagation time within the medium. It was set to 1 microsecond.</t>
             </list>
             Assuming a constant frame size, the theorethical throughput of the medium is given by the formula FrameSize/(FrameSize/DataRate + Delay). For a frame size of 1500 bytes, the throughput is 923Mbps. For a FrameSize of 100 bytes, the throughput is 444Mbps.
         </t>
@@ -151,7 +151,7 @@ n3----n4  |
         </section>
         <section title="Tree topology">
             <t>
-                The tree topology forms a typical binary tree. Node 'i' is connected with node '2*i' and '2*i + 1', unless those numbers are greater or equal to N. In such topology, all nodes except the root one have three DNCP End-Points with one neighbor on each. This topology offers a more realistic tradeoff between the diameter and the number of nodes.
+                The tree topology forms a typical binary tree. Node 'i' is connected with node '2*i' and '2*i + 1', unless those numbers are greater or equal to N. In such topology, all nodes except the root one have three DNCP End-Points with one neighbor on each. This topology offers a more realistic trade-off between the diameter and the number of nodes.
             </t>
             <figure anchor='figure_tree'>
                 <preamble></preamble>
