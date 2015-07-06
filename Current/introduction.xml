@@ -13,7 +13,7 @@
 </t>
 
 <t>
-    This document presents experience with DNCP protocol. Publicly known implementations of DNCP are reported. Based one of the existed (and probably the most widely used) implementations, the performance of DNCP is evaluated using the  the Network Simulator 3 (NS3). NS3 is a discrete event simulator widely used and recognized by the scientific community.
+    This document presents experience with DNCP protocol. Publicly known implementations of DNCP are reported. Based one of the existed (and probably the most widely used) implementations, the performance of DNCP is evaluated using the  the Network Simulator 3 (NS3). NS3 is a discrete event simulator widely used in network research and recognized by the scientific community.
 </t>
 
 <t>

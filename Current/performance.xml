@@ -1,17 +1,12 @@
 <section title="DNCP Performance Evaluation" anchor="evaluation">
     <t>This section provides different performance metrics for different network topologies of different sizes. Each value is the average over 10 simulations. Unless stated otherwise, the 10 measures always were pretty close (Small standard deviation).</t>
 
-<t>Each simulation reflects the same scenario. All DNCP instances are simultaneously initialized. The simulation is then run until the network converges, and performance metrics are computed. This section provides the following results:
-    <list style="hanging">
-        <t hangText="Convergence time: ">Time in seconds it took for the network to converge.</t>
-        <t hangText="Overall traffic sent: ">The amount of data that was sent onlink before convergence.</t>
-        <t hangText="Average traffic sent per node: ">The overall traffic sent divided by the number of nodes.</t>
-    </list>
+<t>Each simulation reflects the same scenario. All DNCP instances are simultaneously initialized. The simulation is then run until the network converges, and performance metrics introduced in <xref target="metric"/> are computed. 
 </t>
 
 <t>Important: Note that, as DNCP uses Trickle, it is expected to be very verbose in case of dramatic changes, but as a tradeoff should provide good convergence times and low verbosity in the absence of changes. An instantaneous and complete boostrap of the network, which is the present scenario, is a particularly significant state change. This scenario was selected as a worst case to see whether DNCP converges well, or at-all. On that side, DNCP behaved well, but as expected, the overall amount of generated traffic sometime appeared to be significant.</t>
 
-	<section title="Results for the single link topology">
+	<section title="Results for the Single Link Topology">
 		<texttable anchor='table1' title="Single Link Topology (1)">
         	<preamble></preamble>
             <ttcol align='center'>Number of nodes</ttcol>
@@ -94,7 +89,7 @@
 
 	</section>
 	
-	<section title="Results for the string topology">
+	<section title="Results for the String Topology">
 		<texttable anchor='table2' title="String topology (1)">
             <ttcol align='center'>Number of nodes</ttcol>
         	<ttcol align='center'>10 nodes</ttcol>
