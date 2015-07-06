@@ -40,7 +40,7 @@
 
     <section title="shncpd Implementation">
         <t>
-            shncpd is an open source implementation of DNCP developed by Juliusz Chroboczek. It uses HNCP <xref target="I-D.ietf-homenet-hncp"/> profile. The source code is available <eref target="https://github.com/sbyx/hnetd/">on github</eref>.  At the time of publishing this document, shncpd implements:
+            shncpd is an open source implementation of DNCP developed by Juliusz Chroboczek. It uses HNCP <xref target="I-D.ietf-homenet-hncp"/> profile. The source code is available <eref target="https://github.com/jech/shncpd">on github</eref>.  At the time of publishing this document, shncpd implements:
 
             <list style="symbols">
                 <t>

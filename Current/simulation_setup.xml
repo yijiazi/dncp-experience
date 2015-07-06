@@ -9,40 +9,10 @@
             For the purpose of this work, the DNCP part (libdncp) of'hnetd' introduced in <xref target="hnetd"/> was modified in order to provide a statically linkable library containing DNCP implementation. To evaluate the performance of DNCP in large and complex networks, NS3 is employed as the simulation platform.
 
         </t>
-
-        <t>Running DNCP in NS3 requires libdncp to be integrated and built with NS3. DNCP runs on an event loop managed by libubox, which therefore specifies how to set timers and listen to file descriptors. Integration was quite straitforward. Event-loop and system calls were identified and replaced with their NS3 equivalents. Besides, an application in ns3 called "DncpApplication" is created, this application can be installed on the node and can be started and stopped at given time. Once the application is launched, dncp begins to run on that node by calling functions in the libdncp static library from inside the ns3 application. It is expected that integration with libdncp2 will be even simpler, as this new library put the DNCP profile definition at runtime instead of compilation time.</t>
-
-        <t>Running experiments in simulated environments offers multiple advantages such as the ability to run long-lived scenarios in short period of time, simulate networks of hundread of nodes without requiring lots of resources, or isolate tested components from external interferences.  On the other hand, NS3 executes program steps virtually instantaneously, it is therefore hard to take into account hardware speed when measuring time-related performances metrics. For these first experiments, virtually perfect links with no delay were used, and a processing delay of 0.5ms for each received packet was introduced in order to simulate the packet processing time.
-        </t>
-
-
-    </section>
-
-    <section title="Link Model">
-
-        <t>As shown in <xref target="figure_simulation"/>, all the application-level actions (processing packets, publishing TLVs...) are performed inside the libdncp implementation. The packets are sent to or received from the lower layers in ns3 through the redefined socket API. UDP is used for layer 4 and IPv6 for layer 3. NS3 implements different types of links as layer 1 and layer 2. For these measures, the so called 'CSMA' link type is used. The NS3 CSMA link is designed in the spirit of Ethernet but implements fail-proof carrier sense used for collision avoidance. <!--, i.e., there are no collisions.--> For this first study, where measuring DNCP link usage was desired, link of virtually infinite throughput are used.</t>
-
-        <t>NS3 CSMA channel has three states: TRANSMITTING, PROPAGATING and IDLE. The states can be seen immediately by the devices attached to the channel so collision never happens. A CSMA link consists of two parts: a CSMA channel and a CSMA device. The CSMA channel describes the physical transmission medium. The CSMA device is similar to the Ethernet layer, plugged into the CSMA channel.</t>
-
-        <t>
-            Listed below are several attributes of the CSMA device:
-            <list style="hanging">
-                <t hangText="MTU: ">The link layer maximum transmission unit, set to 1500.</t>
-                <t hangText="Encapsulation Mode:">Type of link layer encapsulation. "Dix" mode was used, which models an Ethernet II layer.</t>
-                <t hangText="TxQueue:">Type of the transmit queue used by the device. NS3 provides "Codel queue", "Drop tail" and "RED" (random early detection) queues. "Drop tail" queue was used with a size of 100 packets.</t>
-                <t hangText="Inter-frame Gap:">The pause between two frames, set to 0.</t>
-            </list>
-        </t>
-
-        <t>
-            Listed below are several attributes of the CSMA channel:
-            <list style="hanging">
-                <t hangText="Data Rate:">Physical layer bit rate, enforcing the time it takes for a frame to be transmitted. It is set to 1Gbps, which is significantly greater than what DNCP is expected to use.</t>
-                <t hangText="Delay:">Signal propagation time within the medium. It was set to 1 micro second.</t>
-            </list>
-            Assuming a constant frame size, the theoretical throughput of the medium is given by the formula FrameSize/(FrameSize/DataRate + Delay). For a frame size of 1500 bytes, the throughput is 923Mbps. For a FrameSize of 100 bytes, the link throughput is 444Mbps.
-        </t>
-
+        
+         <t>As shown in <xref target="figure_simulation"/>, all the application-level actions (processing packets, publishing TLVs...) are performed inside the libdncp implementation. The packets are sent to or received from the lower layers in ns3 through the redefined socket API. UDP is used for layer 4 and IPv6 for layer 3. NS3 implements different types of links as layer 1 and layer 2. For these measures, the so called 'CSMA' link type is used. The NS3 CSMA link is designed in the spirit of Ethernet but implements fail-proof carrier sense used for collision avoidance.  For this first study, where measuring DNCP link usage was desired, link of virtually infinite throughput are used.</t>
+         
+         
         <figure anchor='figure_simulation' title="libdncp over NS3 network layering model">
             <preamble></preamble>
             <artwork>
@@ -66,7 +36,42 @@
             <postamble></postamble>
         </figure>
 
+
+
+     <!--   <t>NS3 CSMA channel has three states: TRANSMITTING, PROPAGATING and IDLE. The states can be seen immediately by the devices attached to the channel so collision never happens. A CSMA link consists of two parts: a CSMA channel and a CSMA device. The CSMA channel describes the physical transmission medium. The CSMA device is similar to the Ethernet layer, plugged into the CSMA channel.</t>
+-->
+        <t>
+            Listed below are several attributes of the CSMA model:
+            <list style="hanging">
+                <t hangText="MTU: ">The link layer maximum transmission unit, set to 1500.</t>
+                <t hangText="Encapsulation Mode:">Type of link layer encapsulation. "Dix" mode was used, which models an Ethernet II layer.</t>
+                <t hangText="TxQueue:">Type of the transmit queue used by the device. NS3 provides "Codel queue", "Drop tail" and "RED" (random early detection) queues. "Drop tail" queue was used with a size of 100 packets.</t>
+                <t hangText="Inter-frame Gap:">The pause between two frames, set to 0.</t>
+            </list>
+        </t>
+
+        <t>
+            Listed below are several attributes of the CSMA channel:
+            <list style="hanging">
+                <t hangText="Data Rate:">Physical layer bit rate, enforcing the time it takes for a frame to be transmitted. It is set to 1Gbps, which is significantly greater than what DNCP is expected to use.</t>
+                <t hangText="Delay:">Signal propagation time within the medium. It was set to 1 micro second.</t>
+            </list>
+            Assuming a constant frame size, the theoretical throughput of the medium is given by the formula FrameSize/(FrameSize/DataRate + Delay). For a frame size of 1500 bytes, the throughput is 923Mbps. For a FrameSize of 100 bytes, the link throughput is 444Mbps.
+        </t>
+
+
+
+        <t>Running DNCP in NS3 requires libdncp to be integrated and built with NS3. DNCP runs on an event loop managed by libubox, which therefore specifies how to set timers and listen to file descriptors. Integration was quite straitforward. Event-loop and system calls were identified and replaced with their NS3 equivalents. Besides, an application in ns3 called "DncpApplication" is created, this application can be installed on the node and can be started and stopped at given time. Once the application is launched, dncp begins to run on that node by calling functions in the libdncp static library from inside the ns3 application. It is expected that integration with libdncp2 will be even simpler, as this new library put the DNCP profile definition at runtime instead of compilation time.</t>
+
+        <t>Running experiments in simulated environments offers multiple advantages such as the ability to run long-lived scenarios in short period of time, simulate networks of hundread of nodes without requiring lots of resources, or isolate tested components from external interferences.  On the other hand, NS3 executes program steps virtually instantaneously, it is therefore hard to take into account hardware speed when measuring time-related performances metrics. For these first experiments, virtually perfect links with no delay were used, and a processing delay of 0.5ms for each received packet was introduced in order to simulate the packet processing time.
+        </t>
+
+
     </section>
+
+ 
+       
+
 
     <section anchor="metric" title="Performance Metrics">
         <t>The goal of this study is to measure the performances of DNCP in some extreme scenarios, see whether, and how it converges. Therefore, the following three performance metrics were observed:
