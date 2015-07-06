@@ -4,7 +4,7 @@
 <t>Each simulation reflects the same scenario. All DNCP instances are simultaneously initialized. The simulation is then run until the network converges, and performance metrics introduced in <xref target="metric"/> are computed. 
 </t>
 
-<t>Important: Note that, as DNCP uses Trickle, it is expected to be very verbose in case of dramatic changes, but as a tradeoff should provide good convergence times and low verbosity in the absence of changes. An instantaneous and complete boostrap of the network, which is the present scenario, is a particularly significant state change. This scenario was selected as a worst case to see whether DNCP converges well, or at-all. On that side, DNCP behaved well, but as expected, the overall amount of generated traffic sometime appeared to be significant.</t>
+<t>Important: Note that, as DNCP uses Trickle, it is expected to be very verbose in case of dramatic changes, but as a tradeoff should provide good convergence times and low verbosity in the absence of changes. An instantaneous and complete boostrap of the network, which is the present scenario, is a particularly extreme state change. This scenario was selected as a worst case to see whether DNCP converges well, or at-all. On that side, DNCP behaved well, but as expected, the overall amount of generated traffic sometimes appeared to be significant.</t>
 
 	<section title="Results for the Single Link Topology">
 		<texttable anchor='table1' title="Single Link Topology (1)">
@@ -81,11 +81,10 @@
         </texttable>
 
 
-	<t>
-        Note that two accidents were observed during the simulation. One happened in one experiment among the 10 that we ran for 30-node network, the network first converged at 4.016s, which is very close to the average convergence time, but at 25.949s this converging state was broken and the network finally reconverged at 26.12s. The other one was in a 60-node network experiment where it first converged at 7.081s then got disturbed at 25.822s and converged again at 26.303.
+	<t>Note that two accidents were observed during the simulations. One happened in one experiment among the 10 that we ran for the 30-nodes network. The network first converged at 4.016s, which is very close to the average convergence time, but at 25.949s this converging state was broken and the network finally reconverged at 26.12s. Similarly, for the 60-node network, it first converged at 7.081s then got disturbed at 25.822s and converged again at 26.303.
 	</t>
 
-    <t>Although the convergence time seems to grow linearly with the number of nodes, the overall traffic sent before convergence increases dramatically. This is caused by the fact that not-only each node will synchronize with any other node on the link, but the data will grow as nodes discover their neighbors. The problem is explained in <xref target="I-D.ietf-homenet-dncp"/> Section 6.2 (Support For Dense Broadcast Links). An optional solution to this problem is also specified in the document, but *was not* implemented in libdncp, which explains the bad performances.</t>
+    <t>Although the convergence time seems to grow linearly with the number of nodes, the overall traffic sent before convergence increases dramatically. This is caused by the fact that not-only each node will synchronize with any other node on the link, but the data will grow as nodes discover their neighbors. The problem is explained in <xref target="I-D.ietf-homenet-dncp"/> Section 6.2 (Support For Dense Broadcast Links) where an optional solution is also proposed, but that option *was not* implemented in libdncp, which explains the bad performances.</t>
 
 	</section>
 	
@@ -162,7 +161,7 @@
             <postamble></postamble>
         </texttable>
 
-    <t>These results show that in a linear network, convergence time is linear, but the overall tranmitted traffic is not. This can be easily explained as the convergence time reflects the time for both extremities to discover each other, but in the meantime, other updates are sent. The slope of the convergence time line is 0.18 second per node, which is pretty quick, but also comes at the cost of transmitting multiple updates before all nodes are discovered. Please note that, as DNCP is based on Trickle, it is expected to be particularly verbose in case of changes, but also very silent and fast to react when updates are rare.</t>
+    <t>These results show that in a linear network, convergence time is linear in the number of chained nodes, but the overall transmitted traffic is not. This can be easily explained as the convergence time reflects the time for both extremities to discover each other (updates have to traverse the whole string), but in the meantime, other updates are sent. The slope of the convergence time line is 0.18 second per node, which is pretty quick, but also comes at the cost of transmitting multiple updates before all nodes are discovered.</t>
 	</section>
 
 	<section title="Results for the full mesh topology">
@@ -201,7 +200,7 @@
             <c>453.8KB</c>
 
 
-        	<postamble>*: the average value was calculated over the results of 9 experiments because the other one diverges too much </postamble>
+        	<postamble>*: the average value was calculated over the results of 9 experiments because one of the value was significantly greater.</postamble>
     		</texttable>
         
         
@@ -242,7 +241,7 @@
             <postamble></postamble>
         </texttable>
 
-<t>An incident similar to the one that occured with a single link topology was observed. Although the convergence time is low, the amount of transmitted traffic is very high compared to other topologies. It can be explained by the number of distinct links (equal to N(N-1)/2): Trickle has to converge on each individual link. Unlike the single link topology, this situation is harder to detect and resolve.</t>
+<t>An incident similar to the one that occured with a single link topology was observed. Although the convergence time is low, the amount of transmitted traffic is very high compared to other topologies. It can be explained by the high number of distinct links (equal to N(N-1)/2): Trickle has to converge on each individual link. Unlike the single link topology, this situation is harder to detect and resolve.</t>
 	</section>
 
 	<section title="Results for the tree topology">
@@ -319,7 +318,7 @@
             <postamble></postamble>
         </texttable>
 
-<t>As expected in a tree topology, the convergence time is sub-linear. We also oberve that the overall amount of traffic (and per node) is relatively low compared to other topologies. This is quite satisfying as the tree and double-tree topoligies were supposed to reflect more realistic networks.</t>
+<t>As expected in a tree topology, the convergence time is sub-linear. We also oberve that the overall amount of traffic (and per node) is relatively low compared to other topologies. This is quite satisfying as the tree and double-tree topoligies are the more realistic ones.</t>
 	</section>
 
 	<section title="Results for the double-tree topology">

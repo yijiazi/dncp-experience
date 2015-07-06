@@ -96,5 +96,9 @@
 
   <back>
       <?rfc include='references'?>
+
+    <section title="Acknowledgments">
+        <t>The authors would like to thank Markus Stenberg for his help with hnetd and the remarkable quality of his code, as well as Juliusz Chroboczek for the new (yet untested) DNCP implementation.</t>
+    </section>
   </back>
 </rfc>

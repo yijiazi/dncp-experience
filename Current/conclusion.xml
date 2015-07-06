@@ -1,18 +1,19 @@
 <section title="Conclusion" anchor="conclusion">
 
-<t>Seen from the evaluation results, in overall, DNCP can provide topology discovery and state synchronization within a short period of time at a reasonable traffic price, it can satisfy the demands of homenet and can be applied to other networks. DNCP is obviously well suited for tree-like topologies which are closer to realistic networks, so it is logic to assume dncp to work well in reality. </t>
+    <t>DNCP does converge in small networks as well as larger ones. It converges fast at the cost of a quite high overall transmitted amount of data. It behaves particularly well in tree topologies as well as double tree topologies, which are the most realistic tested topologies.</t>
 
-<t>One notable potential problem for DNCP is that the convering state may be unstable, as in the case of single link and full mash topology, there is a chance that the network can be disturbed after converging (without any node publishing new data).</t>
+    <t>The first observed concern appears in the single link topology, where the amount of traffic grows dramatically with the number of nodes. The problem is known and DNCP actually proposes a solution to that problem. But this solution is optional and was not part of the tested implementation. Further attention may be necessary on these particular mechanisms in order to make sure that DNCP behaves well in such situations (if such topology is in scope of DNCP at all).</t>
 
-<t>The performance of DNCP will be degraded in dense broadcast link and in a network where the node has many interfaces, a topology like full mesh not only takes more time to converge but also consumes heavier traffic overhead.</t>
+    <t>The overall amount of traffic was also significant in full mesh topologies as well as string topologies. A possible approach to improve these results might be to rate-limit the amount of updates that may be made in short periods of time. Such approach would provide fast convergence after small changes and would reduce the overall amount of traffic in reaction to dramatic changes.</t>
 
-<t>Note that in the implementation used for simulation, DNCP sends a packet for every node state request and every node state reply instead of wrapping all the requests or replies together in one packet. So when the network size is large, at a certain moment a node may send tons of requests or replies, causing device buffer congestion and packets loss. With this improved in the newer version, DNCP can perform even better.</t>
+    <t>Once again, it is important to note that DNCP is expected to be verbose in case of regular or dramatic changes. DNCP users should make sure that the network eventually stabilizes, such that DNCP can take full advantage of the Trickle algorithm.</t>
 
-<t>It is expectd that in the next version of this document:
-<list style="symbols">
-<t>The evaluation of newer version of DNCP implementation </t>
-<t>The measurements covering more metrics and more scenarios (trickle parameters, unstable network, lossy links, nodes publishing new data..).</t>
-<t>The improved performance of DNCP in single link after fixing the support for Dense Broadcast Links.</t>
-    </list>
-</t>
+    <t>Next iterations of this document might include further results such as:
+        <list style="symbols">
+            <t>Measures with libdncp2 instead of libdncp(v1).</t>
+            <t>Measures with different profiles (rather than the HNCP profile alone).</t>
+            <t>Other metrics (e.g., convergence ratio).</t>
+            <t>Other scenarios (e.g., no updates at all, sporadic updates).</t>
+        </list>
+    </t>
 </section>
