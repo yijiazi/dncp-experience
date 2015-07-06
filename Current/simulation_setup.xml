@@ -12,7 +12,7 @@
 
         <t>Running DNCP in NS3 requires libdncp to be integrated and built with NS3. DNCP runs on an event loop managed by libubox, which therefore specifies how to set timers and listen to file descriptors. Integration was quite straitforward. Event-loop and system calls were identified and replaced with their NS3 equivalents. Besides, an application in ns3 called "DncpApplication" is created, this application can be installed on the node and can be started and stopped at given time. Once the application is launched, dncp begins to run on that node by calling functions in the libdncp static library from inside the ns3 application. It is expected that integration with libdncp2 will be even simpler, as this new library put the DNCP profile definition at runtime instead of compilation time.</t>
 
-        <t>Running experiments in simulated environments offers multiple advantages such as the ability to run long-lived scenarios in short period of time, simulate networks of hundread of nodes without requiring lots of resources, or isolate tested components from external interferances.  On the other hand, NS3 executes program steps virtually instantaneously, it is therefore hard to take into account hardware speed when measuring time-related performances metrics. For these first experiments, virtually perfect links with no delay were used, and a processing delay of 0.5ms for each received packet was introduced in order to simulate the packet processing time.
+        <t>Running experiments in simulated environments offers multiple advantages such as the ability to run long-lived scenarios in short period of time, simulate networks of hundread of nodes without requiring lots of resources, or isolate tested components from external interferences.  On the other hand, NS3 executes program steps virtually instantaneously, it is therefore hard to take into account hardware speed when measuring time-related performances metrics. For these first experiments, virtually perfect links with no delay were used, and a processing delay of 0.5ms for each received packet was introduced in order to simulate the packet processing time.
         </t>
 
 
@@ -30,7 +30,7 @@
                 <t hangText="MTU: ">The link layer maximum transmission unit, set to 1500.</t>
                 <t hangText="Encapsulation Mode:">Type of link layer encapsulation. "Dix" mode was used, which models an Ethernet II layer.</t>
                 <t hangText="TxQueue:">Type of the transmit queue used by the device. NS3 provides "Codel queue", "Drop tail" and "RED" (random early detection) queues. "Drop tail" queue was used with a size of 100 packets.</t>
-                <t hangText="Interframe Gap:">The pause between two frames, set to 0.</t>
+                <t hangText="Inter-frame Gap:">The pause between two frames, set to 0.</t>
             </list>
         </t>
 
@@ -40,7 +40,7 @@
                 <t hangText="Data Rate:">Physical layer bit rate, enforcing the time it takes for a frame to be transmitted. It is set to 1Gbps, which is significantly greater than what DNCP is expected to use.</t>
                 <t hangText="Delay:">Signal propagation time within the medium. It was set to 1 micro second.</t>
             </list>
-            Assuming a constant frame size, the theorethical throughput of the medium is given by the formula FrameSize/(FrameSize/DataRate + Delay). For a frame size of 1500 bytes, the throughput is 923Mbps. For a FrameSize of 100 bytes, the link throughput is 444Mbps.
+            Assuming a constant frame size, the theoretical throughput of the medium is given by the formula FrameSize/(FrameSize/DataRate + Delay). For a frame size of 1500 bytes, the throughput is 923Mbps. For a FrameSize of 100 bytes, the link throughput is 444Mbps.
         </t>
 
         <figure anchor='figure_simulation' title="libdncp over NS3 network layering model">
@@ -72,7 +72,7 @@
         <t>The goal of this study is to measure the performances of DNCP in some extreme scenarios, see whether, and how it converges. Therefore, the following three performance metrics were observed:
             <list style="hanging">
                 <t hangText="Convergence time: ">The time it took for the network to converge.</t>
-                <t hangText="Overall traffic sent: ">The amount of data that was sent onlink before convergence.</t>
+                <t hangText="Overall traffic sent: ">The amount of data that was sent on link before convergence.</t>
                 <t hangText="Average traffic sent per node: ">The overall traffic sent divided by the number of nodes.</t>
             </list>
         </t>
@@ -134,7 +134,7 @@
         </section>
         <section title="Full Mesh Topology">
             <t>
-                The mesh topology connects all nodes with distinct links. Each node has N-1 DNCP End-Points with one neighor on each. Such topology is well suited for evaluating DNCP scalability capabilities in terms of the amount of nodes and end-points.
+                The mesh topology connects all nodes with distinct links. Each node has N-1 DNCP End-Points with one neighbor on each. Such topology is well suited for evaluating DNCP scalability capabilities in terms of the amount of nodes and end-points.
             </t>
             <figure anchor='figure_mesh' title="The full mesh topology for N = 4">
                 <preamble></preamble>
@@ -171,7 +171,7 @@
         
         <section title="Double Tree Topology">
             <t>
-                The double tree topology is identical to the binary tree, but each node is paired with a redundancy node. In such topology, all nodes except the two root node have 6 DNCP End-Point with one neighbor on each. This topology also offers a more realistic tradeoff between the network diameter and the number of nodes, but also adds redundancy and loops.
+                The double tree topology is identical to the binary tree, but each node is paired with a redundancy node. In such topology, all nodes except the two root node have 6 DNCP End-Point with one neighbor on each. This topology also offers a more realistic trade-off between the network diameter and the number of nodes, but also adds redundancy and loops.
             </t>
 
             <t>For example, for N = 9:

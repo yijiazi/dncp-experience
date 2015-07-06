@@ -4,7 +4,7 @@
 <t>Each simulation reflects the same scenario. All DNCP instances are simultaneously initialized. The simulation is then run until the network converges, and performance metrics introduced in <xref target="metric"/> are computed. 
 </t>
 
-<t>Important: Note that, as DNCP uses Trickle, it is expected to be very verbose in case of dramatic changes, but as a tradeoff should provide good convergence times and low verbosity in the absence of changes. An instantaneous and complete boostrap of the network, which is the present scenario, is a particularly extreme state change. This scenario was selected as a worst case to see whether DNCP converges well, or at-all. On that side, DNCP behaved well, but as expected, the overall amount of generated traffic sometimes appeared to be significant.</t>
+<t>Important: Note that, as DNCP uses Trickle, it is expected to be very verbose in case of dramatic changes, but as a trade-off should provide good convergence times and low verbosity in the absence of changes. An instantaneous and complete bootstrap of the network, which is the present scenario, is a particularly extreme state change. This scenario was selected as a worst case to see whether DNCP converges well, or at-all. On that side, DNCP behaved well, but as expected, the overall amount of generated traffic sometimes appeared to be significant.</t>
 
 	<section title="Results for the Single Link Topology">
 		<texttable anchor='table1' title="Single Link Topology (1)">
@@ -241,7 +241,7 @@
             <postamble></postamble>
         </texttable>
 
-<t>An incident similar to the one that occured with a single link topology was observed. Although the convergence time is low, the amount of transmitted traffic is very high compared to other topologies. It can be explained by the high number of distinct links (equal to N(N-1)/2): Trickle has to converge on each individual link. Unlike the single link topology, this situation is harder to detect and resolve.</t>
+<t>An incident similar to the one that occurred with a single link topology was observed. Although the convergence time is low, the amount of transmitted traffic is very high compared to other topologies. It can be explained by the high number of distinct links (equal to N(N-1)/2): Trickle has to converge on each individual link. Unlike the single link topology, this situation is harder to detect and resolve.</t>
 	</section>
 
 	<section title="Results for the tree topology">
