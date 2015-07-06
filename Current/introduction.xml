@@ -1,27 +1,21 @@
 <section title="Introduction" anchor="introduction">
 
 <t>
-    The Distributed Node Consensus Protocol (DNCP) <xref target="I-D.ietf-homenet-dncp"/> is a protocol providing node data synchronization and dynamic network topology discovery  within a network. At the time of writing this document, DNCP is in standardization process by the IETF Homenet working group.
+    The Distributed Node Consensus Protocol (DNCP) <xref target="I-D.ietf-homenet-dncp"/> is a protocol providing node data synchronization and dynamic network topology discovery within a network. At the time of writing this document, DNCP is in standardization process by the IETF Homenet working group.
 </t>
 
 <t>
-	In DNCP, the information of a node and its view of the network is encoded in a set of TLV (Type-Length-Value) tuples. By publishing and exchanging the TLVs with its neighbors, each node in the network can share a common view of of the network state (in which case, the network is converged). Trickle algorithm <xref target="RFC6206"/> is used, instead of periodic signaling, to reduce the overhead of synchronization. DNCP also provides an option of "keep alive" message to detect the reachability of the neighbors. 
+	In DNCP, the information of a node and its view of the network is encoded in a set of TLV (Type-Length-Value) tuples. By publishing and exchanging the TLVs with its neighbors, each node in the network eventually receives the set of TLV published by every other node within the network (in which case, the network is converged). The Trickle algorithm <xref target="RFC6206"/> is used, instead of periodic signaling, to reduce the overhead of synchronization. DNCP also provides an option of "keep alive" message to detect when a neighbor is not reachable anymore.
 </t>
 
 <t>
-    As a generic protocol, DNCP can not only be applied in home networks, but also other networks that requires node data synchronization (such as configuration profiles, network topology, services, etc.). Therefore, DNCP leaves some parameters to be specified by DNCP profiles, which are actual implementable instances of DNCP. Nodes implementing the same DNCP profile, and operating within the same DNCP network, are able share TLV tuples (called Node Data), discover the network topology, and auto-detect arrival and departure of other nodes.
+    As a generic protocol, DNCP can not only be applied in home networks, but also in other networks that require node data synchronization (such as configuration profiles, network topology, services, etc.). Therefore, DNCP leaves some parameters to be specified by DNCP profiles, which are actual implementable instances of DNCP. Nodes implementing the same DNCP profile, and operating within the same DNCP network, are able share TLV tuples, discover the network topology, and auto-detect arrival and departure of other nodes.
 </t>
+
+<t>This document presents experience and performances evaluation using the reference DNCP implementation in a simulated environment using the Network Simulator 3 (NS3), a discrete event simulator widely used in network research and recognized by the scientific community</t>
 
 <t>
-    This document presents experience with DNCP protocol. Publicly known implementations of DNCP are reported. Based one of the existed (and probably the most widely used) implementations, the performance of DNCP is evaluated using the  the Network Simulator 3 (NS3). NS3 is a discrete event simulator widely used in network research and recognized by the scientific community.
+    Note that for the purpose of this first study, DNCP was evaluated in various, quite unrealistic and probably extreme, network topologies, with the intent of finding the limits of the protocol.
 </t>
-
-<t>
-    As the application of DNCP is not limited to home networks, it is evaluated in various (and probably extreme) network topologies to study its performance in those extreme scenarios. 
-</t>
-
-
-
-
 
 </section>

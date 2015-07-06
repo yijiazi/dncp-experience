@@ -32,9 +32,7 @@
           <region></region>
           <country>France</country>
         </postal>
-        <phone></phone>
-        <email></email>
-        <uri></uri>
+        <email>kaiwen.jin@master.polytechnique.org</email>
       </address>
 
     </author>
@@ -48,9 +46,7 @@
           <region></region>
           <country>France</country>
         </postal>
-        <phone></phone>
-        <email></email>
-        <uri></uri>
+        <email>pierre.pfister@darou.fr</email>
       </address>
 
     </author>
@@ -63,10 +59,10 @@
           <city>Palaiseau 91128</city>
           <region></region>
           <country>France</country>
-        </postal>
-        <phone></phone>
-        <email></email>
-        <uri></uri>
+      </postal>
+        <phone>+33 1 77 57 80 85</phone>
+        <email>jiazi@jiaziyi.com</email>
+        <uri>http://www.jiaziyi.com/</uri>
       </address>
 
     </author>
